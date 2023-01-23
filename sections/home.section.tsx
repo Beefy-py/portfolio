@@ -58,10 +58,14 @@ function HomeSection() {
             <span> Contact Me</span>
             <EnvelopeIcon className="ml-3 h-6 w-6" />
           </a>
-          <button className={ctaLinks.download}>
+          <a
+            href="/cv-kennyhoft-eng.pdf"
+            download="kennyhoft-curriculum-vitae"
+            className={ctaLinks.download}
+          >
             <span> Download CV</span>
             <ArrowDownOnSquareStackIcon className="ml-3 h-6 w-6" />
-          </button>
+          </a>
         </div>
       </div>
     </SectionWrapper>
