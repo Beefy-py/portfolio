@@ -58,42 +58,40 @@ const Navbar = () => {
             </span>
           </Link>
 
-          <div className="right flex items-center">
-            <button
-              onClick={handleDarkModeToggle}
-              className="justify-self-end outline-none mr-4 border-2 p-2 rounded-sm border-dashed border-gray-300 bg-gray-100 dark:bg-gray-800 dark:border-gray-700"
-            >
-              <SunIcon
-                className={`${!darkMode && "hidden"} h-6 text-gray-500`}
-              />
-              <MoonIcon
-                className={`${darkMode && "hidden"} h-6 text-gray-500`}
-              />
-            </button>
+          <button
+            className="lg:hidden text-logo-shade1 hover:ring-2 hover:ring-logo-shade1 rounded-sm p-2 transition"
+            onClick={() => setShowNavbar(!showNavbar)}
+          >
+            <Bars3BottomRightIcon className="w-8 h-8" />
+          </button>
 
-            <button
-              className="lg:hidden text-logo-shade1 hover:ring-2 hover:ring-logo-shade1 rounded-sm p-2 transition"
-              onClick={() => setShowNavbar(!showNavbar)}
-            >
-              <Bars3BottomRightIcon className="w-8 h-8" />
-            </button>
+          <div
+            className={`${
+              !showNavbar && "hidden"
+            } justify-between items-center w-full lg:flex lg:w-auto`}
+            id="mobile-menu-2"
+          >
+            <ul className="flex flex-col items-center mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+              <button
+                onClick={handleDarkModeToggle}
+                className=" outline-none border-2 p-2 rounded-sm border-dashed border-gray-300 bg-gray-100 dark:bg-gray-800 dark:border-gray-700"
+              >
+                <SunIcon
+                  className={`${!darkMode && "hidden"} h-6 text-gray-500`}
+                />
+                <MoonIcon
+                  className={`${darkMode && "hidden"} h-6 text-gray-500`}
+                />
+              </button>
 
-            <div
-              className={`${
-                !showNavbar && "hidden"
-              } justify-between items-center w-full lg:flex lg:w-auto`}
-              id="mobile-menu-2"
-            >
-              <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
-                {navLinks.map((link) => (
-                  <li>
-                    <a href={link.path} className={linkStyling}>
-                      {link.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+              {navLinks.map((link) => (
+                <li>
+                  <a href={link.path} className={linkStyling}>
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </nav>
