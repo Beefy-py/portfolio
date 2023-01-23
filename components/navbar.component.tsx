@@ -36,14 +36,14 @@ const Navbar = () => {
   const linkStyling = [
     "block",
     "relative",
-    "text-gray-700 dark:text-gray-400 lg:hover:text-blue-700 dark:hover:text-white lg:dark:hover:text-white ",
+    "text-gray-700 dark:text-gray-400 lg:hover:text-gray-900 dark:hover:text-white lg:dark:hover:text-white ",
     "py-2 pr-4 pl-3 lg:p-0",
     "before:content-[''] before:absolute before:block before:w-full before:h-[2px] before:bottom-0 before:left-0 before:bg-logo-shade1 before:hover:scale-x-100 before:scale-x-0 before:origin-top-left before:transition before:ease-in-out before:duration-300",
   ].join(" ");
 
   return (
     <header>
-      <nav className="border-gray-200 dark:border-gray-700 px-4 lg:px-6 py-2.5 border-b">
+      <nav className="border-gray-200 dark:border-gray-700 px-4 lg:px-6 py-2.5 border-b-2">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl py-4">
           <Link href="/" className="flex items-center">
             <Image

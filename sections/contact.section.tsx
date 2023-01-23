@@ -14,14 +14,14 @@ function ContactSection() {
         </h2>
         <p
           data-aos="fade-up"
-          data-aos-delay="150"
+          data-aos-delay="50"
           className="mb-8 lg:mb-16 font-light lg:text-center text-gray-500 dark:text-gray-400 sm:text-lg"
         >
           Do you have any questions for me or suggestions? Then please don't
           hesitate to contact me.
         </p>
         <form action="#" className="space-y-8">
-          <div data-aos="fade-up" data-aos-delay="200">
+          <div data-aos="fade-up" data-aos-delay="100">
             <label
               htmlFor="email"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -36,7 +36,7 @@ function ContactSection() {
               required
             />
           </div>
-          <div data-aos="fade-up" data-aos-delay="250">
+          <div data-aos="fade-up" data-aos-delay="150">
             <label
               htmlFor="subject"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -53,7 +53,7 @@ function ContactSection() {
           </div>
           <div
             data-aos="fade-up"
-            data-aos-delay="300"
+            data-aos-delay="150"
             data-aos-offset="100"
             className="sm:col-span-2"
           >
@@ -72,7 +72,8 @@ function ContactSection() {
           </div>
           <button
             data-aos="fade-up"
-            data-aos-delay="400"
+            data-aos-delay="200"
+            data-aos-offset="-10"
             type="submit"
             className="py-3 px-5 text-sm font-medium text-center text-gray-200 hover:text-gray-900 rounded-sm bg-logo-shade2 sm:w-fit hover:bg-logo-shade3 transition"
           >

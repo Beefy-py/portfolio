@@ -5,10 +5,10 @@ import SectionWrapper from "./sectionWrapper";
 
 function AboutSection() {
   const interestsClassNames =
-    "bg-blue-100 text-logo-shade1 text-md font-medium mr-2 px-2.5 py-1 rounded dark:bg-gray-800 my-1";
+    "bg-gray-200 dark:text-logo-shade1 text-logo-shade2 text-md font-medium mr-2 px-2.5 py-1 rounded dark:bg-gray-800 my-1";
   return (
     <SectionWrapper name="about">
-      <div className="place-self-center lg:col-span-7 text-md lg:text-lg text-gray-300">
+      <div className="place-self-center lg:col-span-7 text-md lg:text-lg text-gray-800 dark:text-gray-300">
         <p data-aos="fade-right" className="mb-3">
           I am a highly motivated and dedicated 18-year-old software developer
           with 5 years of experience under my belt. I discovered my passion for

@@ -6,14 +6,14 @@ function ExperienceSection() {
     <SectionWrapper name="experience">
       <ol
         data-aos="fade-down"
-        className="lg:col-span-7 relative border-l border-gray-200 dark:border-logo-shade1"
+        className="lg:col-span-7 relative border-l border-logo-shade1"
       >
         <li className="mb-10 ml-4">
-          <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-logo-shade1"></div>
+          <div className="absolute w-3 h-3 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 bg-logo-shade1"></div>
           {/* <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
             April 2022
           </time> */}
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-logo-shade1">
+          <h3 className="text-lg font-semibold text-logo-shade1">
             Tune Create Studios
           </h3>
           <p data-aos="fade-left" className="text-gray-500 my-1">
@@ -23,7 +23,7 @@ function ExperienceSection() {
           <p
             data-aos="fade-left"
             data-aos-delay="100"
-            className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400"
+            className="mb-4 text-base font-normal text-gray-600 dark:text-gray-400"
           >
             I worked at Tune Creative Studios as a full-stack web developer. I
             build many web apps for clients and for the company. From personal
@@ -31,7 +31,7 @@ function ExperienceSection() {
           </p>
           {/* <a
             href="#"
-            className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+            className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
           >
             Learn more{" "}
             <svg
@@ -49,11 +49,11 @@ function ExperienceSection() {
           </a> */}
         </li>
         <li className="mb-10 ml-4">
-          <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-logo-shade1"></div>
+          <div className="absolute w-3 h-3 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 bg-logo-shade1"></div>
           {/* <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
             December 2022
           </time> */}
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-logo-shade1">
+          <h3 className="text-lg font-semibold text-logo-shade1">
             Bits Please Technologies
           </h3>
           <p data-aos="fade-left" className="text-gray-500 my-1">
@@ -63,7 +63,7 @@ function ExperienceSection() {
           <p
             data-aos="fade-left"
             data-aos-delay="100"
-            className="text-base font-normal text-gray-500 dark:text-gray-400"
+            className="text-base font-normal text-gray-600 dark:text-gray-400"
           >
             I installed and ERP system for the company on their vps to boost the
             overal production. Migrated their React site to NextJS and helping

@@ -12,7 +12,7 @@ function ProjectsSection() {
           <div
             data-aos="fade-up"
             data-aos-delay={`${index * 100}`}
-            className="border-2 border-gray-800 rounded-sm max-w-sm mt-4 md:mt-0 md:ml-2"
+            className="border-2 border-gray-300 dark:border-gray-800 rounded-sm max-w-sm mt-4 md:mt-0 md:ml-2"
           >
             <Image
               alt={project.description}
@@ -22,7 +22,7 @@ function ProjectsSection() {
               className="rounded-t-sm"
             />
             <div className="my-2 px-4">
-              <h3 className="text-gray-200 text-lg font-semibold inline-flex items-center">
+              <h3 className="text-gray-700 dark:text-gray-200 text-lg font-semibold inline-flex items-center">
                 {project.name}
                 <a
                   href={project.url}
@@ -32,10 +32,12 @@ function ProjectsSection() {
                   <ArrowTopRightOnSquareIcon className="ml-3 h-6 w-6" />
                 </a>
               </h3>
-              <p className="mt-1 text-gray-400">{project.description}</p>
+              <p className="mt-1 dark:text-gray-400 text-gray-600">
+                {project.description}
+              </p>
               <div className="mt-1">
                 {project.tags?.map((tag) => (
-                  <span className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-logo-shade2 dark:text-logo-shade5">
+                  <span className="text-xs font-medium mr-2 px-2.5 py-0.5 rounded bg-logo-shade5 text-logo-shade2">
                     {tag.name}
                   </span>
                 ))}
