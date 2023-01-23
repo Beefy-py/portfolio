@@ -39,15 +39,15 @@ function HomeSection() {
           className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-gray-700 dark:text-white"
         >
           Hi,
-          <br /> I'm <span className="text-logo-shade1">Kenny Hoft</span>
+          <br /> My name is <span className="text-logo-shade1">Kenny Hoft</span>
         </h1>
         <p
           data-aos="fade-up"
           data-aos-delay="200"
           className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400"
         >
-          From checkout to global sales tax compliance, companies around the
-          world use Flowbite to simplify their payment stack.
+          I'm a software developer working with start-up companies in Suriname
+          to help maintain their technologies and build for clients.
         </p>
         <div
           data-aos="fade-up"
