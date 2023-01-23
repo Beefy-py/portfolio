@@ -84,6 +84,7 @@ export const projects: Project[] = [
     name: `Realtime Chat App`,
     description: `I had created this using the mern stack and socket.io`,
     url: "https://room-chat-app-mern.netlify.app/",
+    github: "https://github.com/Beefy-py/chat-app-client",
     tags: [{ name: "React" }, { name: "Socket.io" }, { name: "NodeJS" }],
   },
   {
@@ -91,7 +92,20 @@ export const projects: Project[] = [
     name: `Donation website in Suriname`,
     description: `I build this when I worked at Tune Creative Studios. This website was build for the people who were suffering because of the flood.`,
     url: "https://www.sadelo.org/",
-    tags: [{ name: "React" }, { name: "Mope" }, { name: "NodeJS" }],
+    tags: [
+      { name: "React" },
+      { name: "Mope" },
+      { name: "NodeJS" },
+      { name: "Tailwind" },
+    ],
+  },
+  {
+    image: `/projects/blog-cms.png`,
+    name: `Nerdy blog website`,
+    description: `This one I build in NextJS using Tailwind also. And I fetched the blog articles from a graphql cms called Hygraph. This was the first project where I used the NextJS framework.`,
+    url: "https://blog-app-cms.vercel.app/",
+    github: "https://github.com/Beefy-py/blog_app_cms",
+    tags: [{ name: "NextJS" }, { name: "GraphQl" }, { name: "Tailwind" }],
   },
 ];
 

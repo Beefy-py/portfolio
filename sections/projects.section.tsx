@@ -31,6 +31,15 @@ function ProjectsSection() {
                 >
                   <ArrowTopRightOnSquareIcon className="ml-3 h-6 w-6" />
                 </a>
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    className="hover:text-logo-shade3 transition ml-2"
+                  >
+                    <i className="fa-solid text-lg fa-brands fa-github"></i>
+                  </a>
+                )}
               </h3>
               <p className="mt-1 dark:text-gray-400 text-gray-600">
                 {project.description}
