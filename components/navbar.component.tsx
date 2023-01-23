@@ -1,16 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { navLinks } from "../utils/resources";
+import { Bars3BottomRightIcon } from "@heroicons/react/20/solid";
 
 const Navbar = () => {
+  const [showNavbar, setShowNavbar] = useState(false);
+
   const linkStyling = [
     "block",
     "relative",
     "text-gray-700 dark:text-gray-400 lg:hover:text-blue-700 dark:hover:text-white lg:dark:hover:text-white ",
     "py-2 pr-4 pl-3 lg:p-0",
-    "border-gray-100 border-b lg:border-0 ",
-    "hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-700 lg:hover:bg-transparent lg:dark:hover:bg-transparent",
     "before:content-[''] before:absolute before:block before:w-full before:h-[2px] before:bottom-0 before:left-0 before:bg-logo-shade1 before:hover:scale-x-100 before:scale-x-0 before:origin-top-left before:transition before:ease-in-out before:duration-300",
   ].join(" ");
 
@@ -31,8 +32,17 @@ const Navbar = () => {
             </span>
           </Link>
 
+          <button
+            className="lg:hidden text-logo-shade1 hover:ring-2 hover:ring-logo-shade1 rounded-sm p-2 transition"
+            onClick={() => setShowNavbar(!showNavbar)}
+          >
+            <Bars3BottomRightIcon className="w-8 h-8" />
+          </button>
+
           <div
-            className="hidden justify-between items-center w-full lg:flex lg:w-auto"
+            className={`${
+              !showNavbar && "hidden"
+            } justify-between items-center w-full lg:flex lg:w-auto`}
             id="mobile-menu-2"
           >
             <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">

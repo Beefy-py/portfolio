@@ -30,10 +30,10 @@ const ScrollTopButton = () => {
     <>
       {isVisible && (
         <button
-          className="fixed bottom-4 right-4 w-14 bg-logo-shade2 hover:bg-logo-shade1 focus:ring-2 focus:outline-transparent focus:ring-offset-2 focus:ring-logo-shade1 p-2 rounded-sm cursor-pointer opacity-50 hover:opacity-100 transition ease"
+          className="fixed bottom-4 right-4 w-14 bg-logo-shade1 focus:ring-2 focus:outline-transparent focus:ring-offset-2 focus:ring-logo-shade1 p-2 rounded-sm cursor-pointer opacity-50 hover:opacity-100 transition ease"
           onClick={handleScroll}
         >
-          <ArrowLongUpIcon className=" text-gray-200" />
+          <ArrowLongUpIcon className="text-gray-200" />
         </button>
       )}
     </>
