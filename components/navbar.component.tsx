@@ -1,11 +1,37 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { navLinks } from "../utils/resources";
 import { Bars3BottomRightIcon } from "@heroicons/react/20/solid";
+import { SunIcon } from "@heroicons/react/24/outline";
+import { MoonIcon } from "@heroicons/react/24/outline";
 
 const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
+
+  const handleDarkModeToggle = () => {
+    setDarkMode(!darkMode);
+    if (localStorage.getItem("color-theme")) {
+      if (localStorage.getItem("color-theme") === "light") {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("color-theme", "dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("color-theme", "light");
+      }
+
+      // if NOT set via local storage previously
+    } else {
+      if (document.documentElement.classList.contains("dark")) {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("color-theme", "light");
+      } else {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("color-theme", "dark");
+      }
+    }
+  };
 
   const linkStyling = [
     "block",
@@ -32,28 +58,42 @@ const Navbar = () => {
             </span>
           </Link>
 
-          <button
-            className="lg:hidden text-logo-shade1 hover:ring-2 hover:ring-logo-shade1 rounded-sm p-2 transition"
-            onClick={() => setShowNavbar(!showNavbar)}
-          >
-            <Bars3BottomRightIcon className="w-8 h-8" />
-          </button>
+          <div className="right flex items-center">
+            <button
+              onClick={handleDarkModeToggle}
+              className="justify-self-end outline-none mr-4 border-2 p-2 rounded-sm border-dashed border-gray-300 bg-gray-100 dark:bg-gray-800 dark:border-gray-700"
+            >
+              <SunIcon
+                className={`${!darkMode && "hidden"} h-6 text-gray-500`}
+              />
+              <MoonIcon
+                className={`${darkMode && "hidden"} h-6 text-gray-500`}
+              />
+            </button>
 
-          <div
-            className={`${
-              !showNavbar && "hidden"
-            } justify-between items-center w-full lg:flex lg:w-auto`}
-            id="mobile-menu-2"
-          >
-            <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
-              {navLinks.map((link) => (
-                <li>
-                  <a href={link.path} className={linkStyling}>
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <button
+              className="lg:hidden text-logo-shade1 hover:ring-2 hover:ring-logo-shade1 rounded-sm p-2 transition"
+              onClick={() => setShowNavbar(!showNavbar)}
+            >
+              <Bars3BottomRightIcon className="w-8 h-8" />
+            </button>
+
+            <div
+              className={`${
+                !showNavbar && "hidden"
+              } justify-between items-center w-full lg:flex lg:w-auto`}
+              id="mobile-menu-2"
+            >
+              <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+                {navLinks.map((link) => (
+                  <li>
+                    <a href={link.path} className={linkStyling}>
+                      {link.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </nav>
