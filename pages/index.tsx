@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Script from "next/script";
+import { useEffect } from "react";
 import Footer from "../components/footer.component";
 import Navbar from "../components/navbar.component";
 import ScrollTopButton from "../components/scrollTopButton.component";
@@ -11,6 +12,18 @@ import HomeSection from "../sections/home.section";
 import ProjectsSection from "../sections/projects.section";
 
 const Home: NextPage = () => {
+  useEffect(() => {
+    if (
+      localStorage.getItem("color-theme") === "dark" ||
+      (!("color-theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme:dark)").matches)
+    ) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, []);
+
   return (
     <>
       <Head>
@@ -26,14 +39,6 @@ const Home: NextPage = () => {
           src="https://kit.fontawesome.com/8e5bc578dd.js"
           crossOrigin="anonymous"
         ></script>
-        <Script>
-          {`
-          if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme'
-          in localStorage) && window.matchMedia('(prefers-color-scheme:
-          dark)').matches)) {document.documentElement.classList.add("dark")}
-          else {document.documentElement.classList.remove("dark")}
-   `}
-        </Script>
         <title>Kenny Hoft</title>
       </Head>
       <Navbar />

@@ -7,7 +7,7 @@ import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 function ProjectsSection() {
   return (
     <SectionWrapper name="projects">
-      <div className="col-span-full grid justify-center md:grid-cols-2 lg:grid-cols-3 gap-2 w-full">
+      <div className="col-span-full grid justify-center items-center md:grid-cols-2 lg:grid-cols-3 gap-2 w-full">
         {projects.map((project, index) => (
           <div
             data-aos="fade-up"
