@@ -10,25 +10,34 @@ const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
 
+  useEffect(() => {
+    setDarkMode(localStorage.theme === "dark" || !localStorage.theme);
+  }, []);
+
   const handleDarkModeToggle = () => {
-    setDarkMode(!darkMode);
-    if (localStorage.getItem("color-theme")) {
-      if (localStorage.getItem("color-theme") === "light") {
+    setDarkMode(() => !darkMode);
+    // console.log(localStorage.theme, localStorage.getItem("theme"));
+    if (localStorage.getItem("theme")) {
+      if (localStorage.getItem("theme") === "light") {
         document.documentElement.classList.add("dark");
-        localStorage.setItem("color-theme", "dark");
+        localStorage.setItem("theme", "dark");
+        localStorage.theme = "dark";
       } else {
         document.documentElement.classList.remove("dark");
-        localStorage.setItem("color-theme", "light");
+        localStorage.setItem("theme", "light");
+        localStorage.theme = "light";
       }
 
       // if NOT set via local storage previously
     } else {
       if (document.documentElement.classList.contains("dark")) {
         document.documentElement.classList.remove("dark");
-        localStorage.setItem("color-theme", "light");
+        localStorage.setItem("theme", "light");
+        localStorage.theme = "light";
       } else {
         document.documentElement.classList.add("dark");
-        localStorage.setItem("color-theme", "dark");
+        localStorage.setItem("theme", "dark");
+        localStorage.theme = "dark";
       }
     }
   };
