@@ -55,7 +55,7 @@ function AboutSection() {
         <div className="bg-logo-shade3 w-20 h-20 rounded-full absolute -z-10 -left-12 -top-16 blur-lg brightness-110 contrast-125"></div> */}
       </div>
 
-      <div className="col-span-full border-t-2 border-gray-800 mt-4 pt-2 flex flex-row flex-wrap">
+      <div className="col-span-full border-t-2 border-gray-200 dark:border-gray-800 mt-4 pt-2 flex flex-row flex-wrap">
         {" "}
         {aboutSkills.map((skill, index) => (
           <span
