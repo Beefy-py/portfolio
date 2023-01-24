@@ -54,7 +54,7 @@ function HomeSection() {
           data-aos-delay="300"
           className="my-3 flex justify-between sm:w-3/4"
         >
-          <a href="#" className={ctaLinks.contact}>
+          <a href="mailto:hoftkenny@gmail.com" className={ctaLinks.contact}>
             <span> Contact Me</span>
             <EnvelopeIcon className="ml-3 h-6 w-6" />
           </a>

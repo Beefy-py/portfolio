@@ -80,7 +80,7 @@ export const socialLinks = [
 
 export const projects: Project[] = [
   {
-    image: `/projects/chatapp.png`,
+    image: `/projects/chat-app.jpeg`,
     name: `Realtime Chat App`,
     description: `I had created this using the mern stack and socket.io`,
     url: "https://room-chat-app-mern.netlify.app/",
