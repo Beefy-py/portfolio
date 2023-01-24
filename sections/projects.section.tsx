@@ -7,12 +7,12 @@ import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 function ProjectsSection() {
   return (
     <SectionWrapper name="projects">
-      <div className="col-span-full flex items-center flex-col md:flex-row md:justify-start w-full">
+      <div className="col-span-full grid justify-center md:grid-cols-2 lg:grid-cols-3 gap-2 w-full">
         {projects.map((project, index) => (
           <div
             data-aos="fade-up"
             data-aos-delay={`${index * 100}`}
-            className="border-2 border-gray-300 dark:border-gray-800 rounded-sm max-w-xs sm:max-w-sm mt-4 md:mt-0 md:ml-2"
+            className="border-2 border-gray-300 dark:border-gray-800 rounded-sm max-w-xs sm:max-w-sm"
           >
             <Image
               alt={project.description}
