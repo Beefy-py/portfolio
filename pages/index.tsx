@@ -28,12 +28,17 @@ const Home: NextPage = () => {
     <>
       <Head>
         <meta charSet="utf-8" />
+        <meta name="author" content="Kenny Hoft" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#000000" />
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta
           name="description"
           content="Portfolio website of Kenny Hoft. Kenny Hoft works at Bits Please Technologies."
+        />
+        <meta
+          name="keywords"
+          content="kenny hoft,portfolio website,software engineer suriname, web developer suriname,mern-stack developer,nextJS developer, software developer suriname"
         />
         <title>Kenny Hoft</title>
       </Head>
