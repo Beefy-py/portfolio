@@ -24,8 +24,8 @@ const Footer = () => {
           Software developer who strives to be Data Scientist.
         </p>
         <ul className="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white">
-          {navLinks.map((link) => (
-            <li>
+          {navLinks.map((link, index) => (
+            <li key={"link-" + index}>
               <a
                 href={link.path}
                 className="mr-4 hover:underline decoration-logo-shade3 md:mr-6"
@@ -41,9 +41,9 @@ const Footer = () => {
           </li>
         </ul>
         <ul className="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white">
-          {socialLinks.map((link) => {
+          {socialLinks.map((link, index) => {
             return (
-              <li>
+              <li key={"link-" + index}>
                 <a
                   href={link.url}
                   target="_blank"

@@ -59,6 +59,7 @@ function AboutSection() {
         {" "}
         {aboutSkills.map((skill, index) => (
           <span
+            key={index + skill}
             data-aos={`fade-left`}
             data-aos-delay={`${index * 100}`}
             className={interestsClassNames}

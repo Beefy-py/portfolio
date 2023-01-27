@@ -93,8 +93,8 @@ const Navbar = () => {
                 />
               </button>
 
-              {navLinks.map((link) => (
-                <li>
+              {navLinks.map((link, index) => (
+                <li key={index + link.path}>
                   <a href={link.path} className={linkStyling}>
                     {link.name}
                   </a>

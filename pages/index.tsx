@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Script from "next/script";
 import { useEffect } from "react";
 import Footer from "../components/footer.component";
 import Navbar from "../components/navbar.component";
@@ -36,10 +35,6 @@ const Home: NextPage = () => {
           name="description"
           content="Portfolio website of Kenny Hoft. Kenny Hoft works at Bits Please Technologies."
         />
-        <script
-          src="https://kit.fontawesome.com/8e5bc578dd.js"
-          crossOrigin="anonymous"
-        ></script>
         <title>Kenny Hoft</title>
       </Head>
       <Navbar />

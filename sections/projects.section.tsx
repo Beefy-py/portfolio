@@ -12,6 +12,7 @@ function ProjectsSection() {
           <div
             data-aos="fade-up"
             data-aos-delay={`${index * 100}`}
+            key={index + project.name}
             className="border-2 border-gray-300 dark:border-gray-800 rounded-sm max-w-xs sm:max-w-sm"
           >
             <Image
@@ -45,8 +46,11 @@ function ProjectsSection() {
                 {project.description}
               </p>
               <div className="mt-1">
-                {project.tags?.map((tag) => (
-                  <span className="text-xs font-medium mr-2 px-2.5 py-0.5 rounded bg-logo-shade5 text-logo-shade2">
+                {project.tags?.map((tag, index) => (
+                  <span
+                    key={index + tag.name}
+                    className="text-xs font-medium mr-2 px-2.5 py-0.5 rounded bg-logo-shade5 text-logo-shade2"
+                  >
                     {tag.name}
                   </span>
                 ))}
