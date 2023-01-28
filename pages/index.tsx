@@ -34,13 +34,13 @@ const Home: NextPage = () => {
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta
           name="description"
-          content="Portfolio website of Kenny Hoft. Kenny Hoft works at Bits Please Technologies."
+          content="Kenny Hoft's website. Kenny Hoft works at Bits Please Technologies in Suriname. He is a soft ware developer in Suriname. Lives in Commewijne, Suriname."
         />
         <meta
           name="keywords"
-          content="kenny hoft,portfolio website,software engineer suriname, web developer suriname,mern-stack developer,nextJS developer, software developer suriname"
+          content="kenny hoft,portfolio website,software engineer suriname, web developer suriname,mern-stack developer,nextJS developer, software developer suriname, Tune Creative Studios, Bits Please Technologies, Chat App"
         />
-        <title>Kenny Hoft</title>
+        <title>Kenny Hoft -- Software Developer in Suriname</title>
       </Head>
       <Navbar />
       <HomeSection />
