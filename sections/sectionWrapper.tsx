@@ -8,7 +8,10 @@ const SectionWrapper = ({
   children: React.ReactNode;
 }) => {
   return (
-    <section className="relative" id={name}>
+    <section
+      className="z-0 relative overflow-x-hidden overflow-y-hidden"
+      id={name}
+    >
       <span className="absolute -top-2 left-0 text-3xl text-gray-300 dark:text-gray-800 font-extrabold lg:top-0">
         {`<${name}>`}
       </span>

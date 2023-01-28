@@ -6,3 +6,23 @@
   background-color: #89d6ad;
   color: rgb(0, 0, 0);
 }
+
+::-webkit-scrollbar {
+  height: 1em;
+}
+::-webkit-scrollbar-track {
+  background: #00000000;
+  border-top-left-radius: 100vw;
+  border-bottom-left-radius: 100vw;
+  margin-block: 0.5em;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #19b44a;
+  border: 0.2em solid #dcfce7;
+  border-radius: 100vw;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1b643a;
+}

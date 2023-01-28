@@ -20,13 +20,15 @@ export interface Testimonial {
   url?: string;
 }
 
-export interface BlurryBlob {
+export interface Bubble {
   height: number;
   width: number;
   xAxisPosition: number;
   yAxisPosition: number;
+  color: "green" | "blue";
+  rotation?: number;
 }
-export interface BlurryBlobs {
-  desktop: BlurryBlob[];
-  mobile: BlurryBlob[];
+export interface Bubbles {
+  desktop: Bubble[];
+  mobile: Bubble[];
 }

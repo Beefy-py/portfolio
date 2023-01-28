@@ -1,4 +1,4 @@
-import { BlurryBlobs, Project } from "./interfaces";
+import { Bubbles, Project } from "./interfaces";
 
 export const navLinks = [
   {
@@ -110,14 +110,93 @@ export const projects: Project[] = [
 ];
 
 // sorted from left to right
-export const bubbles: BlurryBlobs = {
+export const bubbles: Bubbles = {
   desktop: [
     {
       height: 140,
       width: 140,
       xAxisPosition: -115,
       yAxisPosition: 219,
+      color: "blue",
+    },
+    {
+      height: 80,
+      width: 80,
+      xAxisPosition: 127,
+      yAxisPosition: 133,
+      color: "green",
+      rotation: 4.57,
+    },
+    {
+      height: 49,
+      width: 49,
+      xAxisPosition: 360,
+      yAxisPosition: 272,
+      color: "green",
+      rotation: -143.94,
+    },
+    {
+      height: 204,
+      width: 204,
+      xAxisPosition: 527,
+      yAxisPosition: 124,
+      color: "blue",
+    },
+    {
+      height: 120,
+      width: 120,
+      xAxisPosition: 1057,
+      yAxisPosition: 515,
+      color: "green",
+      rotation: -143.94,
+    },
+    {
+      height: 70,
+      width: 70,
+      xAxisPosition: 897,
+      yAxisPosition: 219,
+      color: "blue",
+    },
+    {
+      height: 219,
+      width: 219,
+      xAxisPosition: 1396,
+      yAxisPosition: 177,
+      color: "green",
+      rotation: 4.57,
+    },
+    {
+      height: 89,
+      width: 89,
+      xAxisPosition: 1254,
+      yAxisPosition: 425,
+      color: "green",
+      rotation: 4.57,
     },
   ],
-  mobile: [],
+  mobile: [
+    {
+      height: 140,
+      width: 140,
+      xAxisPosition: -115,
+      yAxisPosition: 299,
+      color: "blue",
+    },
+    {
+      height: 80,
+      width: 80,
+      xAxisPosition: 127,
+      yAxisPosition: 183,
+      color: "green",
+      rotation: 4.57,
+    },
+    {
+      height: 49,
+      width: 49,
+      xAxisPosition: 360,
+      yAxisPosition: 352,
+      color: "green",
+      rotation: -143.94,
+    },
+  ],
 };

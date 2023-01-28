@@ -3,6 +3,8 @@ import React from "react";
 import { ArrowDownOnSquareStackIcon } from "@heroicons/react/24/outline";
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
 import SectionWrapper from "./sectionWrapper";
+import { motion } from "framer-motion";
+import { bubbles } from "../utils/resources";
 
 function HomeSection() {
   const ctaLinks = {
@@ -30,9 +32,63 @@ function HomeSection() {
       "rounded-sm",
     ].join(" "),
   };
+
+  const container = {
+    hidden: { opacity: 1 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { scale: 0 },
+    show: {
+      scale: 1,
+      y: [0, -40, 0],
+    },
+  };
   return (
     <SectionWrapper name="">
-      {" "}
+      <section className="overflow-hidden bg-center bg-no-repeat w-full">
+        {" "}
+        <motion.div
+          className="static"
+          variants={container}
+          initial="hidden"
+          animate="show"
+        >
+          {bubbles.desktop.map((bubble, index) => (
+            <motion.div
+              variants={item}
+              transition={{
+                y: {
+                  repeat: Infinity,
+                  type: "spring",
+                  duration: 3,
+                  delay: Math.random() * 2.5,
+                },
+              }}
+              key={index}
+              className={`scale-50 md:scale-100 lg:scale-110 xl:scale-125 hidden md:block bg-logo-shade1`}
+              style={{
+                height: bubble.height,
+                width: bubble.width,
+                borderRadius: "100%",
+                position: "absolute",
+                zIndex: -1,
+                left: bubble.xAxisPosition,
+                top: bubble.yAxisPosition - 80,
+                boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                transform: `rotate(${bubble.rotation ?? 0}deg)`,
+              }}
+            ></motion.div>
+          ))}
+        </motion.div>
+      </section>
+
       <div className="mr-auto place-self-center lg:col-span-7">
         <h1
           data-aos="fade-right"
