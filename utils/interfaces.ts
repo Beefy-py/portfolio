@@ -25,7 +25,7 @@ export interface Bubble {
   width: number;
   xAxisPosition: number;
   yAxisPosition: number;
-  color: "green" | "blue";
+  color: "green" | "light-green" | "dark";
   rotation?: number;
 }
 export interface Bubbles {

@@ -47,12 +47,26 @@ function HomeSection() {
     hidden: { scale: 0 },
     show: {
       scale: 1,
-      y: [0, -40, 0],
+      y: [0, -15, 0],
     },
   };
+
+  const getBlockColor = (color: string) => {
+    switch (color) {
+      case "green":
+        return "bg-logo-shade1";
+      case "light-green":
+        return "bg-logo-shade3";
+      case "dark":
+        return "bg-black/20 dark:bg-white";
+      default:
+        break;
+    }
+  };
+
   return (
     <SectionWrapper name="">
-      <section className="overflow-hidden bg-center bg-no-repeat w-full">
+      <motion.section className="overflow-hidden bg-center bg-no-repeat w-full">
         {" "}
         <motion.div
           className="static"
@@ -63,6 +77,12 @@ function HomeSection() {
           {bubbles.desktop.map((bubble, index) => (
             <motion.div
               variants={item}
+              animate={{ scale: 1, y: [0, -15, 0] }}
+              whileHover={{
+                scale: [null, 1.2, 1.1],
+                y: [0, -15, 0],
+              }}
+              whileTap={{ scale: 0.9 }}
               transition={{
                 y: {
                   repeat: Infinity,
@@ -72,13 +92,15 @@ function HomeSection() {
                 },
               }}
               key={index}
-              className={`scale-50 md:scale-100 lg:scale-110 xl:scale-125 hidden md:block bg-logo-shade1`}
+              className={`scale-50 md:scale-100 lg:scale-110 xl:scale-125 hidden md:block blur-md -inset-3 ${getBlockColor(
+                bubble.color
+              )}`}
               style={{
                 height: bubble.height,
                 width: bubble.width,
-                borderRadius: "100%",
-                position: "absolute",
+                borderRadius: "5%",
                 zIndex: -1,
+                position: "absolute",
                 left: bubble.xAxisPosition,
                 top: bubble.yAxisPosition - 80,
                 boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
@@ -87,7 +109,7 @@ function HomeSection() {
             ></motion.div>
           ))}
         </motion.div>
-      </section>
+      </motion.section>
 
       <div className="mx-auto place-self-center col-span-full">
         <h1
