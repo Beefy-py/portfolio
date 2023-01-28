@@ -29,10 +29,10 @@ function Custom404() {
           <h1 className="mb-4 text-7xl tracking-tight lg:text-9xl  font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-logo-shade1 to-logo-shade2">
             404
           </h1>
-          <p className="mb-4 text-gray-200 text-3xl tracking-tight font-bold md:text-4xl">
+          <p className="mb-4 text-gray-800 dark:text-gray-200 text-3xl tracking-tight font-bold md:text-4xl">
             Page Not Found.
           </p>
-          <p className="mb-4 text-lg text-gray-300">
+          <p className="mb-4 text-lg text-gray-700 dark:text-gray-300">
             Sorry, I can&apos;t find that page. You&apos;ll find lots more to
             explore about me on the homepage.{" "}
           </p>
