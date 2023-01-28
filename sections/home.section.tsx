@@ -92,7 +92,7 @@ function HomeSection() {
                 },
               }}
               key={index}
-              className={`scale-50 md:scale-100 lg:scale-110 xl:scale-125 hidden lg:block blur-md -inset-3 ${getBlockColor(
+              className={`scale-50 md:scale-100 lg:scale-110 xl:scale-125 hidden lg:block blur-lg -inset-3 ${getBlockColor(
                 bubble.color
               )}`}
               style={{
