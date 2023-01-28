@@ -92,7 +92,41 @@ function HomeSection() {
                 },
               }}
               key={index}
-              className={`scale-50 md:scale-100 lg:scale-110 xl:scale-125 hidden md:block blur-md -inset-3 ${getBlockColor(
+              className={`scale-50 md:scale-100 lg:scale-110 xl:scale-125 hidden lg:block blur-md -inset-3 ${getBlockColor(
+                bubble.color
+              )}`}
+              style={{
+                height: bubble.height,
+                width: bubble.width,
+                borderRadius: "5%",
+                zIndex: -1,
+                position: "absolute",
+                left: bubble.xAxisPosition,
+                top: bubble.yAxisPosition - 80,
+                boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                transform: `rotate(${bubble.rotation ?? 0}deg)`,
+              }}
+            ></motion.div>
+          ))}{" "}
+          {bubbles.mobile.map((bubble, index) => (
+            <motion.div
+              variants={item}
+              animate={{ scale: 1, y: [0, -15, 0] }}
+              whileHover={{
+                scale: [null, 1.2, 1.1],
+                y: [0, -10, 0],
+              }}
+              whileTap={{ scale: 0.9 }}
+              transition={{
+                y: {
+                  repeat: Infinity,
+                  type: "spring",
+                  duration: 3,
+                  delay: Math.random() * 2.5,
+                },
+              }}
+              key={index}
+              className={`scale-50 md:scale-100 lg:scale-110 xl:scale-125 block lg:hidden blur-md -inset-3 ${getBlockColor(
                 bubble.color
               )}`}
               style={{
