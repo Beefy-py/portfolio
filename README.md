@@ -4,6 +4,12 @@ My portfolio website is hosted on a sub domain at the moment:
 
 ## TODO
 
+- Content
+
+  - Add an education section to the about section
+  - Add a certificates section to the about section
+  - Rework the layout of the about section
+
 - SEO
   - This page is hosted on a subdomain. Use a top level domain for better SEO results.
   - This page loads 10 JavaScript files. This may affect the load time negatively.

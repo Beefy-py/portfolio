@@ -41,7 +41,7 @@ function AboutSection() {
       <div
         data-aos="fade-right"
         data-aos-delay="400"
-        className="hidden relative lg:mt-0 lg:col-span-5 lg:flex justify-end align-middle items-center"
+        className="flex relative mt-3 lg:mt-0 lg:col-span-5 justify-end align-middle items-center"
       >
         <Image
           src="/me.jpg"
