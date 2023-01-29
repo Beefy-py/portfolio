@@ -34,7 +34,7 @@ const Home: NextPage = () => {
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta
           name="description"
-          content="Kenny Hoft's website. Kenny Hoft works at Bits Please Technologies in Suriname. He is a soft ware developer in Suriname. Lives in Commewijne, Suriname."
+          content="Explore the portfolio of Kenny Hoft, a software engineer and web developer based in Suriname. Specializing in MERN-stack and NextJS development, Kenny has worked with Tune Creative Studios and Bits Please Technologies. See his latest projects including a Chat App on his portfolio website."
         />
         <meta
           name="keywords"
