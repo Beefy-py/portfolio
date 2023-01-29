@@ -50,7 +50,7 @@ function AboutSection() {
           width={400}
           height={400}
         />
-        <div className="rounded-md absolute left-0 right-0 bottom-0 top-0 backdrop-blur-md z-2"></div>
+        {/* <div className="rounded-md absolute left-0 right-0 bottom-0 top-0 backdrop-blur-md z-2"></div> */}
         {/* <div className="bg-logo-shade3 w-48 h-48 rounded-full absolute -z-10 -right-12 -bottom-16 blur-lg brightness-110 contrast-125"></div>{" "}
         <div className="bg-logo-shade3 w-20 h-20 rounded-full absolute -z-10 -left-12 -top-16 blur-lg brightness-110 contrast-125"></div> */}
       </div>
