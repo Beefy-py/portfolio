@@ -18,6 +18,21 @@ function MyApp({ Component, pageProps }: AppProps) {
         src="https://kit.fontawesome.com/8e5bc578dd.js"
         crossOrigin="anonymous"
       ></Script>
+
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-3L2HK0HKV4"
+      ></Script>
+      <Script>
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-3L2HK0HKV4');
+        `}
+      </Script>
+
       <Component {...pageProps} />
       <Analytics />
     </>
