@@ -1,11 +1,10 @@
 import React from "react";
-// import { blurryBlobs404 } from "../resources";
-// import { motion } from "framer-motion";
+
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { bubbles404 } from "../utils/resources";
+import { bubbles500 } from "../utils/resources";
 
-function Custom404() {
+function Custom500() {
   const container = {
     hidden: { opacity: 1 },
     show: {
@@ -47,7 +46,7 @@ function Custom404() {
           initial="hidden"
           animate="show"
         >
-          {bubbles404.desktop.map((bubble, index) => (
+          {bubbles500.desktop.map((bubble, index) => (
             <motion.div
               variants={item}
               animate={{ scale: 1, y: [0, -15, 0] }}
@@ -81,7 +80,7 @@ function Custom404() {
               }}
             ></motion.div>
           ))}{" "}
-          {bubbles404.mobile.map((bubble, index) => (
+          {bubbles500.mobile.map((bubble, index) => (
             <motion.div
               variants={item}
               animate={{ scale: 1, y: [0, -15, 0] }}
@@ -119,13 +118,13 @@ function Custom404() {
       </motion.section>
       <div className="py-8 px-4 my-32 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         <div className="mx-auto max-w-screen-sm text-center flex flex-col items-center">
-          <h1 className="mb-4 text-7xl tracking-tight lg:text-9xl  font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-logo-shade1 to-logo-shade2">
-            404
+          <h1 className="mb-4 text-7xl tracking-tight lg:text-9xl  font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-gray-800 dark:from-gray-200 to-logo-shade2">
+            500
           </h1>
           <p className="mb-4 text-gray-800 dark:text-gray-200 text-3xl tracking-tight font-bold md:text-4xl">
-            Page Not Found.
+            Internal Server Error.
           </p>
-          <p className="mb-4 text-lg text-gray-700 dark:text-gray-300">
+          {/* <p className="mb-4 text-lg text-gray-700 dark:text-gray-300">
             Sorry, I can&apos;t find that page. You&apos;ll find lots more to
             explore about me on the homepage.{" "}
           </p>
@@ -135,11 +134,11 @@ function Custom404() {
             className="transition ease justify-center bg-logo-shade4 text-xs lg:text-sm xl:text-base my-1 py-2.5 px-5 rounded-sm  font-bold drop-shadow-sm hover:drop-shadow-xl text-gray-800 hover:bg-logo-shade5 focus:outline focus:outline-offset-2 focus:outline-2 focus:outline-logo-shade5 text-center"
           >
             Back to Homepage
-          </Link>
+          </Link> */}
         </div>
       </div>{" "}
     </section>
   );
 }
 
-export default Custom404;
+export default Custom500;
