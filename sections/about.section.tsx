@@ -44,7 +44,7 @@ function AboutSection() {
         className="hidden relative lg:mt-0 lg:col-span-5 lg:flex justify-end align-middle items-center"
       >
         <Image
-          src="https://shorturl.at/nCKL0"
+          src="/me.jpg"
           alt="Image of Kenny Hoft on his portfolio website z-1"
           className="rounded-md"
           width={400}
