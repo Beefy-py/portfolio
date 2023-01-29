@@ -40,6 +40,10 @@ const Home: NextPage = () => {
           name="keywords"
           content="kenny hoft,portfolio website,software engineer suriname, web developer suriname,mern-stack developer,nextJS developer, software developer suriname, Tune Creative Studios, Bits Please Technologies, Chat App"
         />
+        <meta
+          name="google-site-verification"
+          content="qC0yuu6ZCdN7M1G07WxH8T_DxKJjJHy83hYmEOnVZss"
+        />
         <title>Kenny Hoft -- Software Developer in Suriname</title>
       </Head>
       <Navbar />
