@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useRef } from "react";
 import { additionalInfo } from "../utils/resources";
 import SectionWrapper from "./sectionWrapper";
+import emailjs from "@emailjs/browser";
 
 function ContactSection() {
+  const sendEmail = (e: React.FormEvent) => {
+    e.preventDefault();
+  };
+
   return (
     <SectionWrapper name="contact">
       <div className="col-span-full px-4 mx-auto max-w-screen-md">
@@ -20,7 +25,7 @@ function ContactSection() {
           Do you have any questions for me or suggestions? Then please don't
           hesitate to contact me.
         </p>
-        <form action="#" className="space-y-8">
+        <form onSubmit={sendEmail} className="space-y-8">
           <div data-aos="fade-up" data-aos-delay="100">
             <label
               htmlFor="email"
