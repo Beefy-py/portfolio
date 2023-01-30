@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import { blurryBlobs404 } from "../resources";
 // import { motion } from "framer-motion";
 import Link from "next/link";
@@ -6,6 +6,19 @@ import { motion } from "framer-motion";
 import { bubbles404 } from "../utils/resources";
 
 function Custom404() {
+  useEffect(() => {
+    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, []);
+
   const container = {
     hidden: { opacity: 1 },
     show: {
@@ -38,7 +51,7 @@ function Custom404() {
   };
 
   return (
-    <section className="bg-transparent h-screen bg-no-repeat bg-center overflow-hidden relative">
+    <section className="bg-gray-50 dark:bg-gray-900 h-screen bg-no-repeat bg-center overflow-hidden relative">
       <motion.section className="overflow-hidden bg-center bg-no-repeat w-full">
         {" "}
         <motion.div
