@@ -16,6 +16,10 @@ module.exports = {
         "logo-shade4": "#4b9d6c",
         "logo-shade5": "#89d6ad",
       },
+      fontFamily: {
+        league: ["League Spartan", "sans-serif"],
+        secular: ["Secular One", "sans-serif"],
+      },
     },
   },
   plugins: [],

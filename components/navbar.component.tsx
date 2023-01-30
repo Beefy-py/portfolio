@@ -62,9 +62,9 @@ const Navbar = () => {
               height={50}
               alt="Kenny Hoft's Logo"
             />
-            <span className="self-center text-xl font-semibold whitespace-nowrap text-logo-shade1">
+            {/* <span className="self-center text-xl font-semibold whitespace-nowrap text-logo-shade1">
               Kenny
-            </span>
+            </span> */}
           </Link>
 
           <button

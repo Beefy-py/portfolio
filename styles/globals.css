@@ -1,6 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600&family=Secular+One&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: "League Spartan", sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Secular One", sans-serif;
+}
 
 ::selection {
   background-color: #89d6ad;

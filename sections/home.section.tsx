@@ -151,7 +151,8 @@ function HomeSection() {
           className="max-w-2xl mb-4 text-center text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-gray-700 dark:text-white"
         >
           Hi,
-          <br /> My name is <span className="text-logo-shade1">Kenny Hoft</span>
+          <br /> My name is{" "}
+          <span className="font-secular text-logo-shade1">Kenny Hoft</span>
         </h1>
         <p
           data-aos="fade-up"
