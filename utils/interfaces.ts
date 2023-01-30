@@ -7,6 +7,14 @@ export interface Project {
   tags?: Tag[];
 }
 
+export interface Experience {
+  company: string;
+  role: string;
+  from: Date;
+  to?: Date;
+  description: string;
+}
+
 export interface Tag {
   name: string;
 }

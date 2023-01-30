@@ -1,4 +1,4 @@
-import { Bubbles, Project } from "./interfaces";
+import { Bubbles, Experience, Project } from "./interfaces";
 
 export const navLinks = [
   {
@@ -75,6 +75,28 @@ export const socialLinks = [
     name: "Github",
     icon: "fa-brands fa-github",
     url: "https://github.com/Beefy-py",
+  },
+];
+
+export const workedAt: Experience[] = [
+  {
+    company: "Tune Creative Studios",
+    role: "Software Developer",
+    from: new Date("April 2022"),
+    to: new Date("November 2022"),
+    description: `
+    I worked at Tune Creative Studios as a full-stack web developer. I
+    build many web apps for clients and for the company. From personal
+    dashboard sites to real estate sites and Donation sites for clients.`,
+  },
+  {
+    company: " Bits Please Technologies",
+    role: "Software Developer",
+    from: new Date("December 2022"),
+    description: `
+    I installed and ERP system for the company on their vps to boost the
+    overal production. Migrated their React site to NextJS and helping
+    managing it.`,
   },
 ];
 
