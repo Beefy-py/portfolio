@@ -81,9 +81,9 @@ function ContactSection() {
   console.log(touched);
 
   const inputStyling = `
-shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:outline-2 focus:outline-offset-4 focus:outline-logo-shade3 outline-none ring-none focus:ring-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:shadow-sm-light`;
+shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-md lg:text-lg rounded-sm focus:outline-2 focus:outline-offset-4 focus:outline-logo-shade3 outline-none ring-none focus:ring-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:shadow-sm-light`;
 
-  const inputLabelStyling = `flex items-center mb-2 text-sm font-medium text-gray-900 dark:text-gray-300`;
+  const inputLabelStyling = `flex items-center mb-2 text-md lg:text-lg font-medium text-gray-900 dark:text-gray-300`;
 
   return (
     <SectionWrapper name="contact">
@@ -284,7 +284,7 @@ shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm foc
             data-aos-offset="-10"
             disabled={Object.values(values).some((val) => val === "")}
             type="submit"
-            className="py-3 px-5 text-sm font-medium text-center text-gray-200 hover:text-gray-900 rounded-sm bg-logo-shade2 sm:w-fit hover:bg-logo-shade3 transition disabled:cursor-not-allowed disabled:hover:bg-gray-400 disabled:bg-gray-300 disabled:text-gray-900"
+            className="py-3 px-5 text-sm lg:text-lg font-medium text-center text-gray-200 hover:text-gray-900 rounded-sm bg-logo-shade2 sm:w-fit hover:bg-logo-shade3 transition disabled:cursor-not-allowed disabled:hover:bg-gray-400 disabled:bg-gray-300 disabled:text-gray-900"
           >
             {isLoading ? "Sending. . ." : "Send message"}
           </button>

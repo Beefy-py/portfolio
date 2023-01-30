@@ -13,7 +13,7 @@ function ExperienceSection() {
           {/* <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
             April 2022
           </time> */}
-          <h3 className="text-lg font-semibold text-logo-shade1">
+          <h3 className="text-xl font-semibold text-logo-shade1">
             Tune Create Studios
           </h3>
           <p data-aos="fade-left" className="text-gray-500 my-1">
@@ -23,7 +23,7 @@ function ExperienceSection() {
           <p
             data-aos="fade-left"
             data-aos-delay="100"
-            className="mb-4 text-base font-normal text-gray-600 dark:text-gray-400"
+            className="mb-4 text-lg font-normal text-gray-600 dark:text-gray-400"
           >
             I worked at Tune Creative Studios as a full-stack web developer. I
             build many web apps for clients and for the company. From personal
@@ -53,7 +53,7 @@ function ExperienceSection() {
           {/* <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
             December 2022
           </time> */}
-          <h3 className="text-lg font-semibold text-logo-shade1">
+          <h3 className="text-xl font-semibold text-logo-shade1">
             Bits Please Technologies
           </h3>
           <p data-aos="fade-left" className="text-gray-500 my-1">
@@ -63,7 +63,7 @@ function ExperienceSection() {
           <p
             data-aos="fade-left"
             data-aos-delay="100"
-            className="text-base font-normal text-gray-600 dark:text-gray-400"
+            className="text-lg font-normal text-gray-600 dark:text-gray-400"
           >
             I installed and ERP system for the company on their vps to boost the
             overal production. Migrated their React site to NextJS and helping

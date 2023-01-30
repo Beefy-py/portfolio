@@ -45,7 +45,7 @@ const Navbar = () => {
   const linkStyling = [
     "block",
     "relative",
-    "text-gray-600 dark:text-gray-400 lg:hover:text-gray-900 dark:hover:text-white lg:dark:hover:text-white ",
+    "text-lg text-gray-600 dark:text-gray-400 lg:hover:text-gray-900 dark:hover:text-white lg:dark:hover:text-white ",
     "py-2 pr-4 pl-3 lg:p-0",
     "before:content-[''] before:absolute before:block before:w-full before:h-[2px] before:bottom-0 before:left-0 before:bg-logo-shade1 before:hover:scale-x-100 before:scale-x-0 before:origin-top-left before:transition before:ease-in-out before:duration-300",
   ].join(" ");
