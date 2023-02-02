@@ -57,7 +57,10 @@ const Home: NextPage = () => {
           property="og:description"
           content="Explore the portfolio of Kenny Hoft, a software engineer and web developer based in Suriname. Specializing in MERN-stack and NextJS development, Kenny has worked with Tune Creative Studios and Bits Please Technologies. See his latest projects including a Chat App on his portfolio website."
         />
-        <meta property="og:image" content="/homepage.png" />
+        <meta
+          property="og:image"
+          content="https://cdn.sanity.io/images/ylwllkb5/production/8be744e348a6fbe1a638db52b21cf83bd300ad72-1898x995.png"
+        />
 
         {/* <!-- Twitter Meta Tags --> */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -71,7 +74,10 @@ const Home: NextPage = () => {
           name="twitter:description"
           content="Explore the portfolio of Kenny Hoft, a software engineer and web developer based in Suriname. Specializing in MERN-stack and NextJS development, Kenny has worked with Tune Creative Studios and Bits Please Technologies. See his latest projects including a Chat App on his portfolio website."
         />
-        <meta name="twitter:image" content="/homepage.png" />
+        <meta
+          name="twitter:image"
+          content="https://cdn.sanity.io/images/ylwllkb5/production/8be744e348a6fbe1a638db52b21cf83bd300ad72-1898x995.png"
+        />
 
         <meta
           name="google-site-verification"
