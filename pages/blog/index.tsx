@@ -1,6 +1,5 @@
-import { gql } from "@apollo/client/core";
 import React from "react";
-import { hygraph } from "../../utils/hygraphClient";
+import sanity from "../../utils/sanityClient";
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
 import Layout from "../../components/layout";
 
@@ -356,22 +355,9 @@ function BlogPage(props: Props) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { posts } = await hygraph.request(
-    gql`
-      query Posts {
-        posts {
-          coverImage {
-            url
-          }
-          content
-          createdAt
-          slug
-          tags
-          title
-        }
-      }
-    `
-  );
+  const posts = await sanity.fetch(`*[_type == "post"]`);
+
+  console.log(posts);
 
   return {
     props: { posts },
