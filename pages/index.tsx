@@ -1,8 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useEffect } from "react";
-import Footer from "../components/footer.component";
-import Navbar from "../components/navbar.component";
+import Layout from "../components/layout";
 import ScrollTopButton from "../components/scrollTopButton.component";
 import AboutSection from "../sections/about.section";
 import ContactSection from "../sections/contact.section";
@@ -46,13 +45,13 @@ const Home: NextPage = () => {
         />
         <title>Kenny Hoft -- Software Developer in Suriname</title>
       </Head>
-      <Navbar />
-      <HomeSection />
-      <AboutSection />
-      <ExperienceSection />
-      <ProjectsSection />
-      <ContactSection />
-      <Footer />
+      <Layout>
+        <HomeSection />
+        <AboutSection />
+        <ExperienceSection />
+        <ProjectsSection />
+        <ContactSection />
+      </Layout>
       <ScrollTopButton />
     </>
   );
