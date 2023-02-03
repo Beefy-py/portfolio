@@ -3,23 +3,23 @@ import { Bubbles, Experience, Project } from "./interfaces";
 export const navLinks = [
   {
     name: "Home",
-    path: "#home",
+    path: "/#home",
   },
   {
     name: "About",
-    path: "#about",
+    path: "/#about",
   },
   {
     name: "Experience",
-    path: "#experience",
+    path: "/#experience",
   },
   {
     name: "Projects",
-    path: "#projects",
+    path: "/#projects",
   },
   {
     name: "Contact",
-    path: "#contact",
+    path: "/#contact",
   },
 ];
 

@@ -5,10 +5,13 @@ import { navLinks } from "../utils/resources";
 import { Bars3BottomRightIcon } from "@heroicons/react/20/solid";
 import { SunIcon } from "@heroicons/react/24/outline";
 import { MoonIcon } from "@heroicons/react/24/outline";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
+
+  const router = useRouter();
 
   useEffect(() => {
     setDarkMode(localStorage.theme === "dark" || !localStorage.theme);
@@ -94,9 +97,15 @@ const Navbar = () => {
               </button>
               {navLinks.map((link, index) => (
                 <li key={index + link.path}>
-                  <a href={link.path} className={linkStyling}>
-                    {link.name}
-                  </a>
+                  {router.pathname === "/" ? (
+                    <a href={link.path} className={linkStyling}>
+                      {link.name}
+                    </a>
+                  ) : (
+                    <Link href={link.path} className={linkStyling}>
+                      {link.name}
+                    </Link>
+                  )}
                 </li>
               ))}{" "}
               <li>
