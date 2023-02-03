@@ -81,8 +81,9 @@ const Home: NextPage = () => {
 
         <meta
           name="google-site-verification"
-          content="qC0yuu6ZCdN7M1G07WxH8T_DxKJjJHy83hYmEOnVZss"
+          content="7u0GSchEa9S1HENjfqRd-m7nBMYuwTdYmHJ2B3DoMNw"
         />
+
         <title>Kenny Hoft -- Software Developer in Suriname</title>
       </Head>
       <Layout>
