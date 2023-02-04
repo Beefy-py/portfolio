@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import SearchComponent from "../../components/search.component";
 import useDarkmode from "../../hooks/darkmode";
+import { pick } from "lodash";
 
 type Props = {
   posts: [
@@ -42,6 +43,7 @@ type Props = {
 function BlogPage(props: Props) {
   const isDark = useDarkmode();
   const { posts, categories } = props;
+
   return (
     <Layout>
       <div className="grid grid-cols-12 gap-4 p-4 relative">
@@ -105,12 +107,21 @@ function BlogPage(props: Props) {
             </p>
           </div>
           <div className=" sticky top-[8.5rem] mt-3 rounded-sm overflow-y-auto py-5 px-3 h-full bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-            <h1 className="text-gray-700 dark:text-gray-400">
+            <h2 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
               Recent blog posts
-            </h1>
-            <div className="text-gray-800 dark:text-gray-300">
-              get only the title and slug using lodash
-            </div>
+            </h2>
+            <ul className="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
+              {posts.map((post) => (
+                <li key={post._id}>
+                  <Link
+                    href={`blog/${post.slug.current}`}
+                    className="hover:underline underline-offset-1 decoration-logo-shade5"
+                  >
+                    {post.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </aside>
       </div>
