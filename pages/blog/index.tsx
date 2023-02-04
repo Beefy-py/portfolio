@@ -25,6 +25,7 @@ type Props = {
       mainImage: { _type: string; asset: [Object] };
       slug: { _type: string; current: string };
       title: string;
+      excerpt: string;
     }
   ];
   categories: [
@@ -77,8 +78,7 @@ function BlogPage(props: Props) {
                 </h5>
               </Link>
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                Here are the biggest enterprise technology acquisitions of 2021
-                so far, in reverse chronological order.
+                {post.excerpt}
               </p>
               <Link
                 href={`/blog/${post.slug.current}`}
@@ -132,8 +132,6 @@ function BlogPage(props: Props) {
 export const getStaticProps: GetStaticProps = async () => {
   const posts = await sanity.fetch(`*[_type == "post"]`);
   const categories = await sanity.fetch(`*[_type == "category"]`);
-
-  console.log(categories);
 
   return {
     props: { posts, categories },
