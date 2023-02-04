@@ -41,6 +41,15 @@ type Props = {
   ];
 };
 
+export const getStaticProps: GetStaticProps = async () => {
+  const posts = await sanity.fetch(`*[_type == "post"]`);
+  const categories = await sanity.fetch(`*[_type == "category"]`);
+
+  return {
+    props: { posts, categories },
+  };
+};
+
 function BlogPage(props: Props) {
   const isDark = useDarkmode();
   const { posts, categories } = props;
@@ -128,14 +137,5 @@ function BlogPage(props: Props) {
     </Layout>
   );
 }
-
-export const getStaticProps: GetStaticProps = async () => {
-  const posts = await sanity.fetch(`*[_type == "post"]`);
-  const categories = await sanity.fetch(`*[_type == "category"]`);
-
-  return {
-    props: { posts, categories },
-  };
-};
 
 export default BlogPage;
