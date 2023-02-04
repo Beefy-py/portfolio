@@ -2,6 +2,6 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["shorturl.at"],
+    domains: ["cdn.sanity.io"],
   },
 };

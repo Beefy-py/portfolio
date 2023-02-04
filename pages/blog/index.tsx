@@ -7,6 +7,8 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import SearchComponent from "../../components/search.component";
 import useDarkmode from "../../hooks/darkmode";
 import { pick } from "lodash";
+import Image from "next/image";
+import { urlForSanityImage } from "../../utils/sanityImageBuilder";
 
 type Props = {
   posts: [
@@ -79,23 +81,34 @@ function BlogPage(props: Props) {
           {posts.map((post) => (
             <div
               key={post._id}
-              className="rounded-sm w-full p-6 bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700"
+              className="rounded-sm flex w-full p-6 bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700"
             >
-              <Link href={`/blog/${post.slug.current}`}>
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white hover:text-logo-shade4 dark:hover:text-logo-shade4 transition w-max">
-                  {post.title}
-                </h5>
-              </Link>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                {post.excerpt}
-              </p>
-              <Link
-                href={`/blog/${post.slug.current}`}
-                className="inline-flex items-center text-sm font-medium text-center transititon text-logo-shade1 hover:text-logo-shade4 hover:animate-pulse"
-              >
-                Read more
-                <ArrowRightIcon className="ml-2 w-6" />
-              </Link>
+              <div className="post-image">
+                <Image
+                  width={200}
+                  height={200}
+                  className="rounded-md"
+                  src={urlForSanityImage(post.mainImage).width(200).url()}
+                  alt={post.excerpt}
+                />
+              </div>
+              <div className="post-content ml-3">
+                <Link href={`/blog/${post.slug.current}`}>
+                  <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white hover:text-logo-shade4 dark:hover:text-logo-shade4 transition w-max">
+                    {post.title}
+                  </h5>
+                </Link>
+                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                  {post.excerpt}
+                </p>
+                <Link
+                  href={`/blog/${post.slug.current}`}
+                  className="inline-flex items-center text-sm font-medium text-center transititon text-logo-shade1 hover:text-logo-shade4 hover:animate-pulse"
+                >
+                  Read more
+                  <ArrowRightIcon className="ml-2 w-6" />
+                </Link>
+              </div>
             </div>
           ))}
         </section>

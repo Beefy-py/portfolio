@@ -1,12 +1,14 @@
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Head from "next/head";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import Layout from "../../components/layout";
 import useDarkmode from "../../hooks/darkmode";
 import sanity from "../../utils/sanityClient";
+import { urlForSanityImage } from "../../utils/sanityImageBuilder";
 
 type Props = {
   post: {
@@ -93,6 +95,12 @@ function BlogDetailsPage(props: Props) {
               </ol>
             </nav>
             <article className="mx-auto w-full max-w-2xl">
+              {/* <Image
+                width={700}
+                height={600}
+                src={urlForSanityImage(post.mainImage).width(800).url()}
+                alt={post.excerpt}
+              /> */}
               <header className="mb-4 lg:mb-6 not-format">
                 <address className="flex items-center mb-6 not-italic">
                   <div className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
