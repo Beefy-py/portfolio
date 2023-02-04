@@ -5,6 +5,7 @@ import Layout from "../../components/layout";
 import Link from "next/link";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import SearchComponent from "../../components/search.component";
+import useDarkmode from "../../hooks/darkmode";
 
 type Props = {
   posts: [
@@ -39,6 +40,7 @@ type Props = {
 };
 
 function BlogPage(props: Props) {
+  const isDark = useDarkmode();
   const { posts, categories } = props;
   return (
     <Layout>

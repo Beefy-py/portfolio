@@ -1,23 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 // import { blurryBlobs404 } from "../resources";
 // import { motion } from "framer-motion";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { bubbles404 } from "../utils/resources";
+import useDarkmode from "../hooks/darkmode";
 
 function Custom404() {
-  useEffect(() => {
-    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, []);
+  const isDark = useDarkmode();
 
   const container = {
     hidden: { opacity: 1 },
