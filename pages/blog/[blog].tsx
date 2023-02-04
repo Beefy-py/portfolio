@@ -30,6 +30,7 @@ type Props = {
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const {
+    // @ts-ignore
     params: { blog },
   } = ctx;
   const query = `*[_type=='post' && slug.current=='${blog}']`;
