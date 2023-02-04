@@ -10,8 +10,8 @@ function ExperienceSection() {
         data-aos="fade-down"
         className="lg:col-span-7 relative border-l border-logo-shade1"
       >
-        {workedAt.map((exp) => (
-          <li className="mb-10 ml-4">
+        {workedAt.map((exp, index) => (
+          <li key={index + " " + exp.company} className="mb-10 ml-4">
             <div className="absolute w-3 h-3 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 bg-logo-shade1"></div>
             <h3 className="text-xl font-semibold text-logo-shade1">
               {exp.company}

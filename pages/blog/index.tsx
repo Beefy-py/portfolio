@@ -63,7 +63,10 @@ function BlogPage(props: Props) {
             {posts.length} Posts in total
           </p>
           {posts.map((post) => (
-            <div className="rounded-sm w-full p-6 bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
+            <div
+              key={post._id}
+              className="rounded-sm w-full p-6 bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700"
+            >
               <Link href={`/blog/${post.slug.current}`}>
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white hover:text-logo-shade4 dark:hover:text-logo-shade4 transition w-max">
                   {post.title}
