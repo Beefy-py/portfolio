@@ -1,4 +1,4 @@
-import { ChevronRightIcon } from "@heroicons/react/20/solid";
+import moment from "moment";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Head from "next/head";
 import Image from "next/image";
@@ -9,6 +9,13 @@ import Layout from "../../components/layout";
 import useDarkmode from "../../hooks/darkmode";
 import sanity from "../../utils/sanityClient";
 import { urlForSanityImage } from "../../utils/sanityImageBuilder";
+import PortableText from "react-portable-text";
+import {
+  ChatBubbleBottomCenterTextIcon,
+  ChatBubbleLeftRightIcon,
+  ChevronRightIcon,
+  EllipsisHorizontalIcon,
+} from "@heroicons/react/24/outline";
 
 type Props = {
   post: {
@@ -17,11 +24,16 @@ type Props = {
     _rev: string;
     _type: string;
     _updatedAt: string;
-    author: {
-      _ref: string;
-      _type: string;
-    };
-    body: [[Object], [Object]];
+    author: { image: { _type: string; asset: [Object] }; name: string };
+    body: [
+      {
+        _key: string;
+        _type: string;
+        children: [[Object]];
+        markDefs: [];
+        style: string;
+      }
+    ];
     categories: [[Object]];
     excerpt: string;
     mainImage: { _type: string; asset: [Object] };
@@ -35,9 +47,18 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     // @ts-ignore
     params: { blog },
   } = ctx;
-  const query = `*[_type=='post' && slug.current=='${blog}']`;
+  const query = `*[_type=='post' && slug.current=='${blog}']{
+    author->{name,image},
+    _createdAt,
+    _updatedAt,
+    excerpt
+    ,categories,
+    body,
+    mainImage,
+    slug,
+    title}`;
   const posts = await sanity.fetch(query);
-
+  console.log(posts[0]);
   return { props: { post: posts[0] } };
 };
 
@@ -56,6 +77,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 function BlogDetailsPage(props: Props) {
   const { post } = props;
+  console.log(post);
   const router = useRouter();
   const isDark = useDarkmode();
 
@@ -70,7 +92,7 @@ function BlogDetailsPage(props: Props) {
   return (
     <>
       <Head>
-        <title>{post.title}</title>
+        <title>Kenny Hoft -- {post.title}</title>
       </Head>
       <Layout>
         <main className="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900">
@@ -82,12 +104,12 @@ function BlogDetailsPage(props: Props) {
                     <div className="flex items-center">
                       <Link
                         href={`${item.path}`}
-                        className={`mr-1 text-sm font-medium text-gray-700 hover:text-logo-shade4 dark:text-gray-400 dark:hover:text-logo-shade4`}
+                        className={`mr-1 text-md md:text-lg font-medium text-gray-700 hover:text-logo-shade4 dark:text-gray-400 dark:hover:text-logo-shade4`}
                       >
                         {item.name === "blog" ? "Home" : item.name}
                       </Link>{" "}
                       {index + 1 !== breadCrumbItems.length && (
-                        <ChevronRightIcon className="w-6 h-6 text-gray-500" />
+                        <ChevronRightIcon className="w-5 h-5 text-gray-500" />
                       )}
                     </div>
                   </li>
@@ -103,68 +125,95 @@ function BlogDetailsPage(props: Props) {
                 alt={post.excerpt}
               /> */}
               <header className="mb-4 lg:mb-6 not-format">
-                <address className="flex items-center mb-6 not-italic">
+                <address className="flex items-center not-italic">
                   <div className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-                    <img
-                      className="mr-4 w-16 h-16 rounded-full"
-                      src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
-                      alt="Jese Leos"
+                    <Image
+                      className="mr-4 rounded-sm"
+                      width={45}
+                      height={45}
+                      src={urlForSanityImage(post.author.image.asset)
+                        .width(150)
+                        .url()}
+                      alt={post.author.name}
                     />
                     <div>
                       <a
                         href="#"
                         rel="author"
-                        className="text-xl font-bold text-gray-900 dark:text-white"
+                        className="text-xl font-bold text-gray-700 dark:text-gray-200"
                       >
-                        Jese Leos
+                        {post.author.name}
                       </a>
                       <p className="text-base font-light text-gray-500 dark:text-gray-400">
-                        Graphic Designer, educator & CEO Flowbite
+                        Software Developer at Bits Please Technologies
                       </p>
                       <p className="text-base font-light text-gray-500 dark:text-gray-400">
-                        <time title="February 8th, 2022">Feb. 8, 2022</time>
+                        <time title="February 8th, 2022">
+                          {moment(new Date(post._createdAt)).format(
+                            "MMMM DD YYYY"
+                          )}
+                        </time>
                       </p>
                     </div>
                   </div>
                 </address>
-                <h1 className="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
-                  Best practices for successful prototypes
+                <hr className="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-800"></hr>
+                <h1 className="mb-2 text-3xl font-extrabold leading-tight text-gray-600 lg:mb-6 lg:text-4xl dark:text-gray-400">
+                  {post.title}
                 </h1>
               </header>
-              <p className="lead">
-                Flowbite is an open-source library of UI components built with
-                the utility-first classes from Tailwind CSS. It also includes
-                interactive elements such as dropdowns, modals, datepickers.
-              </p>
-
-              <section className="not-format">
-                <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
+              <PortableText
+                className="prose prose-zinc dark:prose-invert md:prose-lg lg:prose-xl"
+                dataset="production"
+                projectId="ylwllkb5"
+                content={post.body}
+                serializers={{
+                  h1: (props: any) => (
+                    <h1 className="text-2xl font-semibold" {...props} />
+                  ),
+                  h2: (props: any) => (
+                    <h1 className="text-xl font-semibold" {...props} />
+                  ),
+                  li: ({ children }: any) => (
+                    <li className="list-disc">{children}</li>
+                  ),
+                  link: ({ href, children }: any) => (
+                    <a href={href} className="text-log-shade5 hover:underline">
+                      {children}
+                    </a>
+                  ),
+                }}
+              />
+              <hr className="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-800"></hr>
+              <section className="">
+                <div className="flex justify-between items-center mb-3">
+                  <h2 className="text-lg lg:text-xl text-gray-700 dark:text-gray-200">
                     Discussion (20)
                   </h2>
                 </div>
                 <form className="mb-6">
-                  <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                  <div className="py-2 px-4 mb-4 bg-white rounded-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
                     <label htmlFor="comment" className="sr-only">
                       Your comment
                     </label>
                     <textarea
                       id="comment"
                       rows={6}
-                      className="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+                      className="px-0 w-full text-md text-gray-900 border-0 outline-none focus:ring-0 dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
                       placeholder="Write a comment..."
                       required
                     ></textarea>
                   </div>
                   <button
                     type="submit"
-                    className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
+                    className="inline-flex items-center py-2.5 px-4 text-sm md:text-normal font-medium text-center text-white bg-logo-shade2 rounded-sm focus:ring-4 focus:ring-logo-shade5 hover:bg-logo-shade1"
                   >
                     Post comment
+                    <ChatBubbleBottomCenterTextIcon className="ml-2 w-5" />
                   </button>
                 </form>
-                <article className="p-6 mb-6 text-base bg-white rounded-lg dark:bg-gray-900">
-                  <footer className="flex justify-between items-center mb-2">
+                <article className="comment p-6 border-t first:border-none border-gray-200 dark:border-gray-700 mb-6 text-md md:text-lg">
+                  <header className="flex justify-between items-center mb-2">
                     <div className="flex items-center">
                       <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
                         <img
@@ -181,18 +230,10 @@ function BlogDetailsPage(props: Props) {
                     <button
                       id="dropdownComment1Button"
                       data-dropdown-toggle="dropdownComment1"
-                      className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                      className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-sm hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                       type="button"
                     >
-                      <svg
-                        className="w-5 h-5"
-                        aria-hidden="true"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
-                      </svg>
+                      <EllipsisHorizontalIcon className="w-6" />
                       <span className="sr-only">Comment settings</span>
                     </button>
 
@@ -230,8 +271,8 @@ function BlogDetailsPage(props: Props) {
                         </li>
                       </ul>
                     </div>
-                  </footer>
-                  <p>
+                  </header>
+                  <p className="text-gray-700 dark:text-gray-300">
                     Very straight-to-point article. Really worth time reading.
                     Thank you! But tools are just the instruments for the UX
                     designers. The knowledge of the design tools are as
@@ -242,27 +283,13 @@ function BlogDetailsPage(props: Props) {
                       type="button"
                       className="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400"
                     >
-                      <svg
-                        aria-hidden="true"
-                        className="mr-1 w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                        ></path>
-                      </svg>
+                      <ChatBubbleLeftRightIcon className="w-6 mr-2" />
                       Reply
                     </button>
                   </div>
                 </article>
-                <article className="p-6 mb-6 ml-6 lg:ml-12 text-base bg-white rounded-lg dark:bg-gray-900">
-                  <footer className="flex justify-between items-center mb-2">
+                <article className="reply p-6 mb-6 ml-6 lg:ml-12 text-md md:text-lg border-l-2 border-gray-200 dark:border-gray-800">
+                  <header className="flex justify-between items-center mb-2">
                     <div className="flex items-center">
                       <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
                         <img
@@ -279,18 +306,10 @@ function BlogDetailsPage(props: Props) {
                     <button
                       id="dropdownComment2Button"
                       data-dropdown-toggle="dropdownComment2"
-                      className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                      className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-md hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                       type="button"
                     >
-                      <svg
-                        className="w-5 h-5"
-                        aria-hidden="true"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
-                      </svg>
+                      <EllipsisHorizontalIcon className="w-6" />
                       <span className="sr-only">Comment settings</span>
                     </button>
 
@@ -328,221 +347,16 @@ function BlogDetailsPage(props: Props) {
                         </li>
                       </ul>
                     </div>
-                  </footer>
-                  <p>Much appreciated! Glad you liked it ☺️</p>
-                  <div className="flex items-center mt-4 space-x-4">
-                    <button
-                      type="button"
-                      className="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400"
-                    >
-                      <svg
-                        aria-hidden="true"
-                        className="mr-1 w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                        ></path>
-                      </svg>
-                      Reply
-                    </button>
-                  </div>
-                </article>
-                <article className="p-6 mb-6 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                  <footer className="flex justify-between items-center mb-2">
-                    <div className="flex items-center">
-                      <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-                        <img
-                          className="mr-2 w-6 h-6 rounded-full"
-                          src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
-                          alt="Bonnie Green"
-                        />
-                        Bonnie Green
-                      </p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        <time title="March 12th, 2022">Mar. 12, 2022</time>
-                      </p>
-                    </div>
-                    <button
-                      id="dropdownComment3Button"
-                      data-dropdown-toggle="dropdownComment3"
-                      className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                      type="button"
-                    >
-                      <svg
-                        className="w-5 h-5"
-                        aria-hidden="true"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
-                      </svg>
-                      <span className="sr-only">Comment settings</span>
-                    </button>
-
-                    <div
-                      id="dropdownComment3"
-                      className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
-                    >
-                      <ul
-                        className="py-1 text-sm text-gray-700 dark:text-gray-200"
-                        aria-labelledby="dropdownMenuIconHorizontalButton"
-                      >
-                        <li>
-                          <a
-                            href="#"
-                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >
-                            Edit
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="#"
-                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >
-                            Remove
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="#"
-                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >
-                            Report
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </footer>
-                  <p>
-                    The article covers the essentials, challenges, myths and
-                    stages the UX designer should consider while creating the
-                    design strategy.
+                  </header>
+                  <p className="text-gray-700 dark:text-gray-300">
+                    Much appreciated! Glad you liked it ☺️
                   </p>
                   <div className="flex items-center mt-4 space-x-4">
                     <button
                       type="button"
                       className="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400"
                     >
-                      <svg
-                        aria-hidden="true"
-                        className="mr-1 w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                        ></path>
-                      </svg>
-                      Reply
-                    </button>
-                  </div>
-                </article>
-                <article className="p-6 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                  <footer className="flex justify-between items-center mb-2">
-                    <div className="flex items-center">
-                      <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-                        <img
-                          className="mr-2 w-6 h-6 rounded-full"
-                          src="https://flowbite.com/docs/images/people/profile-picture-4.jpg"
-                          alt="Helene Engels"
-                        />
-                        Helene Engels
-                      </p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        <time title="June 23rd, 2022">Jun. 23, 2022</time>
-                      </p>
-                    </div>
-                    <button
-                      id="dropdownComment4Button"
-                      data-dropdown-toggle="dropdownComment4"
-                      className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                      type="button"
-                    >
-                      <svg
-                        className="w-5 h-5"
-                        aria-hidden="true"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
-                      </svg>
-                    </button>
-
-                    <div
-                      id="dropdownComment4"
-                      className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
-                    >
-                      <ul
-                        className="py-1 text-sm text-gray-700 dark:text-gray-200"
-                        aria-labelledby="dropdownMenuIconHorizontalButton"
-                      >
-                        <li>
-                          <a
-                            href="#"
-                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >
-                            Edit
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="#"
-                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >
-                            Remove
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="#"
-                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >
-                            Report
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </footer>
-                  <p>
-                    Thanks for sharing this. I do came from the Backend
-                    development and explored some of the tools to design my Side
-                    Projects.
-                  </p>
-                  <div className="flex items-center mt-4 space-x-4">
-                    <button
-                      type="button"
-                      className="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400"
-                    >
-                      <svg
-                        aria-hidden="true"
-                        className="mr-1 w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                        ></path>
-                      </svg>
+                      <ChatBubbleLeftRightIcon className="w-6 mr-2" />
                       Reply
                     </button>
                   </div>
@@ -565,7 +379,7 @@ function BlogDetailsPage(props: Props) {
                 <a href="#">
                   <img
                     src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-1.png"
-                    className="mb-5 rounded-lg"
+                    className="mb-5 rounded-sm"
                     alt="Image 1"
                   />
                 </a>
@@ -578,7 +392,7 @@ function BlogDetailsPage(props: Props) {
                 </p>
                 <a
                   href="#"
-                  className="inline-flex items-center font-medium underline underline-offset-4 text-primary-600 dark:text-primary-500 hover:no-underline"
+                  className="inline-flex items-center font-medium underline underline-offset-4 text-blue-600 dark:text-blue-500 hover:no-underline"
                 >
                   Read in 2 minutes
                 </a>
@@ -587,7 +401,7 @@ function BlogDetailsPage(props: Props) {
                 <a href="#">
                   <img
                     src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-2.png"
-                    className="mb-5 rounded-lg"
+                    className="mb-5 rounded-sm"
                     alt="Image 2"
                   />
                 </a>
@@ -600,7 +414,7 @@ function BlogDetailsPage(props: Props) {
                 </p>
                 <a
                   href="#"
-                  className="inline-flex items-center font-medium underline underline-offset-4 text-primary-600 dark:text-primary-500 hover:no-underline"
+                  className="inline-flex items-center font-medium underline underline-offset-4 text-blue-600 dark:text-blue-500 hover:no-underline"
                 >
                   Read in 12 minutes
                 </a>
@@ -609,7 +423,7 @@ function BlogDetailsPage(props: Props) {
                 <a href="#">
                   <img
                     src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-3.png"
-                    className="mb-5 rounded-lg"
+                    className="mb-5 rounded-sm"
                     alt="Image 3"
                   />
                 </a>
@@ -622,7 +436,7 @@ function BlogDetailsPage(props: Props) {
                 </p>
                 <a
                   href="#"
-                  className="inline-flex items-center font-medium underline underline-offset-4 text-primary-600 dark:text-primary-500 hover:no-underline"
+                  className="inline-flex items-center font-medium underline underline-offset-4 text-blue-600 dark:text-blue-500 hover:no-underline"
                 >
                   Read in 8 minutes
                 </a>
@@ -631,7 +445,7 @@ function BlogDetailsPage(props: Props) {
                 <a href="#">
                   <img
                     src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-4.png"
-                    className="mb-5 rounded-lg"
+                    className="mb-5 rounded-sm"
                     alt="Image 4"
                   />
                 </a>
@@ -644,7 +458,7 @@ function BlogDetailsPage(props: Props) {
                 </p>
                 <a
                   href="#"
-                  className="inline-flex items-center font-medium underline underline-offset-4 text-primary-600 dark:text-primary-500 hover:no-underline"
+                  className="inline-flex items-center font-medium underline underline-offset-4 text-blue-600 dark:text-blue-500 hover:no-underline"
                 >
                   Read in 4 minutes
                 </a>
@@ -684,7 +498,7 @@ function BlogDetailsPage(props: Props) {
                       </svg>
                     </div>
                     <input
-                      className="block p-3 pl-10 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 sm:rounded-none sm:rounded-l-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      className="block p-3 pl-10 w-full text-sm text-gray-900 bg-white rounded-sm border border-gray-300 sm:rounded-none sm:rounded-l-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="Enter your email"
                       type="email"
                       id="email"
@@ -694,7 +508,7 @@ function BlogDetailsPage(props: Props) {
                   <div>
                     <button
                       type="submit"
-                      className="py-3 px-5 w-full text-sm font-medium text-center text-white rounded-lg border cursor-pointer bg-primary-700 border-primary-600 sm:rounded-none sm:rounded-r-lg hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                      className="py-3 px-5 w-full text-sm font-medium text-center text-white rounded-sm border cursor-pointer bg-blue-700 border-blue-600 sm:rounded-none sm:rounded-r-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >
                       Subscribe
                     </button>
@@ -704,7 +518,7 @@ function BlogDetailsPage(props: Props) {
                   We care about the protection of your data.{" "}
                   <a
                     href="#"
-                    className="font-medium text-primary-600 dark:text-primary-500 hover:underline"
+                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                   >
                     Read our Privacy Policy
                   </a>
