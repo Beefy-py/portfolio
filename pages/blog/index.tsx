@@ -58,7 +58,7 @@ function BlogPage(props: Props) {
 
   return (
     <Layout>
-      <div className="grid grid-cols-12 gap-4 p-4 relative">
+      <div className="grid grid-cols-12 gap-4 p-4 relative max-w-screen-2xl mx-auto">
         {" "}
         <aside
           className="col-span-3 hidden lg:grid grid-rows-6"
