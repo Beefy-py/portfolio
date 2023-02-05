@@ -97,14 +97,17 @@ function BlogDetailsPage(props: Props) {
       <Layout>
         <main className="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900">
           <div className="flex flex-col px-4 mx-auto max-w-screen-xl">
-            <nav className="flex mb-10 max-w mx-auto" aria-label="Breadcrumb">
+            <nav
+              className="flex mb-10 max-w mx-auto bg-gray-200 border-2 border-gray-300 dark:bg-gray-800 dark:border-gray-700 rounded-md p-2 px-5"
+              aria-label="Breadcrumb"
+            >
               <ol className="inline-flex items-center space-x-1 md:space-x-2">
                 {breadCrumbItems.map((item: any, index: number) => (
                   <li key={item.name + index}>
                     <div className="flex items-center">
                       <Link
                         href={`${item.path}`}
-                        className={`mr-1 text-md md:text-lg font-medium text-gray-700 hover:text-logo-shade4 dark:text-gray-400 dark:hover:text-logo-shade4`}
+                        className={`mr-1 text-md md:text-lg font-medium text-gray-800 hover:text-logo-shade4 dark:text-gray-400 dark:hover:text-logo-shade4`}
                       >
                         {item.name === "blog" ? "Home" : item.name}
                       </Link>{" "}
