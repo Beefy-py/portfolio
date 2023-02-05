@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import sanity from "../../utils/sanityClient";
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
 import Layout from "../../components/layout";
@@ -112,8 +112,8 @@ function BlogPage(props: Props) {
             </div>
           ))}
         </section>
-        <aside className="md:col-span-4 lg:col-span-3 hidden md:grid grid-rows-6">
-          <div className=" sticky top-3 rounded-sm overflow-y-auto py-5 px-3 h-full bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+        <aside className=" md:col-span-4 lg:col-span-3 hidden md:grid grid-rows-6">
+          <div className="sticky top-3 rounded-sm overflow-y-auto py-5 px-3 h-full bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
             <h1 className="text-gray-700 dark:text-gray-400">
               Recommended Topics
             </h1>
@@ -128,7 +128,9 @@ function BlogPage(props: Props) {
               ))}
             </p>
           </div>
-          <div className=" sticky top-[8.5rem] mt-3 rounded-sm overflow-y-auto py-5 px-3 h-full bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+          <div
+            className={`sticky top-56 mt-3 rounded-sm overflow-y-auto py-5 px-3 h-full bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700`}
+          >
             <h2 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
               Recent blog posts
             </h2>
