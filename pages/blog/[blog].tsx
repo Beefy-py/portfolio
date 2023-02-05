@@ -96,9 +96,10 @@ function BlogDetailsPage(props: Props) {
             </nav>
             <article className="mx-auto w-full max-w-2xl">
               {/* <Image
-                width={700}
-                height={600}
-                src={urlForSanityImage(post.mainImage).width(800).url()}
+                width={400}
+                height={400}
+                className="rounded-md mx-auto w-max my-10"
+                src={urlForSanityImage(post.mainImage).width(400).url()}
                 alt={post.excerpt}
               /> */}
               <header className="mb-4 lg:mb-6 not-format">
