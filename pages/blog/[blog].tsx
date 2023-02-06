@@ -35,6 +35,32 @@ type Props = {
     mainImage: { _type: string; asset: [Object] };
     slug: { _type: string; current: string };
     title: string;
+    comments: [
+      {
+        _createdAt: string;
+        _id: string;
+        body: string;
+        commenterEmail: string;
+        commenterName: string;
+        post: [Object];
+        replys: [
+          {
+            _createdAt: string;
+            _id: string;
+            _rev: string;
+            _type: string;
+            _updatedAt: string;
+            body: string;
+            comment: {
+              _ref: string;
+              _type: string;
+            };
+            replierEmail: string;
+            replierName: string;
+          }
+        ];
+      }
+    ];
   };
 };
 
@@ -65,7 +91,6 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     }
   }`;
   const posts = await sanity.fetch(query);
-  console.log(posts[0]);
   return { props: { post: posts[0] } };
 };
 
@@ -84,7 +109,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 function BlogDetailsPage(props: Props) {
   const { post } = props;
-  console.log(post);
   const router = useRouter();
   const isDark = useDarkmode();
 
@@ -195,7 +219,7 @@ function BlogDetailsPage(props: Props) {
                 }}
               />
               <hr className="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-800"></hr>
-              <CommentsSection postId={post._id} />
+              <CommentsSection comments={post.comments} postId={post._id} />
             </article>
           </div>
         </main>

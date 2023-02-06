@@ -14,15 +14,47 @@ interface FormInput {
   comment: string;
 }
 
+interface Comment {
+  _createdAt: string;
+  _id: string;
+  body: string;
+  commenterEmail: string;
+  commenterName: string;
+  post: [Object];
+  replys: [Reply];
+}
+
+interface Reply {
+  _createdAt: string;
+  _id: string;
+  _rev: string;
+  _type: string;
+  _updatedAt: string;
+  body: string;
+  comment: {
+    _ref: string;
+    _type: string;
+  };
+  replierEmail: string;
+  replierName: string;
+}
+
 import { useForm, SubmitHandler } from "react-hook-form";
 import LoadingSpinner from "../../components/loadingSpinner.component";
+import moment from "moment";
 
 const initialState = {
   displayToast: { display: false, type: "", message: "" },
   isLoading: false,
 };
 
-function CommentsSection({ postId }: { postId: string }) {
+function CommentsSection({
+  postId,
+  comments,
+}: {
+  postId: string;
+  comments: Array<Comment>;
+}) {
   const [state, setState] = useState(initialState);
   const [replying, setReplying] = useState(false);
 
@@ -81,7 +113,7 @@ function CommentsSection({ postId }: { postId: string }) {
     <section className="">
       <div className="flex justify-between items-center mb-3">
         <h2 className="text-lg lg:text-xl text-gray-700 dark:text-gray-200">
-          Discussion (20)
+          Discussion ({comments.length})
         </h2>
       </div>
 
@@ -161,156 +193,167 @@ function CommentsSection({ postId }: { postId: string }) {
         </button>
       </form>
 
-      <article className="comment p-6 border-t first:border-none border-gray-200 dark:border-gray-700 mb-6 text-md md:text-lg">
-        <header className="flex justify-between items-center mb-2">
-          <div className="flex items-center">
-            <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-              <img
-                className="mr-2 w-6 h-6 rounded-full"
-                src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
-                alt="Michael Gough"
-              />
-              Michael Gough
-            </p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              <time title="February 8th, 2022">Feb. 8, 2022</time>
-            </p>
-          </div>
-          <button
-            id="dropdownComment1Button"
-            data-dropdown-toggle="dropdownComment1"
-            className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-sm hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-            type="button"
-          >
-            <EllipsisHorizontalIcon className="w-6" />
-            <span className="sr-only">Comment settings</span>
-          </button>
+      {comments.map((comment) => {
+        return (
+          <>
+            <article className="comment p-6 border-t first:border-none border-gray-200 dark:border-gray-700 mb-6 text-md md:text-lg">
+              <header className="flex justify-between items-center mb-2">
+                <div className="flex items-center">
+                  <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+                    <img
+                      className="mr-2 w-6 h-6 rounded-full"
+                      src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
+                      alt="Michael Gough"
+                    />
+                    {comment.commenterName}
+                  </p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    <time title="February 8th, 2022">
+                      {moment(new Date(comment._createdAt)).format(
+                        "MMM, DD YYYY"
+                      )}
+                    </time>
+                  </p>
+                </div>
+                <button
+                  id="dropdownComment1Button"
+                  data-dropdown-toggle="dropdownComment1"
+                  className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-sm hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                  type="button"
+                >
+                  <EllipsisHorizontalIcon className="w-6" />
+                  <span className="sr-only">Comment settings</span>
+                </button>
 
-          <div
-            id="dropdownComment1"
-            className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
-          >
-            <ul
-              className="py-1 text-sm text-gray-700 dark:text-gray-200"
-              aria-labelledby="dropdownMenuIconHorizontalButton"
-            >
-              <li>
-                <a
-                  href="#"
-                  className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                <div
+                  id="dropdownComment1"
+                  className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
                 >
-                  Edit
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  <ul
+                    className="py-1 text-sm text-gray-700 dark:text-gray-200"
+                    aria-labelledby="dropdownMenuIconHorizontalButton"
+                  >
+                    <li>
+                      <a
+                        href="#"
+                        className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >
+                        Edit
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >
+                        Remove
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >
+                        Report
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </header>
+              <p className="text-gray-700 dark:text-gray-300">{comment.body}</p>
+              <div className="flex items-center mt-4 space-x-4">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setReplying(true);
+                  }}
+                  className="outline-none flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400"
                 >
-                  Remove
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                >
-                  Report
-                </a>
-              </li>
-            </ul>
-          </div>
-        </header>
-        <p className="text-gray-700 dark:text-gray-300">
-          Very straight-to-point article. Really worth time reading. Thank you!
-          But tools are just the instruments for the UX designers. The knowledge
-          of the design tools are as important as the creation of the design
-          strategy.
-        </p>
-        <div className="flex items-center mt-4 space-x-4">
-          <button
-            type="button"
-            onClick={() => {
-              setReplying(true);
-            }}
-            className="outline-none flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400"
-          >
-            <ChatBubbleLeftRightIcon className="w-6 mr-2" />
-            Reply
-          </button>
-        </div>
-        {replying && (
-          <ReplyComponent
-            commentId={"y9vPMxf9gLnmeHqtzCEErL"}
-            show={replying}
-            setShow={setReplying}
-          />
-        )}
-      </article>
-      <article className="reply p-6 py-3 mb-6 ml-6 lg:ml-12 text-md md:text-lg border-l-2 border-gray-200 dark:border-gray-800">
-        <header className="flex justify-between items-center mb-2">
-          <div className="flex items-center">
-            <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-              <img
-                className="mr-2 w-6 h-6 rounded-full"
-                src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                alt="Jese Leos"
-              />
-              Jese Leos
-            </p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              <time title="February 12th, 2022">Feb. 12, 2022</time>
-            </p>
-          </div>
-          <button
-            id="dropdownComment2Button"
-            data-dropdown-toggle="dropdownComment2"
-            className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-md hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-            type="button"
-          >
-            <EllipsisHorizontalIcon className="w-6" />
-            <span className="sr-only">Comment settings</span>
-          </button>
+                  <ChatBubbleLeftRightIcon className="w-6 mr-2" />
+                  Reply
+                </button>
+              </div>
+              {replying && (
+                <ReplyComponent
+                  commentId={"y9vPMxf9gLnmeHqtzCEErL"}
+                  show={replying}
+                  setShow={setReplying}
+                />
+              )}
+            </article>
+            {comment.replys.map((reply) => {
+              return (
+                <article className="reply p-6 py-3 mb-6 ml-6 lg:ml-12 text-md md:text-lg border-l-2 border-gray-200 dark:border-gray-800">
+                  <header className="flex justify-between items-center mb-2">
+                    <div className="flex items-center">
+                      <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+                        <img
+                          className="mr-2 w-6 h-6 rounded-full"
+                          src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                          alt="Jese Leos"
+                        />
+                        {reply.replierName}
+                      </p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        <time title="February 12th, 2022">
+                          {moment(new Date(reply._createdAt)).fromNow()}
+                        </time>
+                      </p>
+                    </div>
+                    <button
+                      id="dropdownComment2Button"
+                      data-dropdown-toggle="dropdownComment2"
+                      className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-md hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                      type="button"
+                    >
+                      <EllipsisHorizontalIcon className="w-6" />
+                      <span className="sr-only">Reply settings</span>
+                    </button>
 
-          <div
-            id="dropdownComment2"
-            className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
-          >
-            <ul
-              className="py-1 text-sm text-gray-700 dark:text-gray-200"
-              aria-labelledby="dropdownMenuIconHorizontalButton"
-            >
-              <li>
-                <a
-                  href="#"
-                  className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                >
-                  Edit
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                >
-                  Remove
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                >
-                  Report
-                </a>
-              </li>
-            </ul>
-          </div>
-        </header>
-        <p className="text-gray-700 dark:text-gray-300">
-          Much appreciated! Glad you liked it ☺️
-        </p>
-      </article>
+                    <div
+                      id="dropdownReply"
+                      className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+                    >
+                      <ul
+                        className="py-1 text-sm text-gray-700 dark:text-gray-200"
+                        aria-labelledby="dropdownMenuIconHorizontalButton"
+                      >
+                        <li>
+                          <a
+                            href="#"
+                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >
+                            Edit
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >
+                            Remove
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >
+                            Report
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </header>
+                  <p className="text-gray-700 dark:text-gray-300">
+                    {reply.body}
+                  </p>
+                </article>
+              );
+            })}
+          </>
+        );
+      })}
     </section>
   );
 }
