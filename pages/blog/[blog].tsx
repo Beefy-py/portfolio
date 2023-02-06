@@ -54,7 +54,16 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     mainImage,
     slug,
     title,
-    'comments': *[_type == 'comment' && post._ref == ^._id]}`;
+    'comments': *[_type == 'comment' && post._ref == ^._id]{
+      _id,
+      _createdAt,
+      commenterName,
+      commenterEmail,
+      body,
+      post,
+      'replys':*[_type == 'reply' && comment._ref == ^._id]
+    }
+  }`;
   const posts = await sanity.fetch(query);
   console.log(posts[0]);
   return { props: { post: posts[0] } };
