@@ -196,7 +196,7 @@ function CommentsSection({
       {comments.map((comment) => {
         return (
           <>
-            <article className="comment p-6 border-t first:border-none border-gray-200 dark:border-gray-700 mb-6 text-md md:text-lg">
+            <article className="comment p-6 border-t-2 first:border-none border-gray-200 dark:border-gray-700 mb-6 text-md md:text-lg">
               <header className="flex justify-between items-center mb-2">
                 <div className="flex items-center">
                   <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
@@ -389,7 +389,7 @@ const ReplyComponent = ({
     formState: { errors },
   } = useForm<FormInput>();
 
-  const formInputStyle = `focus:outline-2 outline-offset-3 focus:outline-logo-shade1 py-2 px-4 bg-white rounded-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700 w-full text-md text-gray-700 outline-none focus:ring-0 dark:text-gray-300 dark:placeholder-gray-500`;
+  const formInputStyle = `focus:outline-2 outline-offset-3 focus:outline-logo-shade1 py-2 px-4 bg-white rounded-sm border border-gray-200 dark:bg-gray-700 dark:border-gray-600 w-full text-md text-gray-700 outline-none focus:ring-0 dark:text-gray-300 dark:placeholder-gray-500`;
   const formLableStyle = `block mb-2 text-sm font-medium text-gray-900 dark:text-white`;
 
   const placeReply: SubmitHandler<FormInput> = async (data) => {
@@ -421,7 +421,7 @@ const ReplyComponent = ({
   };
 
   return (
-    <section className="mt-2 bg-gray-100 p-3 border-2 border-gray-300 rounded-md rounded-tl-none">
+    <section className="mt-2 bg-gray-100 dark:bg-gray-800 p-3 border-2 border-gray-300 dark:border-gray-700 rounded-md rounded-tl-none">
       <div
         id="toast-message"
         className={`fixed transition-all ease-[cubic-bezier(0.95,0.05,0.795,0.035)] ${
@@ -448,7 +448,7 @@ const ReplyComponent = ({
         <h3>Replying to [commenter]'s comment</h3>
         <button
           onClick={() => setShow(false)}
-          className="bg-red-200 border-2 border-red-300 rounded-md"
+          className="bg-red-200 dark:bg-red-600 border-2 border-red-300 dark:border-red-500 rounded-md"
         >
           <XMarkIcon className="w-7" />
         </button>
