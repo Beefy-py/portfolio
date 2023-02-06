@@ -5,6 +5,7 @@ import {
   ChatBubbleLeftRightIcon,
   EllipsisHorizontalIcon,
   ExclamationTriangleIcon,
+  XMarkIcon,
 } from "@heroicons/react/24/outline";
 
 interface FormInput {
@@ -23,6 +24,7 @@ const initialState = {
 
 function CommentsSection({ postId }: { postId: string }) {
   const [state, setState] = useState(initialState);
+  const [replying, setReplying] = useState(false);
 
   const { isLoading, displayToast } = state;
 
@@ -45,12 +47,12 @@ function CommentsSection({ postId }: { postId: string }) {
   } = useForm<FormInput>();
 
   const formInputStyle = `focus:outline-2 outline-offset-3 focus:outline-logo-shade1 py-2 px-4 bg-white rounded-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700 w-full text-md text-gray-700 outline-none focus:ring-0 dark:text-gray-300 dark:placeholder-gray-500`;
-  const formLableStle = `block mb-2 text-sm font-medium text-gray-900 dark:text-white`;
+  const formLableStyle = `block mb-2 text-sm font-medium text-gray-900 dark:text-white`;
 
   const placeComment: SubmitHandler<FormInput> = async (data) => {
     setState((prev) => ({ ...prev, isLoading: true }));
     try {
-      const response = await fetch("/api/placeComment", {
+      const response = await fetch("/api/comment", {
         method: "POST",
         body: JSON.stringify({ ...data, postId }),
       });
@@ -108,7 +110,7 @@ function CommentsSection({ postId }: { postId: string }) {
 
       <form className="mb-6" onSubmit={handleSubmit(placeComment)}>
         <div className="mb-6">
-          <label htmlFor="email" className={formLableStle}>
+          <label htmlFor="email" className={formLableStyle}>
             Your Email
           </label>
           <input
@@ -121,7 +123,7 @@ function CommentsSection({ postId }: { postId: string }) {
           />
         </div>
         <div className="mb-6">
-          <label htmlFor="name" className={formLableStle}>
+          <label htmlFor="name" className={formLableStyle}>
             Your Name
           </label>
           <input
@@ -134,7 +136,7 @@ function CommentsSection({ postId }: { postId: string }) {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="comment" className={formLableStle}>
+          <label htmlFor="comment" className={formLableStyle}>
             Your Comment
           </label>
           <textarea
@@ -158,6 +160,7 @@ function CommentsSection({ postId }: { postId: string }) {
           )}
         </button>
       </form>
+
       <article className="comment p-6 border-t first:border-none border-gray-200 dark:border-gray-700 mb-6 text-md md:text-lg">
         <header className="flex justify-between items-center mb-2">
           <div className="flex items-center">
@@ -227,14 +230,24 @@ function CommentsSection({ postId }: { postId: string }) {
         <div className="flex items-center mt-4 space-x-4">
           <button
             type="button"
-            className="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400"
+            onClick={() => {
+              setReplying(true);
+            }}
+            className="outline-none flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400"
           >
             <ChatBubbleLeftRightIcon className="w-6 mr-2" />
             Reply
           </button>
         </div>
+        {replying && (
+          <ReplyComponent
+            commentId={"y9vPMxf9gLnmeHqtzCEErL"}
+            show={replying}
+            setShow={setReplying}
+          />
+        )}
       </article>
-      <article className="reply p-6 mb-6 ml-6 lg:ml-12 text-md md:text-lg border-l-2 border-gray-200 dark:border-gray-800">
+      <article className="reply p-6 py-3 mb-6 ml-6 lg:ml-12 text-md md:text-lg border-l-2 border-gray-200 dark:border-gray-800">
         <header className="flex justify-between items-center mb-2">
           <div className="flex items-center">
             <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
@@ -297,18 +310,160 @@ function CommentsSection({ postId }: { postId: string }) {
         <p className="text-gray-700 dark:text-gray-300">
           Much appreciated! Glad you liked it ☺️
         </p>
-        <div className="flex items-center mt-4 space-x-4">
-          <button
-            type="button"
-            className="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400"
-          >
-            <ChatBubbleLeftRightIcon className="w-6 mr-2" />
-            Reply
-          </button>
-        </div>
       </article>
     </section>
   );
 }
+
+const ReplyComponent = ({
+  show,
+  setShow,
+  commentId,
+}: {
+  show: boolean;
+  setShow: Function;
+  commentId: string;
+}) => {
+  const [state, setState] = useState(initialState);
+
+  const { isLoading, displayToast } = state;
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (displayToast.display) {
+        setState((prev) => ({
+          ...prev,
+          displayToast: { display: false, type: "", message: "" },
+        }));
+      }
+    }, 4000);
+  }, [displayToast]);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormInput>();
+
+  const formInputStyle = `focus:outline-2 outline-offset-3 focus:outline-logo-shade1 py-2 px-4 bg-white rounded-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700 w-full text-md text-gray-700 outline-none focus:ring-0 dark:text-gray-300 dark:placeholder-gray-500`;
+  const formLableStyle = `block mb-2 text-sm font-medium text-gray-900 dark:text-white`;
+
+  const placeReply: SubmitHandler<FormInput> = async (data) => {
+    setState((prev) => ({ ...prev, isLoading: true }));
+    try {
+      const response = await fetch("/api/reply", {
+        method: "POST",
+        body: JSON.stringify({ ...data, commentId }),
+      });
+      const responseBody = await response.json();
+      setState((prev) => ({
+        ...prev,
+        displayToast: {
+          display: true,
+          type: "success",
+          message: responseBody.message,
+        },
+        isLoading: false,
+      }));
+      reset();
+    } catch (err: any) {
+      console.log(err);
+      setState((prev) => ({
+        ...prev,
+        displayToast: { display: true, type: "error", message: err.message },
+        isLoading: false,
+      }));
+    }
+  };
+
+  return (
+    <section className="mt-2 bg-gray-100 p-3 border-2 border-gray-300 rounded-md rounded-tl-none">
+      <div
+        id="toast-message"
+        className={`fixed transition-all ease-[cubic-bezier(0.95,0.05,0.795,0.035)] ${
+          displayToast.display ? "top-3 scale-100 w-full" : "top-0 scale-0 w-0"
+        } left-0 right-0 mx-auto flex items-center w-2/4 min-w-min md:max-w-xs p-4 space-x-4 border-2 border-dashed ${
+          displayToast.type === "error"
+            ? "border-red-600 dark:border-red-500"
+            : "border-logo-shade1"
+        } ${
+          displayToast.type === "error"
+            ? "text-red-600 dark:text-red-500"
+            : "text-logo-shade1"
+        } bg-white divide-x divide-gray-200 rounded-sm shadow dark:divide-gray-700 space-x dark:bg-gray-800`}
+        role="alert"
+      >
+        {displayToast.type === "error" ? (
+          <ExclamationTriangleIcon className="w-6 h-6 mr-2" />
+        ) : (
+          <ChatBubbleBottomCenterIcon className="w-8 h-8 md:h-6 md:w-6" />
+        )}
+        <div className="pl-4 text-sm font-normal">{displayToast.message}</div>
+      </div>
+      <header className="flex items-center justify-between text-gray-700 dark:text-gray-300 my-2">
+        <h3>Replying to [commenter]'s comment</h3>
+        <button
+          onClick={() => setShow(false)}
+          className="bg-red-200 border-2 border-red-300 rounded-md"
+        >
+          <XMarkIcon className="w-7" />
+        </button>
+      </header>
+      <form onSubmit={handleSubmit(placeReply)}>
+        <div className="mb-6">
+          <label htmlFor="email" className={formLableStyle}>
+            Your Email
+          </label>
+          <input
+            {...register("email", { required: true })}
+            type="email"
+            id="email"
+            className={formInputStyle}
+            placeholder="name@flowbite.com"
+            required
+          />
+        </div>
+        <div className="mb-6">
+          <label htmlFor="name" className={formLableStyle}>
+            Your Name
+          </label>
+          <input
+            {...register("name", { required: true })}
+            type="text"
+            id="name"
+            className={formInputStyle}
+            placeholder="Jane Doe"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="comment" className={formLableStyle}>
+            Your Comment
+          </label>
+          <textarea
+            {...register("comment", { required: true })}
+            id="comment"
+            rows={6}
+            className={formInputStyle}
+            placeholder="Write a comment..."
+            required
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          className="transition inline-flex items-center py-2.5 px-4 text-sm md:text-normal font-medium text-center text-white bg-logo-shade2 rounded-sm focus:ring-4 focus:ring-logo-shade5 hover:bg-logo-shade1"
+        >
+          Reply
+          {isLoading ? (
+            <LoadingSpinner />
+          ) : (
+            <ChatBubbleBottomCenterTextIcon className="ml-2 w-5" />
+          )}
+        </button>
+      </form>
+    </section>
+  );
+};
 
 export default CommentsSection;

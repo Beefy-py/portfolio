@@ -12,13 +12,12 @@ const config = {
 
 const client = sanityClient(config);
 
-export default async function placeComment(
+export default async function comment(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const { postId, name, email, comment } = JSON.parse(req.body);
   try {
-    console.log(req.body);
     await client.create({
       _type: "comment",
       post: { _type: "reference", _ref: postId },

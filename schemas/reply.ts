@@ -1,29 +1,30 @@
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-  name: "comment",
-  title: "Comment",
+  name: "reply",
+  title: "Reply",
   type: "document",
   fields: [
     defineField({
       name: "approved",
       title: "Approved",
       type: "boolean",
-      description: "Do you want this comment to appear on your blog or nah?",
+      description:
+        "Do you want the reply to this comment to appear on your blog or nah?",
     }),
     defineField({
-      name: "post",
+      name: "comment",
       type: "reference",
-      to: [{ type: "post" }],
+      to: [{ type: "comment" }],
     }),
     defineField({
-      name: "commenterName",
-      title: "Commenter Name",
+      name: "replierName",
+      title: "Replier Name",
       type: "string",
     }),
     defineField({
-      name: "commenterEmail",
-      title: "Commenter Email",
+      name: "replierEmail",
+      title: "Replier Email",
       type: "string",
     }),
     defineField({
@@ -36,21 +37,19 @@ export default defineType({
       title: "Body",
       type: "string",
     }),
-    defineField({
-      name: "replies",
-      title: "Replies",
-      type: "array",
-      of: [{ type: "reference", to: { type: "reply" } }],
-    }),
   ],
 
   preview: {
     select: {
-      author: "commenterName",
+      comment: "comment",
+      author: "replierName",
     },
     prepare(selection) {
-      const { author } = selection;
-      return { title: "Comment", subtitle: author && `by ${author}` };
+      const { comment, author } = selection;
+      return {
+        title: `reply to comment: ${comment._ref}`,
+        subtitle: author && `by ${author}`,
+      };
     },
   },
 });
