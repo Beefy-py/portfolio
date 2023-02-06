@@ -276,6 +276,7 @@ function CommentsSection({
               {replying && (
                 <ReplyComponent
                   commentId={"y9vPMxf9gLnmeHqtzCEErL"}
+                  commenter={comment.commenterName}
                   show={replying}
                   setShow={setReplying}
                 />
@@ -362,10 +363,12 @@ const ReplyComponent = ({
   show,
   setShow,
   commentId,
+  commenter,
 }: {
   show: boolean;
   setShow: Function;
   commentId: string;
+  commenter: string;
 }) => {
   const [state, setState] = useState(initialState);
 
@@ -445,7 +448,7 @@ const ReplyComponent = ({
         <div className="pl-4 text-sm font-normal">{displayToast.message}</div>
       </div>
       <header className="flex items-center justify-between text-gray-700 dark:text-gray-300 my-2">
-        <h3>Replying to [commenter]'s comment</h3>
+        <h3>Replying to [{commenter}]'s comment</h3>
         <button
           onClick={() => setShow(false)}
           className="bg-red-200 dark:bg-red-600 border-2 border-red-300 dark:border-red-500 rounded-md"
