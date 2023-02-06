@@ -89,6 +89,9 @@ function CommentsSection({
         body: JSON.stringify({ ...data, postId }),
       });
       const responseBody = await response.json();
+
+      if (!response.ok) throw Error(responseBody.message);
+
       setState((prev) => ({
         ...prev,
         displayToast: {
@@ -403,6 +406,9 @@ const ReplyComponent = ({
         body: JSON.stringify({ ...data, commentId }),
       });
       const responseBody = await response.json();
+
+      if (!response.ok) throw Error(responseBody.message);
+
       setState((prev) => ({
         ...prev,
         displayToast: {
