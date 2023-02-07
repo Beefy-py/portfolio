@@ -185,7 +185,7 @@ function CommentsSection({
         </div>
         <button
           type="submit"
-          className="transition inline-flex items-center py-2.5 px-4 text-sm md:text-normal font-medium text-center text-white bg-logo-shade2 rounded-sm focus:ring-4 focus:ring-logo-shade5 hover:bg-logo-shade1"
+          className="transition inline-flex items-center py-2.5 px-4 text-sm md:text-md font-medium text-center text-white bg-logo-shade2 ring-0 rounded-sm outline-offset-2 focus:outline-2 focus:outline-logo-shade1 hover:bg-logo-shade1"
         >
           Post comment
           {isLoading ? (
@@ -504,7 +504,7 @@ const ReplyComponent = ({
         </div>
         <button
           type="submit"
-          className="transition inline-flex items-center py-2.5 px-4 text-sm md:text-normal font-medium text-center text-white bg-logo-shade2 rounded-sm focus:ring-4 focus:ring-logo-shade5 hover:bg-logo-shade1"
+          className="transition inline-flex items-center py-2.5 px-4 text-sm md:text-md font-medium text-center text-white bg-logo-shade2 ring-0 rounded-sm outline-offset-2 focus:outline-2 focus:outline-logo-shade1 hover:bg-logo-shade1"
         >
           Reply
           {isLoading ? (
