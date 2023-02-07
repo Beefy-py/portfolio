@@ -4,7 +4,6 @@ export default function Document() {
   return (
     <Html lang="en" style={{ scrollBehavior: "smooth" }}>
       <Head>
-        <link rel="stylesheet" href="nprogress.css" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"

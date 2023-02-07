@@ -33,7 +33,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
   return (
     <>
-      <Script src="nprogress.js"></Script>
       <Script
         src="https://kit.fontawesome.com/8e5bc578dd.js"
         crossOrigin="anonymous"
