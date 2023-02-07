@@ -278,7 +278,7 @@ function CommentsSection({
               </div>
               {replying && (
                 <ReplyComponent
-                  commentId={"y9vPMxf9gLnmeHqtzCEErL"}
+                  commentId={comment._id}
                   commenter={comment.commenterName}
                   show={replying}
                   setShow={setReplying}
