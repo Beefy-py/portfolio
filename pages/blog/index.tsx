@@ -3,7 +3,11 @@ import sanity from "../../utils/sanityClient";
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
 import Layout from "../../components/layout";
 import Link from "next/link";
-import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import {
+  ArrowRightIcon,
+  ExclamationTriangleIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
 import SearchComponent from "../../components/search.component";
 import useDarkmode from "../../hooks/darkmode";
 import { pick } from "lodash";
@@ -53,13 +57,41 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 function BlogPage(props: Props) {
+  const [showNews, setShowNews] = useState(true);
   const isDark = useDarkmode();
   const { posts, categories } = props;
 
   return (
     <Layout>
       <div className="grid grid-cols-12 gap-4 p-4 relative max-w-screen-2xl mx-auto">
-        {" "}
+        {showNews && (
+          <div
+            id="toast-default"
+            className="col-span-full border border-gray-200 dark:border-gray-700 flex md:flex-row flex-col items-center w-full p-4 text-gray-500 bg-white rounded-sm shadow dark:text-gray-400 dark:bg-gray-800"
+            role="alert"
+          >
+            <div className="flex-shrink-0 text-orange-500">
+              <ExclamationTriangleIcon className="w-8" />
+            </div>
+            <h1 className="ml-3 text-sm font-normal lg:text-md text-orange-500 uppercase">
+              Disclaimer:
+            </h1>
+            <h1 className="ml-3 text-sm font-normal lg:text-md">
+              All the blog posts are dummy posts at the moment. Including the
+              comments and replies.
+            </h1>
+            <button
+              type="button"
+              onClick={() => setShowNews(false)}
+              className="ml-auto outline-none -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+              data-dismiss-target="#toast-default"
+              aria-label="Close"
+            >
+              <XMarkIcon className="w-8" />
+            </button>
+          </div>
+        )}
+
         <aside
           className="col-span-3 hidden lg:grid grid-rows-6"
           aria-label="Sidenav"
