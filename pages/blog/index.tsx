@@ -92,11 +92,8 @@ function BlogPage(props: Props) {
           </div>
         )}
 
-        <aside
-          className="col-span-3 hidden lg:grid grid-rows-6"
-          aria-label="Sidenav"
-        >
-          <div className="sticky top-3 rounded-sm overflow-y-auto py-5 px-3 h-full bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+        <aside className="col-span-3 hidden lg:block" aria-label="Sidenav">
+          <div className="sticky top-3 rounded-sm overflow-y-auto py-5 px-3 h-max bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
             <h1 className="text-gray-500 dark:text-gray-400">
               Blog by Kenny Hoft
             </h1>
@@ -144,40 +141,42 @@ function BlogPage(props: Props) {
             </div>
           ))}
         </section>
-        <aside className=" md:col-span-4 lg:col-span-3 hidden md:grid grid-rows-6">
-          <div className="sticky top-3 rounded-sm overflow-y-auto py-5 px-3 h-full bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-            <h1 className="text-gray-700 dark:text-gray-400">
-              Recommended Topics
-            </h1>
-            <p className="inline-flex flex-wrap items-center">
-              {categories.map((category) => (
-                <Link
-                  href={`blog/category/${category.title}`}
-                  className="text-gray-800 mt-1 mr-1 rounded-md px-3 py-.0.5 bg-logo-shade3 border-logo-shade4 border-2"
-                >
-                  {category.title}
-                </Link>
-              ))}
-            </p>
-          </div>
-          <div
-            className={`sticky top-56 mt-3 rounded-sm overflow-y-auto py-5 px-3 h-full bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700`}
-          >
-            <h2 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
-              Recent blog posts
-            </h2>
-            <ul className="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
-              {posts.map((post) => (
-                <li key={post._id}>
+        <aside className=" md:col-span-4 lg:col-span-3 hidden md:block">
+          <div className="sticky top-3">
+            <div className="rounded-sm overflow-y-auto py-5 px-3 h-full bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+              <h1 className="text-gray-700 dark:text-gray-400">
+                Recommended Topics
+              </h1>
+              <p className="inline-flex flex-wrap items-center">
+                {categories.map((category) => (
                   <Link
-                    href={`blog/${post.slug.current}`}
-                    className="hover:underline underline-offset-1 decoration-logo-shade5"
+                    href={`blog/category/${category.title}`}
+                    className="text-gray-800 mt-1 mr-1 rounded-md px-3 py-.0.5 bg-logo-shade3 border-logo-shade4 border-2"
                   >
-                    {post.title}
+                    {category.title}
                   </Link>
-                </li>
-              ))}
-            </ul>
+                ))}
+              </p>
+            </div>
+            <div
+              className={`mt-3 rounded-sm overflow-y-auto py-5 px-3 h-full bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700`}
+            >
+              <h2 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
+                Recent blog posts
+              </h2>
+              <ul className="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
+                {posts.map((post) => (
+                  <li key={post._id}>
+                    <Link
+                      href={`blog/${post.slug.current}`}
+                      className="hover:underline underline-offset-1 decoration-logo-shade5"
+                    >
+                      {post.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </aside>
       </div>
