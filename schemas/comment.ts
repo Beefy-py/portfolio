@@ -14,7 +14,7 @@ export default defineType({
     defineField({
       name: "post",
       type: "reference",
-      to: [{ type: "post" }],
+      to: { type: "post" },
     }),
     defineField({
       name: "commenterName",
@@ -47,10 +47,11 @@ export default defineType({
   preview: {
     select: {
       author: "commenterName",
+      _id: "_id",
     },
     prepare(selection) {
-      const { author } = selection;
-      return { title: "Comment", subtitle: author && `by ${author}` };
+      const { _id, author } = selection;
+      return { title: `Comment: ${_id}`, subtitle: author && `by ${author}` };
     },
   },
 });
