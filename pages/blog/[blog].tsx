@@ -10,7 +10,7 @@ import useDarkmode from "../../hooks/darkmode";
 import sanity from "../../utils/sanityClient";
 import { urlForSanityImage } from "../../utils/sanityImageBuilder";
 import PortableText from "react-portable-text";
-import { ChevronRightIcon } from "@heroicons/react/24/outline";
+import { ArrowLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import CommentsSection from "../../sections/blog/comments.blog.section";
 
 type Props = {
@@ -112,45 +112,23 @@ function BlogDetailsPage(props: Props) {
   const router = useRouter();
   const isDark = useDarkmode();
 
-  let breadCrumbItems: any = router.asPath.split("/").slice(1);
-  breadCrumbItems = breadCrumbItems.map((item: any, index: number) => {
-    if (index + 1 === breadCrumbItems.length) {
-      return { name: post.title, path: `#` };
-    }
-    return { name: item, path: `/${item}` };
-  });
-
   return (
     <>
       <Head>
         <title>Kenny Hoft -- {post.title}</title>
       </Head>
       <Layout>
-        <main className="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900">
-          <div className="flex flex-col px-4 mx-auto max-w-screen-xl">
-            <nav
-              className="flex mb-10 max-w mx-auto bg-gray-200 border-2 border-gray-300 dark:bg-gray-800 dark:border-gray-700 rounded-md p-2 px-5"
-              aria-label="Breadcrumb"
+        <main className="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 max-w-4xl">
+          <div className="flex flex-col px-4 mx-auto">
+            <Link
+              href={"/"}
+              className="my-8 items-center flex font-semibold text-logo-shade1 hover:text-logo-shade4 transition"
             >
-              <ol className="inline-flex items-center space-x-1 md:space-x-2">
-                {breadCrumbItems.map((item: any, index: number) => (
-                  <li key={item.name + index}>
-                    <div className="flex items-center">
-                      <Link
-                        href={`${item.path}`}
-                        className={`mr-1 text-md md:text-lg font-medium text-gray-800 hover:text-logo-shade4 dark:text-gray-400 dark:hover:text-logo-shade4`}
-                      >
-                        {item.name === "blog" ? "Home" : item.name}
-                      </Link>{" "}
-                      {index + 1 !== breadCrumbItems.length && (
-                        <ChevronRightIcon className="w-5 h-5 text-gray-500" />
-                      )}
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </nav>
-            <article className="mx-auto w-full max-w-2xl">
+              <ArrowLeftIcon className="w-7 h-7" />
+              <span className="ml-2"> Back to blog</span>
+            </Link>
+
+            <article className="w-full">
               {/* <Image
                 width={400}
                 height={400}
