@@ -1,3 +1,68 @@
+export interface Post {
+  _createdAt: string;
+  _id: string;
+  _rev: string;
+  _type: string;
+  _updatedAt: string;
+  author: { image: { _type: string; asset: [Object] }; name: string };
+  body: [
+    {
+      _key: string;
+      _type: string;
+      children: [[Object]];
+      markDefs: [];
+      style: string;
+    }
+  ];
+  categories: [Category];
+  excerpt: string;
+  mainImage: { _type: string; asset: [Object] };
+  slug: { _type: string; current: string };
+  title: string;
+  comments: [
+    {
+      _createdAt: string;
+      _id: string;
+      body: string;
+      commenterEmail: string;
+      commenterName: string;
+      post: [Object];
+      replys: [
+        {
+          _createdAt: string;
+          _id: string;
+          _rev: string;
+          _type: string;
+          _updatedAt: string;
+          body: string;
+          comment: {
+            _ref: string;
+            _type: string;
+          };
+          replierEmail: string;
+          replierName: string;
+        }
+      ];
+    }
+  ];
+  estimatedReadingTime: number;
+  estimatedWordCount: number;
+}
+
+export interface Category {
+  _createdAt: string;
+  _id: string;
+  _rev: string;
+  _type: string;
+  _updatedAt: string;
+  description: string;
+  slug: {
+    _type: string;
+    current: string;
+  };
+  title: string;
+}
+
 export interface Project {
   image: string;
   name: string;

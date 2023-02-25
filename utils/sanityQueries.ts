@@ -12,14 +12,14 @@ export const getSinglePost = (slug: string) => {
     author->{name,image},
     _createdAt,
     _updatedAt,
-    excerpt
-    ,categories,
+    excerpt,
+    categories[]->{_id, slug, description, title},
     body,
     mainImage,
     slug,
     title,
     "estimatedWordCount": round(length(pt::text(body)) / 5),
-    "estimatedReadingTime": length(pt::text(body)) / 5 / 200
+    "estimatedReadingTime": length(pt::text(body)) / 5 / 200,
     'comments': *[_type == 'comment' && post._ref == ^._id]{
       _id,
       _createdAt,
@@ -29,5 +29,11 @@ export const getSinglePost = (slug: string) => {
       post,
       'replys':*[_type == 'reply' && comment._ref == ^._id]
     }
+  }`;
+};
+
+export const getRelatedPosts = (categorySlug: string, postSlug: string) => {
+  return `*[_type == 'category' && slug.current=='${categorySlug}']{
+     'posts':*[_type == 'post' && category._ref == ^._id && slug.current != '${postSlug}']
   }`;
 };
