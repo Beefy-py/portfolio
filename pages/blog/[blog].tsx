@@ -12,6 +12,7 @@ import { urlForSanityImage } from "../../utils/sanityImageBuilder";
 import PortableText from "react-portable-text";
 import { ArrowLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import CommentsSection from "../../sections/blog/comments.blog.section";
+import ScrollTopButton from "../../components/scrollTopButton.component";
 
 type Props = {
   post: {
@@ -118,10 +119,10 @@ function BlogDetailsPage(props: Props) {
         <title>Kenny Hoft -- {post.title}</title>
       </Head>
       <Layout>
-        <main className="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 max-w-4xl">
-          <div className="flex flex-col px-4 mx-auto">
+        <main className="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 mx-auto max-w-4xl">
+          <div className="flex flex-col px-4">
             <Link
-              href={"/"}
+              href={"/blog"}
               className="my-8 items-center flex font-semibold text-logo-shade1 hover:text-logo-shade4 transition"
             >
               <ArrowLeftIcon className="w-7 h-7" />
@@ -364,7 +365,8 @@ function BlogDetailsPage(props: Props) {
             </div>
           </div>
         </section> */}
-      </Layout>
+      </Layout>{" "}
+      <ScrollTopButton />
     </>
   );
 }
