@@ -86,7 +86,7 @@ export const workedAt: Experience[] = [
     to: new Date("November 2022"),
     description: `
     I worked at Tune Creative Studios as a full-stack web developer. I
-    build many web apps for clients and for the company. From personal
+    built many web apps for clients and for the company. From personal
     dashboard sites to real estate sites and Donation sites for clients.`,
   },
   {
@@ -94,7 +94,7 @@ export const workedAt: Experience[] = [
     role: "Software Developer",
     from: new Date("December 2022"),
     description: `
-    I installed and ERP system for the company on their vps to boost the
+    I installed an ERP system for the company on their vps to boost the
     overal production. Migrated their React site to NextJS and helping
     managing it.`,
   },
@@ -112,7 +112,7 @@ export const projects: Project[] = [
   {
     image: `/projects/donationapp.png`,
     name: `Donation website in Suriname`,
-    description: `I build this when I worked at Tune Creative Studios. This website was build for the people who were suffering because of the flood.`,
+    description: `I built this when I worked at Tune Creative Studios. This website was build for the people who were suffering because of the flood.`,
     url: "https://www.sadelo.org/",
     tags: [
       { name: "React" },
@@ -124,7 +124,7 @@ export const projects: Project[] = [
   {
     image: `/projects/blog-cms.png`,
     name: `Nerdy blog website`,
-    description: `This one I build in NextJS using Tailwind also. And I fetched the blog articles from a graphql cms called Hygraph. This was the first project where I used the NextJS framework.`,
+    description: `This one I built in NextJS using Tailwind also. And I fetched the blog articles from a graphql cms called Hygraph. This was the first project where I used the NextJS framework.`,
     url: "https://blog-app-cms.vercel.app/",
     github: "https://github.com/Beefy-py/blog_app_cms",
     tags: [{ name: "NextJS" }, { name: "GraphQl" }, { name: "Tailwind" }],
