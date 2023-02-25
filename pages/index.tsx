@@ -36,7 +36,7 @@ const Home: NextPage = () => {
           content="Explore the portfolio of Kenny Hoft, a software engineer and web developer based in Suriname. Specializing in MERN-stack and NextJS development, Kenny has worked with Tune Creative Studios and Bits Please Technologies. See his latest projects including a Chat App on his portfolio website."
         />
         {/* <!-- Facebook Meta Tags --> */}
-        <meta property="og:url" content="https://kennyhoft.live/" />
+        <meta property="og:url" content="https://www.kennyhoft.live/" />
         <meta property="og:type" content="website" />
         <meta
           property="og:title"
@@ -54,7 +54,7 @@ const Home: NextPage = () => {
         {/* <!-- Twitter Meta Tags --> */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="kennyhoft.live" />
-        <meta property="twitter:url" content="https://kennyhoft.live/" />
+        <meta property="twitter:url" content="https://www.kennyhoft.live/" />
         <meta
           name="twitter:title"
           content="Kenny Hoft -- Software Developer in Suriname"
