@@ -14,6 +14,7 @@ import { pick } from "lodash";
 import Image from "next/image";
 import { urlForSanityImage } from "../../utils/sanityImageBuilder";
 import ScrollTopButton from "../../components/scrollTopButton.component";
+import { getAllCategories, getAllPosts } from "../../utils/sanityQueries";
 
 type Props = {
   posts: [
@@ -49,8 +50,11 @@ type Props = {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = await sanity.fetch(`*[_type == "post"]`);
-  const categories = await sanity.fetch(`*[_type == "category"]`);
+  const queryPosts = getAllPosts();
+  const posts = await sanity.fetch(queryPosts);
+
+  const queryCategories = getAllCategories();
+  const categories = await sanity.fetch(queryCategories);
 
   return {
     props: { posts, categories },

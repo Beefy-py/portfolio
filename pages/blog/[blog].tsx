@@ -13,6 +13,7 @@ import PortableText from "react-portable-text";
 import { ArrowLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import CommentsSection from "../../sections/blog/comments.blog.section";
 import ScrollTopButton from "../../components/scrollTopButton.component";
+import { getSinglePost } from "../../utils/sanityQueries";
 
 type Props = {
   post: {
@@ -70,27 +71,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     // @ts-ignore
     params: { blog },
   } = ctx;
-  const query = `*[_type == 'post' && slug.current=='${blog}']{
-    _id,
-    author->{name,image},
-    _createdAt,
-    _updatedAt,
-    excerpt
-    ,categories,
-    body,
-    mainImage,
-    slug,
-    title,
-    'comments': *[_type == 'comment' && post._ref == ^._id]{
-      _id,
-      _createdAt,
-      commenterName,
-      commenterEmail,
-      body,
-      post,
-      'replys':*[_type == 'reply' && comment._ref == ^._id]
-    }
-  }`;
+  const query = getSinglePost(blog);
   const posts = await sanity.fetch(query);
   return { props: { post: posts[0] } };
 };
