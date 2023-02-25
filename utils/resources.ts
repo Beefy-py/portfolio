@@ -124,7 +124,7 @@ export const projects: Project[] = [
   {
     image: `/projects/blog-cms.png`,
     name: `Nerdy blog website`,
-    description: `This one I built in NextJS using Tailwind also. And I fetched the blog articles from a graphql cms called Hygraph. This was the first project where I used the NextJS framework.`,
+    description: `This one I built in NextJS using Tailwind also. And I fetched the blog articles from a Graphql cms called Hygraph. This was the first project where I used the NextJS framework.`,
     url: "https://blog-app-cms.vercel.app/",
     github: "https://github.com/Beefy-py/blog_app_cms",
     tags: [{ name: "NextJS" }, { name: "GraphQl" }, { name: "Tailwind" }],
