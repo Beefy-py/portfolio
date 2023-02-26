@@ -49,7 +49,6 @@ function BlogDetailsPage(props: Props) {
   const { post } = props;
   const router = useRouter();
   const isDark = useDarkmode();
-  console.log(post.categories);
 
   return (
     <>
