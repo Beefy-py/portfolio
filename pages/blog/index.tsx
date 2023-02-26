@@ -149,10 +149,10 @@ function BlogPage(props: Props) {
           </section>
           <aside className=" md:col-span-4 lg:col-span-3 hidden md:block">
             <div className="sticky top-3">
-              <div className="rounded-sm overflow-y-auto py-5 px-3 h-full bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-                <h1 className="text-gray-700 dark:text-gray-400">
+              <div className="rounded-sm shadow-sm overflow-y-auto py-5 px-3 h-full bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                <h2 className="text-lg text-gray-700 dark:text-gray-400">
                   Recommended Topics
-                </h1>
+                </h2>
                 <p className="inline-flex flex-wrap items-center">
                   {categories.map((category) => (
                     <Link
@@ -165,9 +165,9 @@ function BlogPage(props: Props) {
                 </p>
               </div>
               <div
-                className={`mt-3 rounded-sm overflow-y-auto py-5 px-3 h-full bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700`}
+                className={`mt-3 rounded-sm shadow-sm overflow-y-auto py-5 px-3 h-full bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700`}
               >
-                <h2 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
+                <h2 className="mb-2 text-lg text-gray-700 dark:text-gray-400">
                   Recent blog posts
                 </h2>
                 <ul className="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
