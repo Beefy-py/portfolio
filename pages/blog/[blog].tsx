@@ -15,6 +15,7 @@ import CommentsSection from "../../sections/blog/comments.blog.section";
 import ScrollTopButton from "../../components/scrollTopButton.component";
 import { getSinglePost } from "../../utils/sanityQueries";
 import { Post } from "../../utils/interfaces";
+import RelatedPosts from "../../components/blog/relatedPosts.blog.component";
 
 type Props = {
   post: Post;
@@ -265,6 +266,8 @@ function BlogDetailsPage(props: Props) {
             </article>
           </div>
         </main>
+
+        <RelatedPosts postId={post._id} categories={post.categories} />
 
         {/* <section className="bg-white dark:bg-gray-900">
           <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">

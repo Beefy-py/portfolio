@@ -31,9 +31,3 @@ export const getSinglePost = (slug: string) => {
     }
   }`;
 };
-
-export const getRelatedPosts = (categorySlug: string, postSlug: string) => {
-  return `*[_type == 'category' && slug.current=='${categorySlug}']{
-     'posts':*[_type == 'post' && category._ref == ^._id && slug.current != '${postSlug}']
-  }`;
-};
