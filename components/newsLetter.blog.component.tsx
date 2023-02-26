@@ -121,17 +121,17 @@ const Newsletter = () => {
                 <EnvelopeIcon className="w-6 text-gray-600 dark:text-gray-400" />
               </div>
               <input
-                className="block p-3 pl-10 w-full focus:outline-none text-gray-800 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 rounded-sm border border-gray-300 dark:border-gray-700 sm:rounded-none sm:rounded-l-lg focus:outline-bp-green"
+                className="block p-3 pl-10 w-full focus:outline-none text-gray-800 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 rounded-sm border border-gray-300 dark:border-gray-700 sm:rounded-none sm:rounded-l-sm focus:outline-logo-shade1"
                 placeholder="Enter your email"
                 type="email"
                 id="email"
                 {...register("email", { required: false })}
               />
             </div>
-            <div>
+            <div className="m-0">
               <button
                 type="submit"
-                className="py-3 px-5 w-full font-medium text-center text-white rounded-lg border cursor-pointer bg-logo-shade1 border-logo-shade2 sm:rounded-none sm:rounded-r-sm hover:bg-logo-shade3"
+                className="py-3 px-5 w-full font-medium text-center text-white rounded-sm border cursor-pointer bg-logo-shade1 border-logo-shade2 sm:rounded-none sm:rounded-r-sm hover:bg-logo-shade3"
               >
                 Subscribe
               </button>
