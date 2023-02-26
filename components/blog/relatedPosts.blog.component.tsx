@@ -38,7 +38,7 @@ const RelatedPosts = ({
           <h2 className="text-lg lg:text-xl text-gray-700 dark:text-gray-200">
             Related Posts
           </h2>
-          <div className="mt-4 grid grid-cols-2 gap-2">
+          <div className="mt-4 grid grid-cols-2 gap-4">
             {relatedPosts.map((post: Post) => (
               <Link
                 key={post._id}
