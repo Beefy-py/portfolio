@@ -11,7 +11,7 @@ interface FormInput {
 }
 
 const Newsletter = () => {
-  const [state, setState] = useState(3); // 0 = initial , 1 = loading, 2 = success, 3 = failed
+  const [state, setState] = useState(0); // 0 = initial , 1 = loading, 2 = success, 3 = failed
   const [errorMsg, setErrorMsg] = useState("");
   const {
     register,
