@@ -11,7 +11,7 @@ interface FormInput {
 }
 
 const Newsletter = () => {
-  const [state, setState] = useState(0); // 0 = initial , 1 = loading, 2 = success, 3 = failed
+  const [state, setState] = useState(3); // 0 = initial , 1 = loading, 2 = success, 3 = failed
   const [errorMsg, setErrorMsg] = useState("");
   const {
     register,
@@ -58,11 +58,11 @@ const Newsletter = () => {
   const getAlertTextClasses = () => {
     switch (state) {
       case 1:
-        return "text-dm-grey bg-gray-100";
+        return "text-gray-800 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700";
       case 2:
-        return "text-soft-green bg-emerald-50";
+        return "text-logo-shade2 bg-logo-shade5 border-logo-shade2 dark:logo-shade5";
       case 3:
-        return "text-red-800 bg-red-50";
+        return "text-red-800 bg-red-50 border-red-200 dark:border-red-300";
       default:
         break;
     }
@@ -70,11 +70,11 @@ const Newsletter = () => {
   const getAlertButtonClasses = () => {
     switch (state) {
       case 1:
-        return "bg-gray-200 text-grey hover:bg-gray-300 focus:ring-gray-400";
+        return "bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 text-gray-700 hover:dark:bg-gray-600 dark:text-gray-300";
       case 2:
-        return "bg-emerald-50 text-soft-green hover:bg-emerald-200 focus:ring-emerald-400";
+        return "bg-logo-shade2 text-gray-200 hover:bg-logo-shade1";
       case 3:
-        return "bg-red-50 text-red-500 hover:bg-red-200 focus:ring-red-400";
+        return "bg-red-100 text-red-500 hover:bg-red-200";
       default:
         break;
     }
@@ -85,7 +85,7 @@ const Newsletter = () => {
       {state !== 0 && (
         <div
           id="alert-2"
-          className={`z-10 flex fixed top-3 p-4 left-0 right-0 mx-auto items-center w-11/12 md:w-2/4 min-w-min mb-4 rounded-lg ${getAlertTextClasses()}`}
+          className={`z-10 flex fixed top-3 p-6 left-0 right-0 border-2 border-dashed mx-auto items-center w-11/12 md:w-2/4 min-w-min rounded-sm ${getAlertTextClasses()}`}
           role="alert"
         >
           <InformationCircleIcon className="w-10 md:w-7" />
@@ -94,7 +94,7 @@ const Newsletter = () => {
           <button
             onClick={() => setState(0)}
             type="button"
-            className={`ml-auto -mx-1.5 -my-1.5 rounded-lg focus:ring-2 p-1.5 inline-flex h-8 w-8 ${getAlertButtonClasses()}`}
+            className={`ml-auto transition -mx-1.5 -my-1.5 rounded-md focus:ring-2 p-1.5 inline-flex h-8 w-8 ${getAlertButtonClasses()}`}
             data-dismiss-target="#alert-2"
             aria-label="Close"
           >
