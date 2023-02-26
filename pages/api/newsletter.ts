@@ -17,12 +17,10 @@ export default async function subscribeToNewsletter(
     const { url, data, headers } = getRequestParams(email);
 
     const response = await axios.post(url, data, { headers });
-    console.log(response);
     return res.status(200).json({
       error: null,
     });
   } catch (err: any) {
-    console.log();
     if (err.response.data) {
       const { detail } = err.response.data;
       res.status(400).json({
