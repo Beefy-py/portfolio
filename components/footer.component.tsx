@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { additionalInfo, navLinks, socialLinks } from "../utils/resources";
+import Newsletter from "./newsLetter.blog.component";
 
 const Footer = () => {
   return (
@@ -23,6 +24,7 @@ const Footer = () => {
         <p className="my-6 text-gray-500 dark:text-gray-400">
           Software developer who strives to be Data Scientist.
         </p>
+        <Newsletter />
         <ul className="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white">
           {navLinks.map((link, index) => (
             <li key={"link-" + index}>
