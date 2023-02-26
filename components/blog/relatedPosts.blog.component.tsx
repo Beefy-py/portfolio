@@ -34,7 +34,7 @@ const RelatedPosts = ({
   return (
     <>
       {relatedPosts.length ? (
-        <section className="mx-auto max-w-4xl">
+        <section className="mx-auto max-w-4xl mb-12">
           <h2 className="text-lg lg:text-xl text-gray-700 dark:text-gray-200">
             Related Posts
           </h2>

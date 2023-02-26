@@ -56,7 +56,7 @@ function BlogDetailsPage(props: Props) {
         <title>Kenny Hoft -- {post.title}</title>
       </Head>
       <Layout>
-        <main className="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 mx-auto max-w-4xl">
+        <main className=" bg-white dark:bg-gray-900 mx-auto max-w-4xl">
           <div className="flex flex-col px-4">
             <Link
               href={"/blog"}
@@ -262,12 +262,12 @@ function BlogDetailsPage(props: Props) {
                 }}
               />
               <hr className="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-800"></hr>
-              <CommentsSection comments={post.comments} postId={post._id} />
             </article>
           </div>
         </main>
 
         <RelatedPosts postId={post._id} categories={post.categories} />
+        <CommentsSection comments={post.comments} postId={post._id} />
 
         {/* <section className="bg-white dark:bg-gray-900">
           <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
