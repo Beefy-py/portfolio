@@ -37,7 +37,7 @@ const Newsletter = () => {
       reset();
     } catch (error: any) {
       console.log(error);
-      setErrorMsg("Something went wrong");
+      setErrorMsg(error);
       setState(3);
       reset();
     }
@@ -125,8 +125,7 @@ const Newsletter = () => {
                 placeholder="Enter your email"
                 type="email"
                 id="email"
-                required
-                {...register("email", { required: true })}
+                {...register("email", { required: false })}
               />
             </div>
             <div>
