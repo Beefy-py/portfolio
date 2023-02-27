@@ -16,38 +16,12 @@ import { urlForSanityImage } from "../../utils/sanityImageBuilder";
 import ScrollTopButton from "../../components/scrollTopButton.component";
 import { getAllCategories, getAllPosts } from "../../utils/sanityQueries";
 import RecentPosts from "../../components/blog/recentPosts.blog.component";
+import { Category, Post } from "../../utils/interfaces";
+import moment from "moment";
 
 type Props = {
-  posts: [
-    {
-      _createdAt: Date;
-      _id: string;
-      _rev: string;
-      _type: string;
-      _updatedAt: Date;
-      author: {
-        _ref: string;
-        _type: string;
-      };
-      body: [[Object], [Object]];
-      categories: [[Object]];
-      mainImage: { _type: string; asset: [Object] };
-      slug: { _type: string; current: string };
-      title: string;
-      excerpt: string;
-    }
-  ];
-  categories: [
-    {
-      _createdAt: string;
-      _id: string;
-      _rev: string;
-      _type: string;
-      _updatedAt: string;
-      description: string;
-      title: string;
-    }
-  ];
+  posts: [Post];
+  categories: [Category];
 };
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -129,21 +103,34 @@ function BlogPage(props: Props) {
                   />
                 </div>
                 <div className="post-content ml-3">
+                  {post.categories.map((category) => (
+                    <span className="text-logo-shade2 text-normal mr-2">
+                      {category.title}
+                    </span>
+                  ))}
                   <Link href={`/blog/${post.slug.current}`}>
-                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white hover:text-logo-shade4 dark:hover:text-logo-shade4 transition w-max">
+                    <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white hover:text-logo-shade4 dark:hover:text-logo-shade4 transition w-max">
                       {post.title}
                     </h5>
                   </Link>
+                  <p className="my-1 italic dark:text-gray-400 text-gray-600">
+                    {moment(new Date(post._createdAt)).format("MMMM DD YYYY")}
+                  </p>
                   <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                     {post.excerpt}
                   </p>
-                  <Link
-                    href={`/blog/${post.slug.current}`}
-                    className="inline-flex items-center text-sm font-medium text-center transititon text-logo-shade1 hover:text-logo-shade4 hover:animate-pulse"
-                  >
-                    Read more
-                    <ArrowRightIcon className="ml-2 w-6" />
-                  </Link>
+                  <div className="flex items-center justify-between">
+                    <Link
+                      href={`/blog/${post.slug.current}`}
+                      className="inline-flex items-center text-normal font-medium text-center transititon text-logo-shade1 hover:text-logo-shade4 hover:animate-pulse"
+                    >
+                      Read more
+                      <ArrowRightIcon className="ml-2 w-6" />
+                    </Link>
+                    <p className="text-gray-500 font-semibold">
+                      {Math.round(post.estimatedReadingTime)} Minute read
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}

@@ -1,5 +1,9 @@
 export const getAllPosts = () => {
-  return `*[_type == "post"]`;
+  return `*[_type == "post"]{
+    ...,
+    categories[]->{_id, slug, title},
+    "estimatedReadingTime": length(pt::text(body)) / 5 / 200,
+  }`;
 };
 
 export const getAllCategories = () => {
