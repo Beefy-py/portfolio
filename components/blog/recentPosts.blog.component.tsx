@@ -41,7 +41,9 @@ const RecentPosts = () => {
           ))}
         </ul>
       ) : (
-        <p>There are no recent posts</p>
+        <p className="text-gray-700 dark:text-gray-300">
+          There are no recent posts
+        </p>
       )}
     </>
   );
