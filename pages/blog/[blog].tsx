@@ -240,26 +240,11 @@ function BlogDetailsPage(props: Props) {
               </div>
               <hr className="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-800"></hr>
               <PortableText
-                className="max-w-none prose prose-zinc dark:prose-invert md:prose-lg lg:prose-xl"
+                className="max-w-none prose-p:leading-relaxed prose prose-zinc dark:prose-invert md:prose-lg lg:prose-xl"
                 dataset="production"
                 projectId="ylwllkb5"
                 content={post.body}
-                serializers={{
-                  h1: (props: any) => (
-                    <h1 className="text-2xl font-semibold" {...props} />
-                  ),
-                  h2: (props: any) => (
-                    <h1 className="text-xl font-semibold" {...props} />
-                  ),
-                  li: ({ children }: any) => (
-                    <li className="list-disc">{children}</li>
-                  ),
-                  link: ({ href, children }: any) => (
-                    <a href={href} className="text-log-shade5 hover:underline">
-                      {children}
-                    </a>
-                  ),
-                }}
+                serializers={{}}
               />
               <hr className="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-800"></hr>
             </article>
