@@ -113,7 +113,7 @@ function CommentsSection({
   };
 
   return (
-    <section className="mx-auto max-w-4xl">
+    <section className="mx-auto px-4 max-w-4xl">
       <div className="flex justify-between items-center mb-3">
         <h2 className="text-lg lg:text-xl text-gray-700 dark:text-gray-200">
           Discussion ({comments.length})

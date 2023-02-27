@@ -67,7 +67,7 @@ function BlogDetailsPage(props: Props) {
             </Link>
 
             <article className="w-full">
-              <header className="flex items-center justify-between">
+              <header className="grid grid-cols-1 md:grid-cols-2 items-center justify-between">
                 <div className="mb-4 lg:mb-6 not-format flex justify-between flex-col">
                   <p className="flex items-center">
                     {post.categories.map((category) => (
@@ -79,7 +79,7 @@ function BlogDetailsPage(props: Props) {
                       </span>
                     ))}
                   </p>
-                  <h1 className="mb-2 text-6xl font-extrabold leading-tight text-gray-700 dark:text-gray-300">
+                  <h1 className="mb-2 text-4xl md:text-6xl font-extrabold leading-tight text-gray-700 dark:text-gray-300">
                     {post.title}
                   </h1>
                   <address className="my-6 flex items-center not-italic">
@@ -94,17 +94,17 @@ function BlogDetailsPage(props: Props) {
                         alt={post.author.name}
                       />
                       <div>
-                        <p className="text-2xl font-bold text-gray-700 dark:text-gray-300">
+                        <p className="text-xl md:text-2xl font-bold text-gray-700 dark:text-gray-300">
                           {post.author.name}
                         </p>
-                        <p className="text-xl font-light text-gray-500 dark:text-gray-400">
+                        <p className="text-normal md:text-xl font-light text-gray-500 dark:text-gray-400">
                           Software Developer at Bits Please Technologies
                         </p>
                       </div>
                     </div>
                   </address>{" "}
                   <div className="">
-                    <h3 className="dark:text-gray-400 text-lg text-gray-700 mb-1">
+                    <h3 className="dark:text-gray-400 md:text-lg text-gray-700 mb-1">
                       Share this article via:
                     </h3>
                     <div className="flex items-center space-x-2 w-3/4 flex-wrap">
@@ -222,15 +222,15 @@ function BlogDetailsPage(props: Props) {
                   </div>
                 </div>
                 <Image
-                  width={400}
-                  height={400}
+                  width={600}
+                  height={600}
                   className="rounded-md mx-auto w-max my-10"
                   src={urlForSanityImage(post.mainImage).width(400).url()}
                   alt={post.excerpt}
                 />
               </header>{" "}
-              <div className="justify-between flex items-center">
-                <p className="text-xl text-center font-light text-gray-700 dark:text-gray-300">
+              <div className="justify-between flex items-center flex-col sm:flex-row">
+                <p className="text-lg md:text-xl text-center font-light text-gray-700 dark:text-gray-300">
                   <time title="February 8th, 2022">
                     {moment(new Date(post._createdAt)).format(
                       "MMMM DD YYYY, hh:mm a"
