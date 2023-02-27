@@ -14,6 +14,7 @@ const RecentPosts = () => {
         moment(dateOneMonthAgo).format("YYYY-MM-DD");
 
       const query = `*[_type=='post' && _createdAt > '${formattedDateOneMonthAgo}']{
+        _id,
         _createdAt,
         title,
         slug

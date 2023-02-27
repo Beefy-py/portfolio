@@ -104,7 +104,10 @@ function BlogPage(props: Props) {
                 </div>
                 <div className="post-content ml-3">
                   {post.categories.map((category) => (
-                    <span className="text-logo-shade2 text-normal mr-2">
+                    <span
+                      key={category._id}
+                      className="text-logo-shade2 text-normal mr-2"
+                    >
                       {category.title}
                     </span>
                   ))}
@@ -144,6 +147,7 @@ function BlogPage(props: Props) {
                 <p className="inline-flex flex-wrap items-center">
                   {categories.map((category) => (
                     <Link
+                      key={category._id}
                       href={`blog/category/${category.title}`}
                       className="text-gray-800 mt-1 mr-1 rounded-md px-3 py-.0.5 bg-logo-shade3 border-logo-shade4 border-2"
                     >

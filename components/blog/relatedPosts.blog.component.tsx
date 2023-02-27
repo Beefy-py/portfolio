@@ -24,7 +24,6 @@ const RelatedPosts = ({
         "estimatedReadingTime": length(pt::text(body)) / 5 / 200,
         }`;
       const posts = await sanity.fetch(query);
-      console.log(posts);
       setRelatedPosts(posts);
     }
 
@@ -53,7 +52,10 @@ const RelatedPosts = ({
                 <p className="text-lg text-soft-green">
                   {" "}
                   {post.categories.map((category) => (
-                    <span className="text-gray-600 dark:text-gray-400 text-normal mr-2">
+                    <span
+                      key={`relatedPost-${category._id}`}
+                      className="text-gray-600 dark:text-gray-400 text-normal mr-2"
+                    >
                       {category.title}
                     </span>
                   ))}

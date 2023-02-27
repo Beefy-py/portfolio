@@ -71,7 +71,10 @@ function BlogDetailsPage(props: Props) {
                 <div className="mb-4 lg:mb-6 not-format flex justify-between flex-col">
                   <p className="flex items-center">
                     {post.categories.map((category) => (
-                      <span className="text-logo-shade3 text-lg mr-2">
+                      <span
+                        key={`mainPost-${category._id}`}
+                        className="text-logo-shade3 text-lg mr-2"
+                      >
                         {category.title}
                       </span>
                     ))}
