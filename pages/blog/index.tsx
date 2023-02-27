@@ -15,6 +15,7 @@ import Image from "next/image";
 import { urlForSanityImage } from "../../utils/sanityImageBuilder";
 import ScrollTopButton from "../../components/scrollTopButton.component";
 import { getAllCategories, getAllPosts } from "../../utils/sanityQueries";
+import RecentPosts from "../../components/blog/recentPosts.blog.component";
 
 type Props = {
   posts: [
@@ -169,19 +170,8 @@ function BlogPage(props: Props) {
               >
                 <h2 className="mb-2 text-lg text-gray-700 dark:text-gray-400">
                   Recent blog posts
-                </h2>
-                <ul className="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
-                  {posts.map((post) => (
-                    <li key={post._id}>
-                      <Link
-                        href={`blog/${post.slug.current}`}
-                        className="hover:underline underline-offset-1 decoration-logo-shade5"
-                      >
-                        {post.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+                </h2>{" "}
+                <RecentPosts />
               </div>
             </div>
           </aside>
