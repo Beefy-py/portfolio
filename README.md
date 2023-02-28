@@ -6,6 +6,8 @@ This is the repo for https://www.kennyhoft.live/
 
 - Functionalities
 
+  - Incremental statically generate post comments/replies
+  - Show comments/replies immediately after placing one
   - Loading state for recent posts (Suspense boundaries)
   - Search functionality for blog posts
   - Blog posts pagination
