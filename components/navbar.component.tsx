@@ -55,7 +55,7 @@ const Navbar = () => {
 
   return (
     <header>
-      <nav className="border-gray-200 dark:border-gray-700 px-4 lg:px-6 py-2.5 border-b-2">
+      <nav className="border-gray-200 dark:border-gray-800 px-4 lg:px-6 py-2.5 border-b-2">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl py-4">
           <Link href="/" className="flex items-center">
             <Image
