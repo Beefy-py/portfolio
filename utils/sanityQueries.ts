@@ -35,3 +35,10 @@ export const getSinglePost = (slug: string) => {
     }
   }`;
 };
+
+export const getPostsByCategories = (categorySlug: string) => {
+  return `*[_type=='post' && count((categories[]->slug.current)[@ in ['${categorySlug}']]) > 0]{
+    ...,
+    "estimatedReadingTime": length(pt::text(body)) / 5 / 200,
+  }`;
+};

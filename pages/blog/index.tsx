@@ -148,7 +148,7 @@ function BlogPage(props: Props) {
                   {categories.map((category) => (
                     <Link
                       key={category._id}
-                      href={`blog/category/${category.title}`}
+                      href={`blog/category/${category.slug.current}`}
                       className="text-gray-800 mt-1 mr-1 rounded-md px-3 py-.0.5 bg-logo-shade3 border-logo-shade4 border-2"
                     >
                       {category.title}
