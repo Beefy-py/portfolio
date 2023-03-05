@@ -63,6 +63,31 @@ export interface Category {
   title: string;
 }
 
+export interface Comment {
+  _createdAt: string;
+  _id: string;
+  body: string;
+  commenterEmail: string;
+  commenterName: string;
+  post: [Object];
+  replys: [Reply];
+}
+
+export interface Reply {
+  _createdAt: string;
+  _id: string;
+  _rev: string;
+  _type: string;
+  _updatedAt: string;
+  body: string;
+  comment: {
+    _ref: string;
+    _type: string;
+  };
+  replierEmail: string;
+  replierName: string;
+}
+
 export interface Project {
   image: string;
   name: string;

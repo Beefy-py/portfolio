@@ -2,6 +2,11 @@
 
 This is the repo for https://www.kennyhoft.live/
 
+## Bugs
+
+- You can not reply to a comment in state
+- When you reply to a comment, that goes to state. When you make a comment after replying, your reply disappears.
+
 ## TODO
 
 - Functionalities
