@@ -254,7 +254,11 @@ function BlogDetailsPage(props: Props) {
           </div>
         </main>
         <RelatedPosts postId={post._id} categories={post.categories} />
-        <CommentsSection comments={post.comments} postId={post._id} />
+        <CommentsSection
+          comments={post.comments}
+          postId={post._id}
+          postSlug={post.slug.current}
+        />
       </Layout>
       <ScrollTopButton />
     </>

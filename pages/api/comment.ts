@@ -16,7 +16,7 @@ export default async function comment(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { postId, name, email, comment } = JSON.parse(req.body);
+  const { postId, postSlug, name, email, comment } = JSON.parse(req.body);
   try {
     await client.create({
       _type: "comment",
@@ -25,9 +25,24 @@ export default async function comment(
       commenterEmail: email,
       body: comment,
     });
-    return res
-      .status(200)
-      .send({ message: "You successfully placed a comment" });
+    console.log(req.query);
+
+    // revalidation
+    if (req.query.secret !== process.env.MY_SECRET_TOKEN) {
+      return res.status(401).json({ message: "Invalid token" });
+    }
+
+    try {
+      await res.revalidate(`/blog/${postSlug}`);
+      return res
+        .status(200)
+        .send({
+          message: "You successfully placed a comment",
+          revalidated: true,
+        });
+    } catch (err) {
+      return res.status(500).send("Error revalidating");
+    }
   } catch (error) {
     return res
       .status(500)

@@ -50,15 +50,22 @@ const initialState = {
 
 function CommentsSection({
   postId,
+  postSlug,
   comments,
 }: {
   postId: string;
+  postSlug: string;
   comments: Array<Comment>;
 }) {
   const [state, setState] = useState(initialState);
+  const [stateComments, setStateComments] = useState<any[]>([]);
   const [replying, setReplying] = useState(false);
 
   const { isLoading, displayToast } = state;
+
+  useEffect(() => {
+    setStateComments(comments);
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {
@@ -84,10 +91,13 @@ function CommentsSection({
   const placeComment: SubmitHandler<FormInput> = async (data) => {
     setState((prev) => ({ ...prev, isLoading: true }));
     try {
-      const response = await fetch("/api/comment", {
-        method: "POST",
-        body: JSON.stringify({ ...data, postId }),
-      });
+      const response = await fetch(
+        `/api/comment?secret=${process.env.MY_SECRET_TOKEN!}`,
+        {
+          method: "POST",
+          body: JSON.stringify({ ...data, postId, postSlug }),
+        }
+      );
       const responseBody = await response.json();
 
       if (!response.ok) throw Error(responseBody.message);
@@ -101,6 +111,19 @@ function CommentsSection({
         },
         isLoading: false,
       }));
+
+      setStateComments((prev) => [
+        {
+          _createdAt: new Date(),
+          _id: "id",
+          commenterEmail: data.email, //session?.user?.email,
+          commenterImage: "", //session?.user?.image,
+          commenterName: data.name, //session?.user?.name,
+          body: data["comment"],
+          replys: [],
+        },
+        ...prev,
+      ]);
       reset();
     } catch (err: any) {
       console.log(err);
@@ -196,7 +219,7 @@ function CommentsSection({
         </button>
       </form>
 
-      {comments.map((comment) => {
+      {stateComments.map((comment) => {
         return (
           <>
             <article className="comment p-6 border-t-2 first:border-none border-gray-200 dark:border-gray-700 mb-6 text-md md:text-lg">
@@ -285,7 +308,7 @@ function CommentsSection({
                 />
               )}
             </article>
-            {comment.replys.map((reply) => {
+            {comment.replys.map((reply: Reply) => {
               return (
                 <article className="reply p-6 py-3 mb-6 ml-6 lg:ml-12 text-md md:text-lg border-l-2 border-gray-200 dark:border-gray-800">
                   <header className="flex justify-between items-center mb-2">
