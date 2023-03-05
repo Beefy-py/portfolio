@@ -9,7 +9,6 @@ This is the repo for https://www.kennyhoft.live/
   - Loading state for recent posts (Suspense boundaries)
   - Search functionality for blog posts
   - Blog posts pagination
-  - Make social share buttons functional
   - Placeholder post mainImage while it loads in single blog post
 
 - Layout & Look
