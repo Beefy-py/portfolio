@@ -73,6 +73,12 @@ const Home: NextPage = () => {
           content="7u0GSchEa9S1HENjfqRd-m7nBMYuwTdYmHJ2B3DoMNw"
         />
 
+        {/* pinterest confirmation */}
+        <meta
+          name="p:domain_verify"
+          content="72ac22504af412ff50aca8282e66b559"
+        />
+
         <title>Kenny Hoft -- Software Developer in Suriname</title>
       </Head>
       <Layout>
