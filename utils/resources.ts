@@ -24,18 +24,18 @@ export const navLinks = [
 ];
 
 export const aboutSkills = [
-  "Javascript",
-  "NodeJS",
+  "TypeScript",
   "ReactJS",
-  "Python",
   "NextJS",
+  "NodeJS",
+  "React Native",
+  "Go",
+  "Python",
   "Django",
-  "BeautifulSoup4",
-  "Ubuntu",
-  "HTML5",
-  "CSS3",
-  "Typescript",
-  "Dart",
+  "SAP",
+  "Docker",
+  "Linux",
+  "Team Leadership",
 ];
 
 export const additionalInfo = [
@@ -81,53 +81,89 @@ export const socialLinks = [
 export const workedAt: Experience[] = [
   {
     company: "Tune Creative Studios",
-    role: "Software Developer",
+    role: "Full-Stack Developer",
     from: new Date("April 2022"),
     to: new Date("November 2022"),
     description: `
-    I worked at Tune Creative Studios as a full-stack web developer. I
-    built many web apps for clients and for the company. From personal
-    dashboard sites to real estate sites and Donation sites for clients.`,
+    Built a donation website supporting flood relief efforts on the
+    outskirts of Suriname (sadelo.org), an admin dashboard for processing
+    payments with dark mode and JWT authentication, a personal real
+    estate website, and a React admin dashboard for the "Dalla" mobile
+    app.`,
   },
   {
-    company: " Bits Please Technologies",
+    company: "Bits Please Technologies",
     role: "Software Developer",
     from: new Date("December 2022"),
+    to: new Date("March 2024"),
     description: `
-    I installed an ERP system for the company on their vps to boost the
-    overal production. Migrated their React site to NextJS and helping
-    managing it.`,
+    Migrated the BitsPlease website from ReactJS to Next.js and installed
+    an ERP system on a VPS to streamline daily business operations. Fully
+    built a Heineken anniversary website with a custom spinning-wheel
+    game, and developed AI-driven recruitment software on the OpenAI
+    GPT-4 model, hosted on a VPS.`,
+  },
+  {
+    company: "The Key Fintech & Digital Services",
+    role: "Lead Software Developer (SAP & React)",
+    from: new Date("March 2024"),
+    to: new Date("June 2026"),
+    description: `
+    Developed and managed a POS system built with Next.js and a NestJS
+    backend, plus a companion mobile POS app in React Native. Supported
+    administrative processes in SAP and designed SAP solutions, initiated
+    an e-learning platform for arithmetic education in Surinamese primary
+    schools, and developed and hosted dockerized Python servers on a VPS.`,
+  },
+  {
+    company: "Big Will Group",
+    role: "Lead Software Developer (SAP & React)",
+    from: new Date("June 2026"),
+    description: `
+    Co-developing a .NET desktop application and building an offline-first
+    mobile sales app with React Native (Expo). Developing dashboard
+    applications backed by Golang (Gin) with ERPNext as the data source,
+    managing app deployments with Dokploy, rolling out open-source tools
+    for internal use, and leading a small dev team across several
+    projects.`,
   },
 ];
 
 export const projects: Project[] = [
   {
-    image: `/projects/chat-app.jpeg`,
-    name: `Realtime Chat App`,
-    description: `I had created this using the mern stack and socket.io`,
-    url: "https://room-chat-app-mern.netlify.app/",
-    github: "https://github.com/Beefy-py/chat-app-client",
-    tags: [{ name: "React" }, { name: "Socket.io" }, { name: "NodeJS" }],
-  },
-  {
-    image: `/projects/donationapp.png`,
-    name: `Donation website in Suriname`,
-    description: `I built this when I worked at Tune Creative Studios. This website was build for the people who were suffering because of the flood.`,
-    url: "https://www.sadelo.org/",
+    image: `/projects/rijschool-loki-card.jpg`,
+    name: `Rijschool Loki`,
+    description: `A bilingual portal built to replace paper-based driving-lesson tracking for a Surinamese driving school. Students work through interactive lessons (traffic signs, written questions, scenario exercises, practice exams), while instructors manage schedules, exams, and student progress from a role-based dashboard.`,
+    url: "#",
     tags: [
-      { name: "React" },
-      { name: "Mope" },
-      { name: "NodeJS" },
-      { name: "Tailwind" },
+      { name: "Next.js" },
+      { name: "React 19" },
+      { name: "TypeScript" },
+      { name: "Supabase" },
+      { name: "Sanity" },
+      { name: "Tailwind v4" },
     ],
   },
   {
-    image: `/projects/blog-cms.png`,
-    name: `Nerdy blog website`,
-    description: `This one I built in NextJS using Tailwind also. And I fetched the blog articles from a Graphql cms called Hygraph. This was the first project where I used the NextJS framework.`,
-    url: "https://blog-app-cms.vercel.app/",
-    github: "https://github.com/Beefy-py/blog_app_cms",
-    tags: [{ name: "NextJS" }, { name: "GraphQl" }, { name: "Tailwind" }],
+    image: `/projects/gary-symor-card.jpg`,
+    name: `Gary Symorr`,
+    description: `A fully responsive artist portfolio giving the artist a fast, self-editable showcase for their work. Includes a dynamic gallery with infinite scroll and lightbox, dark mode, and a contact form. Currently in development: an academy platform for course management.`,
+    url: "#",
+    tags: [{ name: "Astro" }, { name: "Sanity" }, { name: "Vercel" }],
+  },
+  {
+    image: `/projects/agrivision-card.jpg`,
+    name: `Agrivision`,
+    description: `A mobile app that uses AI to detect plant diseases from a photo and recommend care steps, aimed at helping farmers catch problems earlier. Placed 2nd at the DataSur Hackathon 2025.`,
+    url: "#",
+    tags: [{ name: "React Native" }, { name: "Expo" }, { name: "FastAPI" }],
+  },
+  {
+    image: `/projects/donationapp-card.jpg`,
+    name: `Donation website in Suriname`,
+    description: `Built while at Tune Creative Studios, a donation site supporting people affected by flooding on the outskirts of Suriname.`,
+    url: "https://www.sadelo.org/",
+    tags: [{ name: "React" }, { name: "NodeJS" }, { name: "Tailwind" }],
   },
 ];
 

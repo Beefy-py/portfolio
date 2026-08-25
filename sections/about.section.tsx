@@ -10,31 +10,30 @@ function AboutSection() {
     <SectionWrapper name="about">
       <div className="place-self-center lg:col-span-7 text-md lg:text-lg text-gray-800 dark:text-gray-300">
         <p data-aos="fade-right" className="mb-3">
-          I am a highly motivated and dedicated 18-year-old software developer
-          with 5 years of experience under my belt. I discovered my passion for
-          coding at the young age of 13 and have been honing my skills ever
-          since. I am proud to have had the opportunity to work at a software
-          company, where I was able to gain valuable experience and develop my
-          skills further.
+          I&apos;m a full-stack software developer with over four years of
+          experience in Suriname&apos;s tech industry. I currently work as a
+          Lead Software Developer (SAP & React) at Big Will Group, where I
+          build web and mobile applications, design SAP solutions, and lead a
+          small development team across several projects.
         </p>
         <p data-aos="fade-right" className="mb-3">
-          In my free time, I enjoy indulging in my love for anime, which has
-          been a hobby of mine for many years. Not only do I find it to be a
-          great source of entertainment, but I also find the storytelling and
-          animation to be incredibly inspiring.
+          Over the years I&apos;ve worked across full-stack web apps, mobile
+          apps with React Native, dashboards backed by Go and SAP/ERPNext, and
+          AI-driven tooling. I hold React and Python certifications from
+          HackerRank and completed CodeWithMosh&apos;s JavaScript Mastery
+          series, and I&apos;m currently studying at Poly Technic College in
+          Paramaribo.
         </p>
         <p data-aos="fade-right" className="mb-3">
-          As I continue to develop my skills and gain experience, I am now
-          looking to expand my knowledge and take on new challenges by studying
-          Data Science. I am excited to delve into this field and am eager to
-          learn as much as possible. I believe that with my background in
-          software development and my passion for data, I will be able to make a
-          meaningful impact in this field.
+          I have a strong interest in mathematics and data science and am
+          always looking for opportunities to keep learning and stay ahead of
+          emerging technologies. I bring a serious, professional approach to
+          my work and aim to consistently deliver high-quality results.
         </p>
         <p data-aos="fade-right" className="">
-          I am always looking for new opportunities to learn and grow as a
-          developer, and I am confident that my skills and enthusiasm will
-          enable me to make a positive impact in any project I am a part of.
+          I&apos;m always open to new opportunities to learn and grow as a
+          developer, and confident that my skills and enthusiasm let me make a
+          positive impact on any project I&apos;m part of.
         </p>
       </div>
 
