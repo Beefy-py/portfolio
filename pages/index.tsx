@@ -48,7 +48,7 @@ const Home: NextPage = () => {
         />
         <meta
           property="og:image"
-          content="https://cdn.sanity.io/images/ylwllkb5/production/8be744e348a6fbe1a638db52b21cf83bd300ad72-1898x995.png"
+          content="https://www.kennyhoft.live/homepage.PNG"
         />
 
         {/* <!-- Twitter Meta Tags --> */}
@@ -65,7 +65,7 @@ const Home: NextPage = () => {
         />
         <meta
           name="twitter:image"
-          content="https://cdn.sanity.io/images/ylwllkb5/production/8be744e348a6fbe1a638db52b21cf83bd300ad72-1898x995.png"
+          content="https://www.kennyhoft.live/homepage.PNG"
         />
 
         <meta

@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import { additionalInfo, navLinks, socialLinks } from "../utils/resources";
 import Newsletter from "./newsLetter.blog.component";
@@ -36,11 +35,6 @@ const Footer = () => {
               </a>
             </li>
           ))}
-          <li>
-            <Link href="/blog" className="mr-4 hover:underline md:mr-6">
-              Blog
-            </Link>
-          </li>
         </ul>
         <ul className="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white">
           {socialLinks.map((link, index) => {

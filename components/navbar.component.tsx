@@ -107,15 +107,7 @@ const Navbar = () => {
                     </Link>
                   )}
                 </li>
-              ))}{" "}
-              <li>
-                <Link
-                  href="/blog"
-                  className={`block relative text-lg text-logo-shade1 hover:text-logo-shade2 transition border-2 border-dashed border-logo-shade1 px-3 py-1 hover:bg-logo-shade5`}
-                >
-                  Blog
-                </Link>
-              </li>
+              ))}
             </ul>
           </div>
         </div>
