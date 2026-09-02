@@ -5,6 +5,7 @@ import { EnvelopeIcon } from "@heroicons/react/24/outline";
 import SectionWrapper from "./sectionWrapper";
 import { motion } from "framer-motion";
 import { bubbles } from "../utils/resources";
+import { fadeIn, fadeInViewport } from "../utils/motion";
 
 function HomeSection() {
   const ctaLinks = {
@@ -146,25 +147,32 @@ function HomeSection() {
       </motion.section>
 
       <div className="mx-auto place-self-center col-span-full">
-        <h1
-          data-aos="fade-down"
+        <motion.h1
+          initial="hidden"
+          whileInView="show"
+          viewport={fadeInViewport}
+          variants={fadeIn("down")}
           className="max-w-2xl mb-4 text-center text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-gray-700 dark:text-white"
         >
           Hi,
           <br /> My name is{" "}
           <span className="font-secular text-logo-shade1">Kenny Hoft</span>
-        </h1>
-        <p
-          data-aos="fade-up"
-          data-aos-delay="200"
+        </motion.h1>
+        <motion.p
+          initial="hidden"
+          whileInView="show"
+          viewport={fadeInViewport}
+          variants={fadeIn("up", 200)}
           className="max-w-2xl text-center mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400"
         >
           I'm a software developer working with start-up companies in Suriname
           to help maintain their technologies and build for clients.
-        </p>
-        <div
-          data-aos="fade-up"
-          data-aos-delay="300"
+        </motion.p>
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={fadeInViewport}
+          variants={fadeIn("up", 300)}
           className="my-3 flex justify-between mx-auto sm:w-3/4"
         >
           <a href="mailto:hoftkenny@gmail.com" className={ctaLinks.contact}>
@@ -180,7 +188,7 @@ function HomeSection() {
             <span> Download CV</span>
             <ArrowDownOnSquareStackIcon className="ml-3 h-6 w-6" />
           </a>
-        </div>
+        </motion.div>
       </div>
     </SectionWrapper>
   );

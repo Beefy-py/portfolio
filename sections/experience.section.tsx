@@ -1,13 +1,18 @@
 import moment from "moment";
 import React from "react";
+import { motion } from "framer-motion";
 import { workedAt } from "../utils/resources";
 import SectionWrapper from "./sectionWrapper";
+import { fadeIn, fadeInViewport } from "../utils/motion";
 
 function ExperienceSection() {
   return (
     <SectionWrapper name="experience">
-      <ol
-        data-aos="fade-down"
+      <motion.ol
+        initial="hidden"
+        whileInView="show"
+        viewport={fadeInViewport}
+        variants={fadeIn("down")}
         className="lg:col-span-7 relative border-l border-logo-shade1"
       >
         {workedAt.map((exp, index) => (
@@ -16,8 +21,11 @@ function ExperienceSection() {
             <h3 className="text-xl font-semibold text-logo-shade1">
               {exp.company}
             </h3>
-            <p
-              data-aos="fade-left"
+            <motion.p
+              initial="hidden"
+              whileInView="show"
+              viewport={fadeInViewport}
+              variants={fadeIn("left")}
               className="text-gray-500 my-1 divide-x-2 divide-gray-400 dark:divide-gray-600"
             >
               <span className="font-semibold mr-1">{exp.role}</span>
@@ -25,17 +33,19 @@ function ExperienceSection() {
                 {moment(exp.from).format("MMMM YYYY")} -{" "}
                 {exp.to ? moment(exp.to).format("MMMM YYYY") : "Current"}
               </span>
-            </p>
-            <p
-              data-aos="fade-left"
-              data-aos-delay="100"
+            </motion.p>
+            <motion.p
+              initial="hidden"
+              whileInView="show"
+              viewport={fadeInViewport}
+              variants={fadeIn("left", 100)}
               className="text-lg font-normal text-gray-600 dark:text-gray-400"
             >
               {exp.description}
-            </p>
+            </motion.p>
           </li>
         ))}
-      </ol>
+      </motion.ol>
     </SectionWrapper>
   );
 }

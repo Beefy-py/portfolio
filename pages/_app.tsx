@@ -1,8 +1,5 @@
-import AOS from "aos";
-import "aos/dist/aos.css";
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { useEffect, useState } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
 
@@ -26,11 +23,6 @@ Router.events.on("routeChangeComplete", () => {
 Router.events.on("routeChangeError", () => NProgress.done());
 
 function MyApp({ Component, pageProps }: AppProps) {
-  useEffect(() => {
-    AOS.init({
-      once: true,
-    });
-  }, []);
   return (
     <>
       <Script

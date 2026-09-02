@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { sendContactForm } from "../lib/api";
 import { additionalInfo } from "../utils/resources";
 import SectionWrapper from "./sectionWrapper";
@@ -7,6 +8,7 @@ import {
   PaperAirplaneIcon,
   ExclamationCircleIcon,
 } from "@heroicons/react/24/outline";
+import { fadeIn, fadeInViewport } from "../utils/motion";
 
 const initialState = {
   values: {
@@ -86,20 +88,25 @@ shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-md lg:text-lg rou
   return (
     <SectionWrapper name="contact">
       <div className="col-span-full px-4 mx-auto max-w-screen-md">
-        <h2
-          data-aos="fade-up"
+        <motion.h2
+          initial="hidden"
+          whileInView="show"
+          viewport={fadeInViewport}
+          variants={fadeIn("up")}
           className="mb-4 text-xl md:text-2xl tracking-tight font-bold lg:text-center text-gray-700 dark:text-gray-300"
         >
           Contact Me
-        </h2>
-        <p
-          data-aos="fade-up"
-          data-aos-delay="50"
+        </motion.h2>
+        <motion.p
+          initial="hidden"
+          whileInView="show"
+          viewport={fadeInViewport}
+          variants={fadeIn("up", 50)}
           className="mb-8 lg:mb-16 font-light lg:text-center text-gray-500 dark:text-gray-400 sm:text-lg"
         >
           Do you have any questions for me or suggestions? Then please don't
           hesitate to contact me.
-        </p>
+        </motion.p>
 
         <div
           id="toast-message"
@@ -124,10 +131,12 @@ shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-md lg:text-lg rou
 
         <form onSubmit={sendEmail} className="space-y-8">
           <div className="grid grid-cols-6 space-y-8 md:space-y-0 md:space-x-2">
-            <div
+            <motion.div
+              initial="hidden"
+              whileInView="show"
+              viewport={fadeInViewport}
+              variants={fadeIn("right", 100)}
               className="col-span-full md:col-span-3"
-              data-aos="fade-right"
-              data-aos-delay="100"
             >
               <label
                 htmlFor="email"
@@ -160,11 +169,13 @@ shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-md lg:text-lg rou
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-            </div>
-            <div
+            </motion.div>
+            <motion.div
+              initial="hidden"
+              whileInView="show"
+              viewport={fadeInViewport}
+              variants={fadeIn("left", 100)}
               className="col-span-full md:col-span-3"
-              data-aos="fade-left"
-              data-aos-delay="100"
             >
               <label
                 htmlFor="name"
@@ -197,9 +208,14 @@ shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-md lg:text-lg rou
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-            </div>
+            </motion.div>
           </div>
-          <div data-aos="fade-up" data-aos-delay="150">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={fadeInViewport}
+            variants={fadeIn("up", 150)}
+          >
             <label
               htmlFor="subject"
               className={`${inputLabelStyling} ${
@@ -231,11 +247,12 @@ shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-md lg:text-lg rou
               onChange={handleChange}
               onBlur={handleBlur}
             />
-          </div>
-          <div
-            data-aos="fade-up"
-            data-aos-delay="150"
-            data-aos-offset="100"
+          </motion.div>
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={fadeInViewport}
+            variants={fadeIn("up", 150)}
             className="sm:col-span-2"
           >
             <label
@@ -275,17 +292,18 @@ shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-md lg:text-lg rou
               onChange={handleChange}
               onBlur={handleBlur}
             ></textarea>
-          </div>
-          <button
-            data-aos="fade-up"
-            data-aos-delay="200"
-            data-aos-offset="-10"
+          </motion.div>
+          <motion.button
+            initial="hidden"
+            whileInView="show"
+            viewport={fadeInViewport}
+            variants={fadeIn("up", 200)}
             disabled={Object.values(values).some((val) => val === "")}
             type="submit"
             className="py-3 px-5 text-sm lg:text-lg font-medium text-center text-gray-200 hover:text-gray-900 rounded-sm bg-logo-shade2 sm:w-fit hover:bg-logo-shade3 transition disabled:cursor-not-allowed disabled:hover:bg-gray-400 disabled:bg-gray-300 disabled:text-gray-900"
           >
             {isLoading ? "Sending. . ." : "Send message"}
-          </button>
+          </motion.button>
         </form>
       </div>
     </SectionWrapper>

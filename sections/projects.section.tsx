@@ -1,17 +1,21 @@
 import Image from "next/image";
 import React from "react";
+import { motion } from "framer-motion";
 import { projects } from "../utils/resources";
 import SectionWrapper from "./sectionWrapper";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
+import { fadeIn, fadeInViewport } from "../utils/motion";
 
 function ProjectsSection() {
   return (
     <SectionWrapper name="projects">
       <div className="col-span-full grid justify-center items-center md:grid-cols-2 lg:grid-cols-3 gap-2 w-full">
         {projects.map((project, index) => (
-          <div
-            data-aos="fade-up"
-            data-aos-delay={`${index * 100}`}
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={fadeInViewport}
+            variants={fadeIn("up", index * 100)}
             key={index + project.name}
             className="border-2 border-gray-300 dark:border-gray-800 rounded-sm max-w-xs sm:max-w-sm"
           >
@@ -56,7 +60,7 @@ function ProjectsSection() {
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </SectionWrapper>
