@@ -52,47 +52,46 @@
 
 ## PHASE 2: Modernize the Tech Stack
 
+> Completed Sept 2, 2026. Scope decisions made with Kenny before starting: bump Next.js in place and stay on the Pages Router (App Router migration deferred to Phase 3); drop Sanity entirely by removing the blog feature (it was the only thing using Sanity — projects/experience/skills already live in `utils/resources.ts`); switch the contact form to Resend; migrate AOS to Framer Motion. See git log (4 commits starting with "content: remove blog feature and Sanity CMS") for the full breakdown.
+>
+> **Outstanding for you:** add `RESEND_API_KEY` (and optionally `RESEND_FROM_EMAIL` once you have a verified sending domain) to `.env.local`/Vercel — the contact form is wired to Resend but needs real credentials to send. `EMAIL_PASS`, `SANITY_API_TOKEN`, and `MY_SECRET_TOKEN` are no longer used and can be removed from your env.
+
 ### Next.js Upgrade
-- [ ] Plan upgrade path (current version → Next.js 14 → 15)
-- [ ] Create a new Next.js 14+ project using `create-next-app`
-- [ ] Migrate pages from `/pages` directory to `/app` directory (App Router)
-- [ ] Update all dynamic routing to use App Router conventions
-- [ ] Test all routes after migration
-- [ ] Verify environment variables are properly configured
-- [ ] Update Next.js config for new features (Image Optimization, etc.)
+- [x] Plan upgrade path (current version → Next.js 14 → 15) — went straight 13.1.5 → 15, Pages Router kept
+- [ ] ~~Create a new Next.js 14+ project using `create-next-app`~~ — n/a, upgraded in place instead
+- [ ] Migrate pages from `/pages` directory to `/app` directory (App Router) — deliberately deferred to Phase 3 (rebuild), to avoid stacking the Next.js version bump and an App Router rewrite in one pass
+- [ ] Update all dynamic routing to use App Router conventions — same as above, Phase 3
+- [x] Test all routes after migration — verified via `next build` + a live dev-server pass (home page, all sections, `/sitemap.xml`, `/blog` and `/studio` now correctly 404)
+- [x] Verify environment variables are properly configured — dead ones identified (see note above); `BASE_URL`/`EMAIL` still wired through `next.config.js`
+- [x] Update Next.js config for new features (Image Optimization, etc.) — simplified `next.config.js`; `images.domains` removed since every image is now local
 
 ### Simplify CMS & Content Management
-- [ ] Decide: Keep Sanity, or migrate to simpler solution?
-  - **Option A (Keep Sanity):** Update to latest version, clean up schema
-  - **Option B (Migrate):** Choose alternative:
-    - MDX + Git-based content (simplest)
-    - Contentful (middle ground)
-    - Payload CMS (self-hosted, flexible)
-- [ ] Set up content structure for projects, blog posts, experience
-- [ ] Migrate existing content to new CMS
-- [ ] Test content querying in Next.js
+- [x] Decide: Keep Sanity, or migrate to simpler solution? — **removed entirely**. Sanity's only job in this codebase was the blog; the blog itself was dropped (see Phase 1 content note), so there was no content left to migrate.
+- [ ] ~~Set up content structure for projects, blog posts, experience~~ — n/a, no blog/CMS content remains
+- [ ] ~~Migrate existing content to new CMS~~ — n/a
+- [x] Test content querying in Next.js — n/a (nothing left querying a CMS); build/dev-server pass confirms no leftover Sanity calls
 
 ### Remove Unnecessary Dependencies
-- [ ] Replace Styled Components with Tailwind CSS (already installed)
-- [ ] Delete Styled Components from `package.json`
-- [ ] Audit and remove unused packages:
-  - [ ] Apollo Client (if using simple REST, remove it)
-  - [ ] GraphQL (unless needed for multi-source data)
-  - [ ] Nodemailer (consolidate with EmailJS or use Resend)
-  - [ ] AOS (Animate On Scroll - use Framer Motion instead)
-- [ ] Run `npm audit fix` to address vulnerabilities
-- [ ] Update all major dependencies to latest stable versions
+- [x] Replace Styled Components with Tailwind CSS (already installed) — turned out unused anywhere in the code, just deleted
+- [x] Delete Styled Components from `package.json`
+- [x] Audit and remove unused packages:
+  - [x] Apollo Client (if using simple REST, remove it) — unused, removed along with `graphql`/`graphql-request`
+  - [x] GraphQL (unless needed for multi-source data) — removed
+  - [x] Nodemailer (consolidate with EmailJS or use Resend) — replaced with Resend
+  - [x] AOS (Animate On Scroll - use Framer Motion instead) — migrated all 5 sections to Framer Motion variants
+- [x] Run `npm audit fix` to address vulnerabilities — down to 2 remaining (both require a Next.js 16 bump, out of scope for this pass)
+- [x] Update all major dependencies to latest stable versions — Next 15, React 18.3.1, TypeScript 5, `@vercel/analytics`, `react-hook-form`, `framer-motion` all bumped
 
 ### Email Solution
-- [ ] Choose: EmailJS (frontend) OR Resend (backend)
-- [ ] Implement contact form with chosen solution
-- [ ] Test email delivery
-- [ ] Add error handling and user feedback
+- [x] Choose: EmailJS (frontend) OR Resend (backend) — Resend
+- [x] Implement contact form with chosen solution
+- [ ] Test email delivery — **outstanding:** needs your real `RESEND_API_KEY` to verify end-to-end; request/response contract unchanged so the form itself is already wired up
+- [x] Add error handling and user feedback — kept the existing toast/error UI, Resend's `{ data, error }` response is handled explicitly
 
 ### Analytics & Performance
-- [ ] Keep or verify Vercel Analytics integration
-- [ ] Add Core Web Vitals monitoring
-- [ ] Set up error tracking (optional: Sentry)
+- [x] Keep or verify Vercel Analytics integration — kept, bumped to latest
+- [ ] Add Core Web Vitals monitoring — not started (Phase 4/5 territory)
+- [ ] Set up error tracking (optional: Sentry) — not started, optional
 
 ---
 
