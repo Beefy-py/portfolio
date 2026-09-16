@@ -151,27 +151,29 @@
 
 ## PHASE 4: Design & UX Polish
 
+> Started Sept 16, 2026. Found and fixed two real bugs while working through this phase rather than pure polish: 404.tsx/500.tsx had the same framer-motion spring-animation crash fixed on the homepage in Phase 2 (commit `4825455`), and several icon-only buttons/links had no accessible name (commit `e610453`). Lighthouse scoring and further UX items (page transitions, loading states, breadcrumbs) not yet started.
+
 ### Visual Design
-- [ ] Define color palette (2-3 primary colors + neutrals)
-- [ ] Choose typography (2-3 font families max)
-- [ ] Create design system for buttons, cards, spacing
-- [ ] Ensure consistent styling across all pages
-- [ ] Design mobile-first, then enhance for desktop
+- [x] Define color palette (2-3 primary colors + neutrals) - already in place (`tailwind.config.js`: 5 green "logo-shade" tones + Tailwind's default gray neutrals)
+- [x] Choose typography (2-3 font families max) - already in place (League Spartan for body, Secular One for headings)
+- [ ] Create design system for buttons, cards, spacing - informal only (repeated Tailwind utility patterns, no shared component library); works fine at this site's size, revisit only if the component count grows
+- [x] Ensure consistent styling across all pages - single-page site, one consistent style throughout; 404/500 now match too
+- [x] Design mobile-first, then enhance for desktop - already in place throughout via Tailwind responsive classes
 
 ### User Experience
-- [ ] Add smooth page transitions
-- [ ] Implement loading states
-- [ ] Add proper error pages (404, 500)
-- [ ] Test navigation flow
-- [ ] Add breadcrumbs where helpful
-- [ ] Ensure accessibility (ARIA labels, keyboard navigation)
+- [ ] Add smooth page transitions - NProgress route-change bar already exists, but there's only one real route (home) so this has little to apply to; not pursued further
+- [ ] Implement loading states - contact form already has one ("Sending..."); no other async UI needs one currently
+- [x] Add proper error pages (404, 500) - fixed the framer-motion crash both pages shared with the homepage, restored the 500 page's dead "Back to Homepage" link, added page titles and `noindex`
+- [x] Test navigation flow - verified via live dev-server pass: nav links, 404, 500, sticky header
+- [ ] Add breadcrumbs where helpful - n/a, single-page site with no nested routes
+- [x] Ensure accessibility (ARIA labels, keyboard navigation) - added `aria-label`/`aria-expanded` to the navbar hamburger and dark-mode toggle, `aria-label` to footer social icons and project card demo/GitHub links, `rel="noopener noreferrer"` on every `target="_blank"` link (was inconsistent before). Keyboard nav itself relies on default browser/native element behavior (real `<button>`/`<a>` elements throughout) - not separately audited with a screen reader or tab-order walkthrough.
 
 ### Performance Optimization
-- [ ] Optimize images (use Next.js Image component)
-- [ ] Enable static generation where possible
-- [ ] Implement proper caching headers
-- [ ] Minify CSS and JavaScript
-- [ ] Test Lighthouse score (target: 90+)
+- [x] Optimize images (use Next.js Image component) - already in place everywhere (`next/image` used for every image on the site)
+- [x] Enable static generation where possible - home/404/500 already prerender as static (confirmed in `next build` output); contact/newsletter/sitemap are necessarily dynamic (API routes, env-dependent)
+- [ ] Implement proper caching headers - not addressed; Vercel's default static-asset caching likely covers most of this for a site with no custom server, revisit only if Lighthouse flags it
+- [x] Minify CSS and JavaScript - handled automatically by `next build`, nothing custom needed
+- [ ] Test Lighthouse score (target: 90+) - not yet run
 
 ---
 
