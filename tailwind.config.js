@@ -17,8 +17,8 @@ module.exports = {
         "logo-shade5": "#89d6ad",
       },
       fontFamily: {
-        league: ["League Spartan", "sans-serif"],
-        secular: ["Secular One", "sans-serif"],
+        league: ["var(--font-league)", "sans-serif"],
+        secular: ["var(--font-secular)", "sans-serif"],
       },
     },
   },

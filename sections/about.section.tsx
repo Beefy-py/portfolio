@@ -12,9 +12,8 @@ function AboutSection() {
     <SectionWrapper name="about">
       <div className="place-self-center lg:col-span-7 text-md lg:text-lg text-gray-800 dark:text-gray-300">
         <motion.p
-          initial="hidden"
-          whileInView="show"
-          viewport={fadeInViewport}
+          initial={false}
+          animate="show"
           variants={fadeIn("right")}
           className="mb-3"
         >
@@ -25,9 +24,8 @@ function AboutSection() {
           small development team across several projects.
         </motion.p>
         <motion.p
-          initial="hidden"
-          whileInView="show"
-          viewport={fadeInViewport}
+          initial={false}
+          animate="show"
           variants={fadeIn("right")}
           className="mb-3"
         >
@@ -39,9 +37,8 @@ function AboutSection() {
           Paramaribo.
         </motion.p>
         <motion.p
-          initial="hidden"
-          whileInView="show"
-          viewport={fadeInViewport}
+          initial={false}
+          animate="show"
           variants={fadeIn("right")}
           className="mb-3"
         >
@@ -51,9 +48,8 @@ function AboutSection() {
           my work and aim to consistently deliver high-quality results.
         </motion.p>
         <motion.p
-          initial="hidden"
-          whileInView="show"
-          viewport={fadeInViewport}
+          initial={false}
+          animate="show"
           variants={fadeIn("right")}
           className=""
         >
@@ -64,9 +60,8 @@ function AboutSection() {
       </div>
 
       <motion.div
-        initial="hidden"
-        whileInView="show"
-        viewport={fadeInViewport}
+        initial={false}
+        animate="show"
         variants={fadeIn("right", 400)}
         className="flex relative mt-3 lg:mt-0 lg:col-span-5 justify-end align-middle items-center"
       >

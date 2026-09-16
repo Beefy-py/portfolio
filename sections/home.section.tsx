@@ -5,7 +5,7 @@ import { EnvelopeIcon } from "@heroicons/react/24/outline";
 import SectionWrapper from "./sectionWrapper";
 import { motion } from "framer-motion";
 import { bubbles } from "../utils/resources";
-import { fadeIn, fadeInViewport } from "../utils/motion";
+import { fadeIn } from "../utils/motion";
 
 function HomeSection() {
   const ctaLinks = {
@@ -72,7 +72,7 @@ function HomeSection() {
         <motion.div
           className="static"
           variants={container}
-          initial="hidden"
+          initial={false}
           animate="show"
         >
           {bubbles.desktop.map((bubble, index) => (
@@ -158,9 +158,8 @@ function HomeSection() {
 
       <div className="mx-auto place-self-center col-span-full">
         <motion.h1
-          initial="hidden"
-          whileInView="show"
-          viewport={fadeInViewport}
+          initial={false}
+          animate="show"
           variants={fadeIn("down")}
           className="max-w-2xl mb-4 text-center text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-gray-700 dark:text-white"
         >
@@ -169,9 +168,8 @@ function HomeSection() {
           <span className="font-secular text-logo-shade1">Kenny Hoft</span>
         </motion.h1>
         <motion.p
-          initial="hidden"
-          whileInView="show"
-          viewport={fadeInViewport}
+          initial={false}
+          animate="show"
           variants={fadeIn("up", 200)}
           className="max-w-2xl text-center mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400"
         >
@@ -179,9 +177,8 @@ function HomeSection() {
           to help maintain their technologies and build for clients.
         </motion.p>
         <motion.div
-          initial="hidden"
-          whileInView="show"
-          viewport={fadeInViewport}
+          initial={false}
+          animate="show"
           variants={fadeIn("up", 300)}
           className="my-3 flex justify-between mx-auto sm:w-3/4"
         >

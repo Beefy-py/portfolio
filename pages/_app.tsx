@@ -2,12 +2,27 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
+import { League_Spartan, Secular_One } from "next/font/google";
 
 import React from "react";
 
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import { Router } from "next/router";
+
+const leagueSpartan = League_Spartan({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  display: "swap",
+  variable: "--font-league",
+});
+
+const secularOne = Secular_One({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+  variable: "--font-secular",
+});
 
 NProgress.configure({ easing: "ease", speed: 500 });
 
@@ -44,7 +59,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         `}
       </Script>
 
-      <Component {...pageProps} />
+      <div className={`${leagueSpartan.variable} ${secularOne.variable} font-league`}>
+        <Component {...pageProps} />
+      </div>
       <Analytics />
     </>
   );
