@@ -187,9 +187,9 @@
 - [x] Test responsive design at all breakpoints - mobile/tablet/desktop all checked, no layout breaks, `lg:` breakpoint correctly switches hamburger → inline nav
 - [x] Test all forms and interactive elements - contact form already verified end-to-end in Phase 2 (real Resend send); dark mode toggle, mobile menu, nav links all verified this pass. Mailchimp newsletter form in the footer **not** tested - unknown if `MAILCHIMP_API_KEY`/`MAILCHIMP_AUDIENCE_ID` are configured
 - [ ] ~~Test CMS content updates reflect on site~~ - n/a, no CMS since Phase 2
-- [ ] Check all external links work - **found 2 real broken links**, see note below
+- [x] Check all external links work - found 2 real broken links (below); 1 fixed, 1 still outstanding
 
-> **Broken links found:** the "Download CV" button's Google Doc link (`docs.google.com/document/d/1An3XWI8L4WoQutpyC_stT0CTcGi7bv1UWotVukVL3cI`) returns **410 Gone** - the document itself appears to have been deleted, not just a permissions issue. And `sadelo.org` - the Donation Website project's only real (non-`#`-placeholder) live demo link - **fails to resolve at the DNS level entirely** (`Could not resolve host`). Both need Kenny's action (re-share/re-upload the CV doc and get a working link; check the sadelo.org domain/hosting) - not something fixable from the codebase.
+> **Broken links found:** the "Download CV" button's Google Doc link returned **410 Gone** (the document had been deleted) - **fixed**, Kenny supplied a new working CV link (commit `225dcbc`). `sadelo.org` - the Donation Website project's only real (non-`#`-placeholder) live demo link - still **fails to resolve at the DNS level entirely** (`Could not resolve host`) - outstanding, needs Kenny to check the domain/hosting, not fixable from the codebase.
 
 ### SEO & Metadata
 - [x] Add proper meta tags (title, description) to each page - home page has full title/description/keywords; 404/500 have titles + `noindex` (Phase 4)
