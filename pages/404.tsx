@@ -1,6 +1,5 @@
 import React from "react";
-// import { blurryBlobs404 } from "../resources";
-// import { motion } from "framer-motion";
+import Head from "next/head";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { bubbles404 } from "../utils/resources";
@@ -41,16 +40,21 @@ function Custom404() {
   };
 
   return (
-    <section className="bg-gray-50 dark:bg-gray-900 h-screen bg-no-repeat bg-center overflow-hidden relative">
-      <motion.section className="overflow-hidden bg-center bg-no-repeat w-full">
-        {" "}
-        <motion.div
-          className="static"
-          variants={container}
-          initial="hidden"
-          animate="show"
-        >
-          {bubbles404.desktop.map((bubble, index) => (
+    <>
+      <Head>
+        <title>Page Not Found -- Kenny Hoft</title>
+        <meta name="robots" content="noindex" />
+      </Head>
+      <section className="bg-gray-50 dark:bg-gray-900 h-screen bg-no-repeat bg-center overflow-hidden relative">
+        <motion.section className="overflow-hidden bg-center bg-no-repeat w-full">
+          {" "}
+          <motion.div
+            className="static"
+            variants={container}
+            initial="hidden"
+            animate="show"
+          >
+            {bubbles404.desktop.map((bubble, index) => (
             <motion.div
               variants={item}
               animate={{ scale: 1, y: [0, -15, 0] }}
@@ -62,9 +66,14 @@ function Custom404() {
               transition={{
                 y: {
                   repeat: Infinity,
-                  type: "spring",
+                  type: "tween",
+                  ease: "easeInOut",
                   duration: 3,
                   delay: Math.random() * 2.5,
+                },
+                scale: {
+                  type: "tween",
+                  ease: "easeInOut",
                 },
               }}
               key={index}
@@ -96,9 +105,14 @@ function Custom404() {
               transition={{
                 y: {
                   repeat: Infinity,
-                  type: "spring",
+                  type: "tween",
+                  ease: "easeInOut",
                   duration: 3,
                   delay: Math.random() * 2.5,
+                },
+                scale: {
+                  type: "tween",
+                  ease: "easeInOut",
                 },
               }}
               key={index}
@@ -141,7 +155,8 @@ function Custom404() {
           </Link>
         </div>
       </div>{" "}
-    </section>
+      </section>
+    </>
   );
 }
 

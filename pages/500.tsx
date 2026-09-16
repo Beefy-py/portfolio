@@ -1,5 +1,5 @@
 import React from "react";
-
+import Head from "next/head";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { bubbles500 } from "../utils/resources";
@@ -40,7 +40,12 @@ function Custom500() {
   };
 
   return (
-    <section className="bg-gray-50 dark:bg-gray-900 h-screen bg-no-repeat bg-center overflow-hidden relative">
+    <>
+      <Head>
+        <title>Something Went Wrong -- Kenny Hoft</title>
+        <meta name="robots" content="noindex" />
+      </Head>
+      <section className="bg-gray-50 dark:bg-gray-900 h-screen bg-no-repeat bg-center overflow-hidden relative">
       <motion.section className="overflow-hidden bg-center bg-no-repeat w-full">
         {" "}
         <motion.div
@@ -61,9 +66,14 @@ function Custom500() {
               transition={{
                 y: {
                   repeat: Infinity,
-                  type: "spring",
+                  type: "tween",
+                  ease: "easeInOut",
                   duration: 3,
                   delay: Math.random() * 2.5,
+                },
+                scale: {
+                  type: "tween",
+                  ease: "easeInOut",
                 },
               }}
               key={index}
@@ -95,9 +105,14 @@ function Custom500() {
               transition={{
                 y: {
                   repeat: Infinity,
-                  type: "spring",
+                  type: "tween",
+                  ease: "easeInOut",
                   duration: 3,
                   delay: Math.random() * 2.5,
+                },
+                scale: {
+                  type: "tween",
+                  ease: "easeInOut",
                 },
               }}
               key={index}
@@ -127,9 +142,9 @@ function Custom500() {
           <p className="mb-4 text-gray-800 dark:text-gray-200 text-3xl tracking-tight font-bold md:text-4xl">
             Internal Server Error.
           </p>
-          {/* <p className="mb-4 text-lg text-gray-700 dark:text-gray-300">
-            Sorry, I can&apos;t find that page. You&apos;ll find lots more to
-            explore about me on the homepage.{" "}
+          <p className="mb-4 text-lg text-gray-700 dark:text-gray-300">
+            Something went wrong on my end. Try again in a moment, or head
+            back to the homepage.
           </p>
 
           <Link
@@ -137,10 +152,11 @@ function Custom500() {
             className="transition ease justify-center bg-logo-shade4 text-xs lg:text-sm xl:text-base my-1 py-2.5 px-5 rounded-sm  font-bold drop-shadow-sm hover:drop-shadow-xl text-gray-800 hover:bg-logo-shade5 focus:outline focus:outline-offset-2 focus:outline-2 focus:outline-logo-shade5 text-center"
           >
             Back to Homepage
-          </Link> */}
+          </Link>
         </div>
       </div>{" "}
-    </section>
+      </section>
+    </>
   );
 }
 
