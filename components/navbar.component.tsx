@@ -73,6 +73,9 @@ const Navbar = () => {
           <button
             className="lg:hidden text-logo-shade1 hover:ring-2 hover:ring-logo-shade1 rounded-sm p-2 transition"
             onClick={() => setShowNavbar(!showNavbar)}
+            aria-label={showNavbar ? "Close menu" : "Open menu"}
+            aria-expanded={showNavbar}
+            aria-controls="mobile-menu-2"
           >
             <Bars3BottomRightIcon className="w-8 h-8" />
           </button>
@@ -86,6 +89,7 @@ const Navbar = () => {
             <ul className="flex flex-col items-center mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
               <button
                 onClick={handleDarkModeToggle}
+                aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
                 className=" outline-none border-2 p-2 rounded-sm border-dashed border-gray-300 bg-gray-100 dark:bg-gray-800 dark:border-gray-700"
               >
                 <SunIcon

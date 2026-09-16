@@ -32,6 +32,8 @@ function ProjectsSection() {
                 <a
                   href={project.url}
                   target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`View live demo of ${project.name}`}
                   className="hover:text-logo-shade3 transition"
                 >
                   <ArrowTopRightOnSquareIcon className="ml-3 h-6 w-6" />
@@ -40,6 +42,8 @@ function ProjectsSection() {
                   <a
                     href={project.github}
                     target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`View source of ${project.name} on GitHub`}
                     className="hover:text-logo-shade3 transition ml-2"
                   >
                     <i className="fa-solid text-lg fa-brands fa-github"></i>

@@ -43,6 +43,8 @@ const Footer = () => {
                 <a
                   href={link.url}
                   target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.name}
                   className="mr-4 transition text-gray-300 hover:text-logo-shade3 md:mr-6"
                 >
                   <i className={`fa-solid text-xl ${link.icon}`}></i>{" "}
