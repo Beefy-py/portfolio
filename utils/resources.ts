@@ -38,6 +38,8 @@ export const aboutSkills = [
   "Team Leadership",
 ];
 
+export const languageSkills = ["Dutch", "English", "Spanish"];
+
 export const additionalInfo = [
   {
     name: "Location",

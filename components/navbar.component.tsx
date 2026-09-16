@@ -54,7 +54,7 @@ const Navbar = () => {
   ].join(" ");
 
   return (
-    <header>
+    <header className="sticky top-0 z-50 bg-white dark:bg-gray-900">
       <nav className="border-gray-200 dark:border-gray-800 px-4 lg:px-6 py-2.5 border-b-2">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl py-4">
           <Link href="/" className="flex items-center">

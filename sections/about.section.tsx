@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
-import { aboutSkills } from "../utils/resources";
+import { aboutSkills, languageSkills } from "../utils/resources";
 import SectionWrapper from "./sectionWrapper";
 import { fadeIn, fadeInViewport } from "../utils/motion";
 
@@ -94,6 +94,24 @@ function AboutSection() {
             className={interestsClassNames}
           >
             {skill}
+          </motion.span>
+        ))}
+      </div>
+
+      <div className="col-span-full flex flex-row flex-wrap items-center">
+        <span className="text-gray-500 dark:text-gray-500 text-sm font-medium mr-2 my-1">
+          Languages:
+        </span>
+        {languageSkills.map((language, index) => (
+          <motion.span
+            key={index + language}
+            initial="hidden"
+            whileInView="show"
+            viewport={fadeInViewport}
+            variants={fadeIn("left", index * 100)}
+            className={interestsClassNames}
+          >
+            {language}
           </motion.span>
         ))}
       </div>
