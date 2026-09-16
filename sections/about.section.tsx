@@ -66,11 +66,11 @@ function AboutSection() {
         className="flex relative mt-3 lg:mt-0 lg:col-span-5 justify-end align-middle items-center"
       >
         <Image
-          src="/me.jpg"
+          src="/me-2.jpg"
           alt="Image of Kenny Hoft on his portfolio website z-1"
-          className="rounded-md"
+          className="rounded-md object-cover w-full max-w-[400px] aspect-[4/5]"
           width={400}
-          height={400}
+          height={500}
         />
         {/* <div className="rounded-md absolute left-0 right-0 bottom-0 top-0 backdrop-blur-md z-2"></div> */}
         {/* <div className="bg-logo-shade3 w-48 h-48 rounded-full absolute -z-10 -right-12 -bottom-16 blur-lg brightness-110 contrast-125"></div>{" "}
