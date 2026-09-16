@@ -187,7 +187,7 @@ function HomeSection() {
             <EnvelopeIcon className="ml-3 h-6 w-6" />
           </a>
           <a
-            href="https://docs.google.com/document/d/1An3XWI8L4WoQutpyC_stT0CTcGi7bv1UWotVukVL3cI/edit?usp=sharing"
+            href="https://docs.google.com/document/d/1H_23-CjvKYIstvSdCElyDMrbU35Q2_8hA0RExndmG7k/edit?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className={ctaLinks.download}
