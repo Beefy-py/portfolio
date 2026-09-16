@@ -97,51 +97,55 @@
 
 ## PHASE 3: Rebuild Components & Pages
 
+> Started Sept 15, 2026. Scope decisions made with Kenny before starting: stay on the Pages Router (App Router migration stays deferred - no visual/content payoff, just risk), keep the single-page anchor-section design rather than splitting into separate routes, and skip individual per-project detail pages for now (only 1 of 4 projects has a real live URL). Given those calls, most of this phase's "Projects Page"/"Experience Page"/"About/Bio Page"/"Contact Page" checklist items are already satisfied by the existing sections on the one-pager - they're marked accordingly below rather than left as literal separate pages.
+>
+> Blog section below is n/a - the blog was removed entirely in Phase 2.
+
 ### Layout & Structure
-- [ ] Create base layout component for App Router
-- [ ] Build navigation component (sticky/responsive)
-- [ ] Create footer component
-- [ ] Implement mobile-responsive design
-- [ ] Add dark mode support (optional but recommended)
+- [ ] ~~Create base layout component for App Router~~ - n/a, App Router migration deferred (see note above)
+- [x] Build navigation component (sticky/responsive) - was responsive but not sticky; added `sticky top-0` to the navbar
+- [x] Create footer component - already existed
+- [x] Implement mobile-responsive design - already in place via Tailwind responsive classes throughout
+- [x] Add dark mode support (optional but recommended) - already implemented (`hooks/darkmode.ts` + navbar toggle)
 
 ### Home Page
-- [ ] Hero section (updated intro, tagline)
-- [ ] Featured projects section
-- [ ] Skills overview
-- [ ] CTA (Contact / View More)
-- [ ] Call-to-action for newsletter or contact
+- [x] Hero section (updated intro, tagline) - already in place (`sections/home.section.tsx`)
+- [x] Featured projects section - satisfied by design: it's a one-pager, so the Projects section further down *is* the home page's projects section
+- [x] Skills overview - technical skill tags already shown in About; also found `sections/skills.section.tsx` sitting unused in the codebase (dead code, never imported) with a "Languages" list not shown anywhere on the live site - folded that into the About section instead of adding a new full-width section for 3 pills, then deleted the orphaned file
+- [x] CTA (Contact / View More) - already in place (Contact Me / Download CV buttons in hero)
+- [x] Call-to-action for newsletter or contact - Mailchimp newsletter signup in the footer + full Contact section already exist
 
 ### Projects Page
-- [ ] Grid/list view of projects
-- [ ] Filtering by technology/category
-- [ ] Individual project detail pages
-- [ ] Links to live demos and GitHub repos
-- [ ] Responsive image gallery
+- [x] Grid/list view of projects - satisfied by the existing Projects section (responsive card grid)
+- [ ] Filtering by technology/category - not built; low value at 4 projects, revisit if the project list grows
+- [ ] Individual project detail pages - explicitly skipped for now (see note above); revisit once more projects have real live URLs/case-study content worth a dedicated page
+- [x] Links to live demos and GitHub repos - already in place per project card
+- [x] Responsive image gallery - already in place (responsive grid, normalized project card images from Phase 1)
 
 ### Experience Page (if separate from home)
-- [ ] Timeline or list of work experience
-- [ ] Education section
-- [ ] Certifications and achievements
-- [ ] Skills breakdown by category
+- [x] Timeline or list of work experience - satisfied by the existing Experience section (not separate from home, by design)
+- [ ] Education section - not built; Poly Technic College is mentioned in the About bio text but has no dedicated section
+- [ ] Certifications and achievements - not built as a dedicated section; certifications are mentioned in the About bio text only (flagged back in Phase 1 too)
+- [x] Skills breakdown by category - satisfied by design: technical skills + languages both shown in About
 
 ### About/Bio Page
-- [ ] Personal/professional bio
-- [ ] Photo (professional headshot)
-- [ ] Links to social profiles
-- [ ] Brief career narrative
+- [x] Personal/professional bio - already in place
+- [x] Photo (professional headshot) - already in place (`/me.jpg`)
+- [x] Links to social profiles - already in place (footer social icons)
+- [x] Brief career narrative - already in place
 
 ### Contact Page
-- [ ] Contact form (EmailJS or Resend)
-- [ ] Social media links
-- [ ] Email link
-- [ ] Optional: Calendar booking link (Calendly, Typeform)
+- [x] Contact form (EmailJS or Resend) - done in Phase 2, verified working end-to-end
+- [x] Social media links - already in place (footer)
+- [x] Email link - already in place (mailto link in hero CTA)
+- [ ] Optional: Calendar booking link (Calendly, Typeform) - not built, genuinely optional per the checklist itself
 
 ### Blog (Optional but Recommended)
-- [ ] Set up blog collection in CMS
-- [ ] Blog list page with filtering/search
-- [ ] Individual blog post pages
-- [ ] Syntax highlighting for code blocks
-- [ ] Social share buttons
+- [ ] ~~Set up blog collection in CMS~~ - n/a, blog removed in Phase 2
+- [ ] ~~Blog list page with filtering/search~~ - n/a
+- [ ] ~~Individual blog post pages~~ - n/a
+- [ ] ~~Syntax highlighting for code blocks~~ - n/a
+- [ ] ~~Social share buttons~~ - n/a
 
 ---
 
