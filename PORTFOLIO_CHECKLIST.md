@@ -171,9 +171,9 @@
 ### Performance Optimization
 - [x] Optimize images (use Next.js Image component) - already in place everywhere (`next/image` used for every image on the site)
 - [x] Enable static generation where possible - home/404/500 already prerender as static (confirmed in `next build` output); contact/newsletter/sitemap are necessarily dynamic (API routes, env-dependent)
-- [ ] Implement proper caching headers - not addressed; Vercel's default static-asset caching likely covers most of this for a site with no custom server, revisit only if Lighthouse flags it
+- [ ] Implement proper caching headers - not addressed; Vercel's default static-asset caching likely covers most of this for a site with no custom server, revisit only if Lighthouse still flags it after a real deploy
 - [x] Minify CSS and JavaScript - handled automatically by `next build`, nothing custom needed
-- [ ] Test Lighthouse score (target: 90+) - not yet run
+- [ ] Test Lighthouse score (target: 90+) - **run against a local production build** (`next build && next start`), not yet against the real deployed site. First real run: Performance 62 / Accessibility 93 / Best Practices 96 / SEO 100. Fixed two root causes (commit `9ea366b`): render-blocking Google Fonts `@import` (switched to self-hosted `next/font/google`) and a framer-motion animation pattern that hid already-painted above-the-fold text again after hydration before fading it back in. That brought Performance to **75** (FCP 3.2s→0.8s, LCP 5.5s→4.0s, CLS 0.019→0). Still short of 90 - remaining cost is mostly the two third-party `<Script>` tags (Font Awesome kit, Google Tag Manager) and main-thread time from the continuous hero bubble animations, both of which trade off against something Kenny would visibly notice (icons/analytics, or animation), so left as a decision point rather than changed unilaterally.
 
 ---
 
