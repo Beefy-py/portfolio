@@ -87,9 +87,14 @@ function HomeSection() {
               transition={{
                 y: {
                   repeat: Infinity,
-                  type: "spring",
+                  type: "tween",
+                  ease: "easeInOut",
                   duration: 3,
                   delay: Math.random() * 2.5,
+                },
+                scale: {
+                  type: "tween",
+                  ease: "easeInOut",
                 },
               }}
               key={index}
@@ -121,9 +126,14 @@ function HomeSection() {
               transition={{
                 y: {
                   repeat: Infinity,
-                  type: "spring",
+                  type: "tween",
+                  ease: "easeInOut",
                   duration: 3,
                   delay: Math.random() * 2.5,
+                },
+                scale: {
+                  type: "tween",
+                  ease: "easeInOut",
                 },
               }}
               key={index}
