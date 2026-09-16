@@ -179,34 +179,38 @@
 
 ## PHASE 5: Testing & Deployment
 
+> Started Sept 16, 2026. **Important finding: local `main` is 13 commits ahead of `origin/main` on GitHub** - none of Phases 1-4's work (content update, blog/Sanity removal, Next 15 upgrade, Resend, Framer Motion, accessibility/performance fixes) has been pushed. The live site at kennyhoft.live (if it auto-deploys from `main` via Vercel) is still running the old pre-Phase-1 code. Nothing has been pushed or deployed without asking first - see Deployment section below.
+
 ### Testing
-- [ ] Test on desktop browsers (Chrome, Firefox, Safari, Edge)
-- [ ] Test on mobile browsers
-- [ ] Test responsive design at all breakpoints
-- [ ] Test all forms and interactive elements
-- [ ] Test CMS content updates reflect on site
-- [ ] Check all external links work
+- [x] Test on desktop browsers (Chrome, Firefox, Safari, Edge) - tested in Chromium (covers Chrome/Edge); Firefox/Safari not available in this environment, untested
+- [x] Test on mobile browsers - emulated mobile (375x812) and tablet (768x1024) viewports; hamburger menu, nav links, hero, and About all render and function correctly
+- [x] Test responsive design at all breakpoints - mobile/tablet/desktop all checked, no layout breaks, `lg:` breakpoint correctly switches hamburger → inline nav
+- [x] Test all forms and interactive elements - contact form already verified end-to-end in Phase 2 (real Resend send); dark mode toggle, mobile menu, nav links all verified this pass. Mailchimp newsletter form in the footer **not** tested - unknown if `MAILCHIMP_API_KEY`/`MAILCHIMP_AUDIENCE_ID` are configured
+- [ ] ~~Test CMS content updates reflect on site~~ - n/a, no CMS since Phase 2
+- [ ] Check all external links work - **found 2 real broken links**, see note below
+
+> **Broken links found:** the "Download CV" button's Google Doc link (`docs.google.com/document/d/1An3XWI8L4WoQutpyC_stT0CTcGi7bv1UWotVukVL3cI`) returns **410 Gone** - the document itself appears to have been deleted, not just a permissions issue. And `sadelo.org` - the Donation Website project's only real (non-`#`-placeholder) live demo link - **fails to resolve at the DNS level entirely** (`Could not resolve host`). Both need Kenny's action (re-share/re-upload the CV doc and get a working link; check the sadelo.org domain/hosting) - not something fixable from the codebase.
 
 ### SEO & Metadata
-- [ ] Add proper meta tags (title, description) to each page
-- [ ] Create sitemap.xml
-- [ ] Create robots.txt
-- [ ] Add Open Graph tags for social sharing
-- [ ] Write descriptive alt text for all images
+- [x] Add proper meta tags (title, description) to each page - home page has full title/description/keywords; 404/500 have titles + `noindex` (Phase 4)
+- [x] Create sitemap.xml - done in Phase 2
+- [x] Create robots.txt - done, includes `Sitemap:` line (Phase 4)
+- [x] Add Open Graph tags for social sharing - already in place on the home page (`og:title`, `og:description`, `og:image`, Twitter card tags)
+- [x] Write descriptive alt text for all images - audited in Phase 4, every `next/image` usage has alt text
 
 ### Deployment
-- [ ] Connect GitHub repository
-- [ ] Set up CI/CD pipeline (if not using Vercel)
-- [ ] Deploy to Vercel (recommended) or alternative hosting
-- [ ] Configure domain name (if needed)
-- [ ] Set up SSL/HTTPS
-- [ ] Test live site thoroughly
+- [x] Connect GitHub repository - already connected (`github.com/Beefy-py/portfolio`), well before this project even started
+- [ ] Set up CI/CD pipeline (if not using Vercel) - n/a assuming Vercel (site is live at kennyhoft.live already, presumably via Vercel's own git integration - not independently confirmed)
+- [ ] Deploy to Vercel (recommended) or alternative hosting - **blocked on the push decision above**; the site already appears to be deployed, this is really "push + let it redeploy" at this point, not a fresh setup
+- [ ] Configure domain name (if needed) - already configured (kennyhoft.live), not touched
+- [ ] Set up SSL/HTTPS - already in place (site meta tags reference `https://www.kennyhoft.live`), not touched
+- [ ] Test live site thoroughly - can't do until the above is pushed/deployed; everything tested so far was against a local build
 
 ### Post-Launch
-- [ ] Monitor error logs
-- [ ] Track analytics
-- [ ] Gather feedback
-- [ ] Plan future improvements
+- [ ] Monitor error logs - infra exists to do this (Vercel), not an active practice yet
+- [x] Track analytics - Vercel Analytics already integrated (Phase 2)
+- [ ] Gather feedback - n/a, ongoing practice for Kenny, not a coding task
+- [ ] Plan future improvements - see Phase 6 below
 
 ---
 
