@@ -28,15 +28,12 @@ export interface Testimonial {
   url?: string;
 }
 
-export interface Bubble {
-  height: number;
-  width: number;
-  xAxisPosition: number;
-  yAxisPosition: number;
-  color: "green" | "light-green" | "dark";
-  rotation?: number;
+export interface Service {
+  name: string;
+  description: string;
 }
-export interface Bubbles {
-  desktop: Bubble[];
-  mobile: Bubble[];
+
+export interface Stat {
+  value: string;
+  label: string;
 }

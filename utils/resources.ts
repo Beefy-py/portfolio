@@ -1,10 +1,6 @@
-import { Bubbles, Experience, Project } from "./interfaces";
+import { Experience, Project, Service, Stat } from "./interfaces";
 
 export const navLinks = [
-  {
-    name: "Home",
-    path: "/#home",
-  },
   {
     name: "About",
     path: "/#about",
@@ -39,6 +35,37 @@ export const aboutSkills = [
 ];
 
 export const languageSkills = ["Dutch", "English", "Spanish"];
+
+export const cvUrl =
+  "https://docs.google.com/document/d/1H_23-CjvKYIstvSdCElyDMrbU35Q2_8hA0RExndmG7k/edit?usp=sharing";
+
+export const contactEmail = "hoftkenny@gmail.com";
+
+export const services: Service[] = [
+  {
+    name: "Web applications",
+    description: "Next.js, React & Node — from POS systems to portals.",
+  },
+  {
+    name: "Mobile apps",
+    description: "Offline-first React Native & Expo apps.",
+  },
+  {
+    name: "SAP & ERP",
+    description: "SAP solutions, ERPNext integrations and tooling.",
+  },
+  {
+    name: "Dashboards & APIs",
+    description: "Go, Python & dockerized services on your own VPS.",
+  },
+];
+
+export const stats: Stat[] = [
+  { value: "4+", label: "Years shipping software" },
+  { value: "4", label: "Companies worked with" },
+  { value: "2nd", label: "DataSur Hackathon 2025" },
+  { value: "3", label: "Languages spoken" },
+];
 
 export const additionalInfo = [
   {
@@ -168,318 +195,3 @@ export const projects: Project[] = [
     tags: [{ name: "React" }, { name: "NodeJS" }, { name: "Tailwind" }],
   },
 ];
-
-// sorted from left to right
-export const bubbles: Bubbles = {
-  desktop: [
-    {
-      height: 80,
-      width: 80,
-      xAxisPosition: 120,
-      yAxisPosition: 450,
-      color: "dark",
-    },
-    {
-      height: 180,
-      width: 180,
-      xAxisPosition: 100,
-      yAxisPosition: 120,
-      color: "green",
-      rotation: 4.57,
-    },
-
-    {
-      height: 100,
-      width: 100,
-      xAxisPosition: 527,
-      yAxisPosition: 124,
-      color: "light-green",
-    },
-    {
-      height: 40,
-      width: 40,
-      xAxisPosition: 850,
-      yAxisPosition: 219,
-      color: "green",
-    },
-    {
-      height: 219,
-      width: 219,
-      xAxisPosition: 1396,
-      yAxisPosition: 177,
-      color: "light-green",
-      rotation: 4.57,
-    },
-    {
-      height: 89,
-      width: 89,
-      xAxisPosition: 1254,
-      yAxisPosition: 425,
-      color: "dark",
-      rotation: 4.57,
-    },
-  ],
-  mobile: [
-    {
-      height: 100,
-      width: 100,
-      xAxisPosition: -80,
-      yAxisPosition: 130,
-      color: "light-green",
-    },
-    {
-      height: 50,
-      width: 50,
-      xAxisPosition: 250,
-      yAxisPosition: 120,
-      color: "green",
-      rotation: 4.57,
-    },
-    {
-      height: 60,
-      width: 60,
-      xAxisPosition: 720,
-      yAxisPosition: 320,
-      color: "dark",
-      rotation: -143.94,
-    },
-  ],
-};
-
-export const bubbles404: Bubbles = {
-  desktop: [
-    {
-      height: 120,
-      width: 120,
-      xAxisPosition: 120,
-      yAxisPosition: 600,
-      color: "dark",
-    },
-    {
-      height: 230,
-      width: 230,
-      xAxisPosition: 100,
-      yAxisPosition: 120,
-      color: "green",
-    },
-    {
-      height: 90,
-      width: 90,
-      xAxisPosition: 400,
-      yAxisPosition: 650,
-      color: "light-green",
-    },
-    {
-      height: 100,
-      width: 100,
-      xAxisPosition: 527,
-      yAxisPosition: 124,
-      color: "light-green",
-    },
-    {
-      height: 50,
-      width: 50,
-      xAxisPosition: 850,
-      yAxisPosition: 219,
-      color: "dark",
-    },
-    {
-      height: 120,
-      width: 120,
-      xAxisPosition: 880,
-      yAxisPosition: 700,
-      color: "light-green",
-    },
-    {
-      height: 140,
-      width: 140,
-      xAxisPosition: 1050,
-      yAxisPosition: 150,
-      color: "green",
-    },
-
-    {
-      height: 89,
-      width: 89,
-      xAxisPosition: 1254,
-      yAxisPosition: 425,
-      color: "dark",
-      rotation: 4.57,
-    },
-    {
-      height: 219,
-      width: 219,
-      xAxisPosition: 1396,
-      yAxisPosition: 177,
-      color: "light-green",
-      rotation: 4.57,
-    },
-  ],
-  mobile: [
-    {
-      height: 100,
-      width: 100,
-      xAxisPosition: -20,
-      yAxisPosition: 130,
-      color: "dark",
-    },
-    {
-      height: 60,
-      width: 60,
-      xAxisPosition: 60,
-      yAxisPosition: 500,
-      color: "green",
-    },
-    {
-      height: 50,
-      width: 50,
-      xAxisPosition: 250,
-      yAxisPosition: 120,
-      color: "light-green",
-      rotation: 4.57,
-    },
-    {
-      height: 85,
-      width: 85,
-      xAxisPosition: 450,
-      yAxisPosition: 500,
-      color: "light-green",
-      rotation: -143.94,
-    },
-    {
-      height: 100,
-      width: 100,
-      xAxisPosition: 500,
-      yAxisPosition: 200,
-      color: "green",
-      rotation: -143.94,
-    },
-    {
-      height: 60,
-      width: 60,
-      xAxisPosition: 720,
-      yAxisPosition: 320,
-      color: "dark",
-      rotation: -143.94,
-    },
-  ],
-};
-
-export const bubbles500: Bubbles = {
-  desktop: [
-    {
-      height: 120,
-      width: 120,
-      xAxisPosition: 120,
-      yAxisPosition: 600,
-      color: "dark",
-    },
-    {
-      height: 230,
-      width: 230,
-      xAxisPosition: 100,
-      yAxisPosition: 120,
-      color: "dark",
-    },
-    {
-      height: 150,
-      width: 150,
-      xAxisPosition: 300,
-      yAxisPosition: 550,
-      color: "dark",
-    },
-    {
-      height: 100,
-      width: 100,
-      xAxisPosition: 527,
-      yAxisPosition: 124,
-      color: "dark",
-    },
-    {
-      height: 50,
-      width: 50,
-      xAxisPosition: 850,
-      yAxisPosition: 219,
-      color: "dark",
-    },
-    {
-      height: 90,
-      width: 90,
-      xAxisPosition: 880,
-      yAxisPosition: 700,
-      color: "dark",
-    },
-    {
-      height: 140,
-      width: 140,
-      xAxisPosition: 1050,
-      yAxisPosition: 150,
-      color: "dark",
-    },
-
-    {
-      height: 89,
-      width: 89,
-      xAxisPosition: 1254,
-      yAxisPosition: 425,
-      color: "dark",
-      rotation: 4.57,
-    },
-    {
-      height: 219,
-      width: 219,
-      xAxisPosition: 1396,
-      yAxisPosition: 177,
-      color: "dark",
-      rotation: 4.57,
-    },
-  ],
-  mobile: [
-    {
-      height: 100,
-      width: 100,
-      xAxisPosition: -20,
-      yAxisPosition: 130,
-      color: "dark",
-    },
-    {
-      height: 60,
-      width: 60,
-      xAxisPosition: 60,
-      yAxisPosition: 500,
-      color: "dark",
-    },
-    {
-      height: 50,
-      width: 50,
-      xAxisPosition: 250,
-      yAxisPosition: 120,
-      color: "dark",
-      rotation: 4.57,
-    },
-    {
-      height: 85,
-      width: 85,
-      xAxisPosition: 450,
-      yAxisPosition: 500,
-      color: "dark",
-      rotation: -143.94,
-    },
-    {
-      height: 100,
-      width: 100,
-      xAxisPosition: 500,
-      yAxisPosition: 200,
-      color: "dark",
-      rotation: -143.94,
-    },
-    {
-      height: 60,
-      width: 60,
-      xAxisPosition: 720,
-      yAxisPosition: 320,
-      color: "dark",
-      rotation: -143.94,
-    },
-  ],
-};
