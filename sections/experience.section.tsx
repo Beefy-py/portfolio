@@ -6,46 +6,50 @@ import SectionWrapper from "./sectionWrapper";
 import { fadeIn, fadeInViewport } from "../utils/motion";
 
 function ExperienceSection() {
+  const newestFirst = [...workedAt].reverse();
+
   return (
-    <SectionWrapper name="experience">
-      <motion.ol
-        initial="hidden"
-        whileInView="show"
-        viewport={fadeInViewport}
-        variants={fadeIn("down")}
-        className="lg:col-span-7 relative border-l border-logo-shade1"
-      >
-        {workedAt.map((exp, index) => (
-          <li key={index + " " + exp.company} className="mb-10 ml-4">
-            <div className="absolute w-3 h-3 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 bg-logo-shade1"></div>
-            <h3 className="text-xl font-semibold text-logo-shade1">
-              {exp.company}
-            </h3>
-            <motion.p
-              initial="hidden"
-              whileInView="show"
-              viewport={fadeInViewport}
-              variants={fadeIn("left")}
-              className="text-gray-500 my-1 divide-x-2 divide-gray-400 dark:divide-gray-600"
-            >
-              <span className="font-semibold mr-1">{exp.role}</span>
-              <span className="text-gray-600 pl-1">
-                {moment(exp.from).format("MMMM YYYY")} -{" "}
-                {exp.to ? moment(exp.to).format("MMMM YYYY") : "Current"}
-              </span>
-            </motion.p>
-            <motion.p
-              initial="hidden"
-              whileInView="show"
-              viewport={fadeInViewport}
-              variants={fadeIn("left", 100)}
-              className="text-lg font-normal text-gray-600 dark:text-gray-400"
-            >
-              {exp.description}
-            </motion.p>
-          </li>
+    <SectionWrapper
+      name="experience"
+      index="02"
+      label="Experience"
+      title={
+        <>
+          Where I&apos;ve been <span className="text-muted">building.</span>
+        </>
+      }
+    >
+      <ol className="border-t hairline">
+        {newestFirst.map((exp, index) => (
+          <motion.li
+            key={exp.company}
+            initial="hidden"
+            whileInView="show"
+            viewport={fadeInViewport}
+            variants={fadeIn("up", index * 60)}
+            className="group relative grid gap-4 border-b hairline py-10 transition-colors lg:grid-cols-4 lg:gap-8 lg:py-12"
+          >
+            <span
+              aria-hidden
+              className="absolute inset-y-0 -left-5 w-px origin-top scale-y-0 bg-accent transition-transform duration-500 group-hover:scale-y-100 sm:-left-8 lg:-left-12"
+            />
+            <p className="label flex items-center gap-2 self-start lg:pt-3">
+              {!exp.to && <span className="h-1.5 w-1.5 rounded-full bg-accent" />}
+              {moment(exp.from).format("MMM YYYY")} —{" "}
+              {exp.to ? moment(exp.to).format("MMM YYYY") : "Now"}
+            </p>
+            <div>
+              <h3 className="text-3xl font-semibold leading-none tracking-[-0.03em] transition-colors group-hover:text-accent lg:text-4xl">
+                {exp.company}
+              </h3>
+              <p className="mt-3 text-muted">{exp.role}</p>
+            </div>
+            <p className="leading-relaxed text-muted lg:col-span-2">
+              {exp.description.trim()}
+            </p>
+          </motion.li>
         ))}
-      </motion.ol>
+      </ol>
     </SectionWrapper>
   );
 }

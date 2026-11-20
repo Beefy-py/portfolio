@@ -1,12 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { sendContactForm } from "../lib/api";
-import { additionalInfo } from "../utils/resources";
+import { contactEmail, socialLinks } from "../utils/resources";
+import useLocalTime from "../hooks/localTime";
 import SectionWrapper from "./sectionWrapper";
 import {
+  ArrowUpRightIcon,
+  CheckCircleIcon,
   ExclamationTriangleIcon,
-  PaperAirplaneIcon,
-  ExclamationCircleIcon,
 } from "@heroicons/react/24/outline";
 import { fadeIn, fadeInViewport } from "../utils/motion";
 
@@ -28,23 +29,40 @@ const initialState = {
   error: "",
 };
 
+type FieldName = keyof typeof initialState.values;
+
+const fields: {
+  name: FieldName;
+  label: string;
+  type: string;
+  placeholder: string;
+  half?: boolean;
+}[] = [
+  { name: "name", label: "Your name", type: "text", placeholder: "Jane Doe", half: true },
+  { name: "email", label: "Your email", type: "email", placeholder: "jane@company.com", half: true },
+  { name: "subject", label: "Subject", type: "text", placeholder: "A new mobile app, a dashboard…" },
+  { name: "message", label: "Message", type: "textarea", placeholder: "Tell me a bit about the project" },
+];
+
 function ContactSection() {
   const [state, setState] = useState(initialState);
+  const time = useLocalTime();
 
   const { values, touched, isLoading, error, displayToast } = state;
 
   useEffect(() => {
-    setTimeout(() => {
-      if (displayToast) setState((prev) => ({ ...prev, displayToast: false }));
-    }, 4000);
+    if (!displayToast) return;
+    const id = setTimeout(
+      () => setState((prev) => ({ ...prev, displayToast: false })),
+      4000
+    );
+    return () => clearTimeout(id);
   }, [displayToast]);
 
   const handleBlur = (
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const { value, name } = e.target;
+    const { name } = e.target;
     setState((prev) => ({
       ...prev,
       touched: { ...prev.touched, [name]: true },
@@ -52,9 +70,7 @@ function ContactSection() {
   };
 
   const handleChange = (
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { value, name } = e.target;
     setState((prev) => ({
@@ -69,7 +85,7 @@ function ContactSection() {
 
     try {
       await sendContactForm(values);
-      setState((prev) => ({ ...initialState, displayToast: true }));
+      setState({ ...initialState, displayToast: true });
     } catch (error: any) {
       setState((prev) => ({
         ...prev,
@@ -80,231 +96,146 @@ function ContactSection() {
     }
   };
 
-  const inputStyling = `
-shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-md lg:text-lg rounded-sm focus:outline-2 focus:outline-offset-3 focus:outline-logo-shade3 outline-none ring-none focus:ring-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:shadow-sm-light`;
-
-  const inputLabelStyling = `flex items-center mb-2 text-md lg:text-lg font-medium text-gray-900 dark:text-gray-300`;
+  const inputStyling =
+    "block w-full border-0 border-b hairline bg-transparent px-0 py-3 text-lg text-ink placeholder:text-muted/60 transition-colors focus:border-accent focus:outline-none focus:ring-0";
 
   return (
-    <SectionWrapper name="contact">
-      <div className="col-span-full px-4 mx-auto max-w-screen-md">
-        <motion.h2
+    <SectionWrapper
+      name="contact"
+      index="04"
+      label="Contact"
+      title={
+        <>
+          Got an idea?{" "}
+          <span className="text-accent">Let&apos;s build it together.</span>
+        </>
+      }
+    >
+      <div
+        role="status"
+        aria-live="polite"
+        className={`fixed left-1/2 top-24 z-50 flex -translate-x-1/2 items-center gap-3 whitespace-nowrap rounded-full px-5 py-3 text-sm font-medium shadow-2xl transition-all duration-500 ${
+          displayToast
+            ? "translate-y-0 opacity-100"
+            : "pointer-events-none -translate-y-4 opacity-0"
+        } ${error ? "bg-red-600 text-white" : "bg-accent text-accent-ink"}`}
+      >
+        {error ? (
+          <ExclamationTriangleIcon className="h-5 w-5" />
+        ) : (
+          <CheckCircleIcon className="h-5 w-5" />
+        )}
+        {error ? error : "Message sent — I'll get back to you soon."}
+      </div>
+
+      <div className="grid gap-16 lg:grid-cols-4 lg:gap-8">
+        <div className="space-y-10">
+          <div>
+            <p className="label mb-3">Email</p>
+            <a
+              href={`mailto:${contactEmail}`}
+              className="link-underline break-all text-lg"
+            >
+              {contactEmail}
+            </a>
+          </div>
+          <div>
+            <p className="label mb-3">Based in</p>
+            <p className="text-lg">Commewijne, Suriname</p>
+            <p className="text-muted">Local time {time} (UTC−3)</p>
+          </div>
+          <div>
+            <p className="label mb-3">Socials</p>
+            <ul className="space-y-1">
+              {socialLinks.map((link) => (
+                <li key={link.url}>
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-1 text-lg hover:text-accent"
+                  >
+                    {link.name}
+                    <ArrowUpRightIcon className="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <motion.form
           initial="hidden"
           whileInView="show"
           viewport={fadeInViewport}
           variants={fadeIn("up")}
-          className="mb-4 text-xl md:text-2xl tracking-tight font-bold lg:text-center text-gray-700 dark:text-gray-300"
+          onSubmit={sendEmail}
+          className="grid gap-x-8 gap-y-10 rounded-[1.75rem] bg-surface p-6 sm:grid-cols-2 sm:p-10 lg:col-span-3"
         >
-          Contact Me
-        </motion.h2>
-        <motion.p
-          initial="hidden"
-          whileInView="show"
-          viewport={fadeInViewport}
-          variants={fadeIn("up", 50)}
-          className="mb-8 lg:mb-16 font-light lg:text-center text-gray-500 dark:text-gray-400 sm:text-lg"
-        >
-          Do you have any questions for me or suggestions? Then please don't
-          hesitate to contact me.
-        </motion.p>
-
-        <div
-          id="toast-message"
-          className={`fixed transition-all ease-[cubic-bezier(0.95,0.05,0.795,0.035)] ${
-            displayToast ? "top-3 scale-100 w-full" : "top-0 scale-0 w-0"
-          } left-0 right-0 mx-auto flex items-center w-2/4 min-w-min md:max-w-xs p-4 space-x-4 border-2 border-dashed ${
-            error ? "border-red-600 dark:border-red-500" : "border-logo-shade1"
-          } ${
-            error ? "text-red-600 dark:text-red-500" : "text-logo-shade1"
-          } bg-white divide-x divide-gray-200 rounded-sm shadow dark:divide-gray-700 space-x dark:bg-gray-800`}
-          role="alert"
-        >
-          {error ? (
-            <ExclamationTriangleIcon className="w-6 h-6 mr-2" />
-          ) : (
-            <PaperAirplaneIcon className="w-8 h-8 md:h-6 md:w-6 -rotate-45" />
-          )}
-          <div className="pl-4 text-sm font-normal">
-            {error ? error : " Message sent successfully."}
-          </div>
-        </div>
-
-        <form onSubmit={sendEmail} className="space-y-8">
-          <div className="grid grid-cols-6 space-y-8 md:space-y-0 md:space-x-2">
-            <motion.div
-              initial="hidden"
-              whileInView="show"
-              viewport={fadeInViewport}
-              variants={fadeIn("right", 100)}
-              className="col-span-full md:col-span-3"
-            >
-              <label
-                htmlFor="email"
-                className={`${inputLabelStyling} ${
-                  touched.email && !values.email
-                    ? "text-orange-600 dark:text-orange-500"
-                    : ""
-                }`}
+          {fields.map((field) => {
+            const invalid = touched[field.name] && !values[field.name];
+            const shared = {
+              id: field.name,
+              name: field.name,
+              required: true,
+              placeholder: field.placeholder,
+              value: values[field.name],
+              onChange: handleChange,
+              onBlur: handleBlur,
+            };
+            return (
+              <div
+                key={field.name}
+                className={field.half ? "" : "sm:col-span-2"}
               >
-                Your email
-                {touched.email && !values.email && (
-                  <>
-                    <ExclamationCircleIcon className="w-5 h-5 ml-2" />
-                    {"*required"}
-                  </>
+                <label
+                  htmlFor={field.name}
+                  className={`label flex justify-between ${
+                    invalid ? "!text-sun" : ""
+                  }`}
+                >
+                  {field.label}
+                  {invalid && <span>Required</span>}
+                </label>
+                {field.type === "textarea" ? (
+                  <textarea
+                    {...shared}
+                    rows={4}
+                    className={`${inputStyling} resize-none ${
+                      invalid ? "!border-sun" : ""
+                    }`}
+                  />
+                ) : (
+                  <input
+                    {...shared}
+                    type={field.type}
+                    className={`${inputStyling} ${
+                      invalid ? "!border-sun" : ""
+                    }`}
+                  />
                 )}
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                className={`${inputStyling} ${
-                  touched.email && !values.email
-                    ? "border-orange-600 dark:border-orange-500"
-                    : ""
-                }`}
-                placeholder="eg. name@email.com"
-                required
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-            </motion.div>
-            <motion.div
-              initial="hidden"
-              whileInView="show"
-              viewport={fadeInViewport}
-              variants={fadeIn("left", 100)}
-              className="col-span-full md:col-span-3"
+              </div>
+            );
+          })}
+
+          <div className="flex flex-wrap items-center justify-between gap-4 sm:col-span-2">
+            <p className="text-sm text-muted">
+              All fields are required.
+            </p>
+            <button
+              type="submit"
+              disabled={
+                isLoading || Object.values(values).some((val) => val === "")
+              }
+              className="group flex items-center gap-4 rounded-full bg-accent py-2 pl-7 pr-2 text-lg font-medium text-accent-ink transition-all enabled:hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-40"
             >
-              <label
-                htmlFor="name"
-                className={`${inputLabelStyling} ${
-                  touched.name && !values.name
-                    ? "text-orange-600 dark:text-orange-500"
-                    : ""
-                }`}
-              >
-                Your name
-                {touched.name && !values.name && (
-                  <>
-                    <ExclamationCircleIcon className="w-5 h-5 ml-2" />
-                    {"*required"}
-                  </>
-                )}
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                className={`${inputStyling} ${
-                  touched.name && !values.name
-                    ? "border-orange-600 dark:border-orange-500"
-                    : ""
-                }`}
-                placeholder="eg. John Doe"
-                required
-                value={values.name}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-            </motion.div>
+              {isLoading ? "Sending…" : "Send message"}
+              <span className="grid h-11 w-11 place-items-center rounded-full bg-accent-ink text-accent transition-transform duration-300 group-enabled:group-hover:rotate-45">
+                <ArrowUpRightIcon className="h-5 w-5" strokeWidth={2} />
+              </span>
+            </button>
           </div>
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={fadeInViewport}
-            variants={fadeIn("up", 150)}
-          >
-            <label
-              htmlFor="subject"
-              className={`${inputLabelStyling} ${
-                touched.subject && !values.subject
-                  ? "text-orange-600 dark:text-orange-500"
-                  : ""
-              }`}
-            >
-              Subject
-              {touched.subject && !values.subject && (
-                <>
-                  <ExclamationCircleIcon className="w-5 h-5 ml-2" />
-                  {"*required"}
-                </>
-              )}
-            </label>
-            <input
-              type="text"
-              id="subject"
-              name="subject"
-              className={`${inputStyling} ${
-                touched.subject && !values.subject
-                  ? "border-orange-600 dark:border-orange-500"
-                  : ""
-              }`}
-              placeholder="What is it about?"
-              required
-              value={values.subject}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          </motion.div>
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={fadeInViewport}
-            variants={fadeIn("up", 150)}
-            className="sm:col-span-2"
-          >
-            <label
-              htmlFor="message"
-              className={`${inputLabelStyling} ${
-                touched.message && !values.message
-                  ? "text-orange-600 dark:text-orange-500"
-                  : ""
-              }`}
-            >
-              Your message
-              {touched.message && !values.message && (
-                <>
-                  <ExclamationCircleIcon className="w-5 h-5 ml-2" />
-                  {"*required"}
-                </>
-              )}
-            </label>
-            <textarea
-              id="message"
-              rows={6}
-              name="message"
-              className={`${inputStyling} ${
-                touched.message && !values.message
-                  ? "border-orange-600 dark:border-orange-500"
-                  : ""
-              }`}
-              placeholder="Leave a comment..."
-              required
-              value={values.message}
-              // onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-              //   setState((prev) => ({
-              //     ...prev,
-              //     values: { ...prev.values, message: e.target.value },
-              //   }));
-              // }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            ></textarea>
-          </motion.div>
-          <motion.button
-            initial="hidden"
-            whileInView="show"
-            viewport={fadeInViewport}
-            variants={fadeIn("up", 200)}
-            disabled={Object.values(values).some((val) => val === "")}
-            type="submit"
-            className="py-3 px-5 text-sm lg:text-lg font-medium text-center text-gray-200 hover:text-gray-900 rounded-sm bg-logo-shade2 sm:w-fit hover:bg-logo-shade3 transition disabled:cursor-not-allowed disabled:hover:bg-gray-400 disabled:bg-gray-300 disabled:text-gray-900"
-          >
-            {isLoading ? "Sending. . ." : "Send message"}
-          </motion.button>
-        </form>
+        </motion.form>
       </div>
     </SectionWrapper>
   );

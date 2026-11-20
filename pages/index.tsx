@@ -1,8 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Layout from "../components/layout";
-import ScrollTopButton from "../components/scrollTopButton.component";
-import useDarkmode from "../hooks/darkmode";
 import AboutSection from "../sections/about.section";
 import ContactSection from "../sections/contact.section";
 import ExperienceSection from "../sections/experience.section";
@@ -10,15 +8,13 @@ import HomeSection from "../sections/home.section";
 import ProjectsSection from "../sections/projects.section";
 
 const Home: NextPage = () => {
-  const isDark = useDarkmode();
-
   return (
     <>
       <Head>
         <meta charSet="utf-8" />
         <meta name="author" content="Kenny Hoft" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#000000" />
+        <meta name="theme-color" content="#0a0d0b" />
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta
           name="description"
@@ -88,7 +84,6 @@ const Home: NextPage = () => {
         <ProjectsSection />
         <ContactSection />
       </Layout>
-      <ScrollTopButton />
     </>
   );
 };
