@@ -2,7 +2,7 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
-import { League_Spartan, Secular_One } from "next/font/google";
+import { Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
 
 import React from "react";
 
@@ -10,18 +10,17 @@ import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import { Router } from "next/router";
 
-const leagueSpartan = League_Spartan({
+const display = Bricolage_Grotesque({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
   display: "swap",
-  variable: "--font-league",
+  variable: "--font-display",
 });
 
-const secularOne = Secular_One({
+const mono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: "400",
+  weight: ["400", "500"],
   display: "swap",
-  variable: "--font-secular",
+  variable: "--font-mono",
 });
 
 NProgress.configure({ easing: "ease", speed: 500 });
@@ -41,11 +40,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Script
-        src="https://kit.fontawesome.com/8e5bc578dd.js"
-        crossOrigin="anonymous"
-      ></Script>
-
-      <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-3L2HK0HKV4"
       ></Script>
@@ -59,7 +53,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         `}
       </Script>
 
-      <div className={`${leagueSpartan.variable} ${secularOne.variable} font-league`}>
+      <div className={`${display.variable} ${mono.variable} font-display`}>
         <Component {...pageProps} />
       </div>
       <Analytics />

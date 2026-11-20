@@ -2,33 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
-h1,
-h2,
-h3 {
-  font-family: var(--font-secular), sans-serif;
+/*
+ * Palette pulled from the golden-hour headshot: jungle green, warm paper,
+ * sunset amber. Values are "R G B" so Tailwind can apply alpha modifiers.
+ */
+:root {
+  --bg: 243 239 230;
+  --surface: 234 228 215;
+  --ink: 18 24 20;
+  --muted: 92 99 92;
+  --line: 18 24 20;
+  --accent: 19 134 58;
+  --accent-ink: 243 239 230;
+  --sun: 194 87 26;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: 10 13 11;
+  --surface: 20 26 22;
+  --ink: 237 232 221;
+  --muted: 143 151 143;
+  --line: 237 232 221;
+  --accent: 43 212 99;
+  --accent-ink: 10 13 11;
+  --sun: 255 146 64;
+  color-scheme: dark;
+}
+
+@layer base {
+  body {
+    @apply bg-bg text-ink font-display antialiased;
+  }
+}
+
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-site px-5 sm:px-8 lg:px-12;
+  }
+  .label {
+    @apply font-mono text-[11px] uppercase tracking-[0.18em] text-muted;
+  }
+  .hairline {
+    @apply border-line/10;
+  }
+  .link-underline {
+    @apply relative inline-block after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-full after:origin-right after:scale-x-0 after:bg-current after:transition-transform after:duration-300 hover:after:origin-left hover:after:scale-x-100;
+  }
 }
 
 ::selection {
-  background-color: #89d6ad;
-  color: rgb(0, 0, 0);
+  background-color: rgb(var(--accent));
+  color: rgb(var(--accent-ink));
 }
 
-::-webkit-scrollbar {
-  height: 1em;
-}
-::-webkit-scrollbar-track {
-  background: #00000000;
-  border-top-left-radius: 100vw;
-  border-bottom-left-radius: 100vw;
-  margin-block: 0.5em;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #19b44a;
-  border: 0.2em solid #dcfce7;
-  border-radius: 100vw;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #1b643a;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
-    <Html lang="en" style={{ scrollBehavior: "smooth" }}>
+    <Html lang="en" className="dark" style={{ scrollBehavior: "smooth" }}>
       <Head>
         <link
           rel="apple-touch-icon"
@@ -24,7 +24,13 @@ export default function Document() {
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
       </Head>
-      <body className="dark:bg-gray-900">
+      <body>
+        {/* Runs before first paint so a saved light theme never flashes dark. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(localStorage.theme==="light")document.documentElement.classList.remove("dark")}catch(e){}`,
+          }}
+        />
         <Main />
         <NextScript />
       </body>
