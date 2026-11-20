@@ -1,22 +1,24 @@
-import React, { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
+// Dark is the default; a saved "light" preference is applied pre-paint by the
+// inline script in _document.tsx, so this hook only needs to read and toggle.
 function useDarkmode() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
+
   useEffect(() => {
-    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      document.documentElement.classList.add("dark");
-      setIsDark(true);
-    } else {
-      document.documentElement.classList.remove("dark");
-      setIsDark(false);
-    }
+    setIsDark(document.documentElement.classList.contains("dark"));
   }, []);
-  return isDark;
+
+  const toggle = useCallback(() => {
+    const next = !document.documentElement.classList.contains("dark");
+    document.documentElement.classList.toggle("dark", next);
+    try {
+      localStorage.theme = next ? "dark" : "light";
+    } catch {}
+    setIsDark(next);
+  }, []);
+
+  return { isDark, toggle };
 }
 
 export default useDarkmode;
